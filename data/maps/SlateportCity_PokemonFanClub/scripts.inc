@@ -214,6 +214,42 @@ SlateportCity_PokemonFanClub_EventScript_ReceivedSootheBell::
 	release
 	end
 
+SlateportCity_PokemonFanClub_EventScript_FurfrouGrooming::
+	lock
+	faceplayer
+	showmoneybox 0, 0
+	msgbox SlateportCity_PokemonFanClub_Text_DoYouKnowFurfrou, MSGBOX_YESNO
+	switch VAR_RESULT
+	case YES, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou
+	case NO, SlateportCity_PokemonFanClub_EventScript_AnswerNo
+	release
+	end
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrou::
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_ne VAR_RESULT, SPECIES_FURFROU, SlateportCity_PokemonFanClub_EventScript_NoFurfrou
+    msgbox SlateportCity_PokemonFanClub_Text_WhatStyle, MSGBOX_DEFAULT
+    release
+    end
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrouHeart::
+	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
+    playse SE_PIN
+    removemoney 500
+    msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+	goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+	end
+
+SlateportCity_PokemonFanClub_EventScript_NoFurfrou::
+    msgbox SlateportCity_PokemonFanClub_Text_NoFurfrou, MSGBOX_DEFAULT
+    goto SlateportCity_PokemonFanClub_EventScript_AnswerNo
+
+SlateportCity_PokemonFanClub_EventScript_AnswerNo::
+    hidemoneybox
+    msgbox SlateportCity_PokemonFanClub_Text_AnswerNo, MSGBOX_DEFAULT
+    release
+    end
+
 SlateportCity_PokemonFanClub_EventScript_Man::
 	msgbox SlateportCity_PokemonFanClub_Text_PokemonDontLikeFainting, MSGBOX_NPC
 	end
@@ -388,6 +424,33 @@ SlateportCity_PokemonFanClub_Text_MonEnjoyedProtein:
 	.string "on them?\p"
 	.string "Mine acted really happy when I gave\n"
 	.string "it some PROTEIN.$"
+
+SlateportCity_PokemonFanClub_Text_DoYouKnowFurfrou:
+    .string "Do you know the POKéMON Furfrou?\n"
+    .string "They are very rare here in Hoenn.\p"
+    .string "But if you have a Furfrou with you,\n"
+    .string "I'll trim it for you for ¥500.$"
+
+SlateportCity_PokemonFanClub_Text_NoFurfrou:
+    .string "Oh, dear. You don't have a\n"
+    .string "Furfrou with you today.$"
+
+SlateportCity_PokemonFanClub_Text_WhatStyle:
+    .string "And what kind of style were you\n"
+    .string "thinking of?$"
+
+SlateportCity_PokemonFanClub_Text_PickStyle:
+    .string "All right then!\p"
+    .string "First, I'll take ¥500 from you\n"
+    .string "for the trim.$"
+
+SlateportCity_PokemonFanClub_Text_StartTrim:
+    .string "Then let's start.\n"
+    .string "Please stay calm, Furfrou.$"
+
+SlateportCity_PokemonFanClub_Text_AnswerNo:
+    .string "If you ever wish to try out a new\n"
+    .string "style, come back again!$"
 
 SlateportCity_PokemonFanClub_Text_Skitty:
 	.string "SKITTY: Fffnyaaaah…$"

@@ -16403,3 +16403,26 @@ u8 EvolutionBlockedByEvoLimit(u16 species)
 
     return FALSE;
 }
+
+u16 CheckPartyPokemon(void)
+{
+    u32 i;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        switch(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG, 0))
+        {
+        case SPECIES_FURFROU_NATURAL:
+        case SPECIES_FURFROU_DANDY_TRIM:
+        case SPECIES_FURFROU_DEBUTANTE_TRIM:
+        case SPECIES_FURFROU_DIAMOND_TRIM:
+        case SPECIES_FURFROU_HEART_TRIM:
+        case SPECIES_FURFROU_KABUKI_TRIM:
+        case SPECIES_FURFROU_LA_REINE_TRIM:
+        case SPECIES_FURFROU_MATRON_TRIM:
+        case SPECIES_FURFROU_PHARAOH_TRIM:
+        case SPECIES_FURFROU_STAR_TRIM:
+            return SPECIES_FURFROU;
+        }
+    }
+    return SPECIES_NONE;
+}
