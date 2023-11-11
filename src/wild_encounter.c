@@ -429,6 +429,61 @@ u8 PickWildMonNature(void)
     return Random() % NUM_NATURES;
 }
 
+/*0128*/static const u16 sPaldeanTaurosForms[]  = {SPECIES_TAUROS_PALDEAN_COMBAT_BREED, SPECIES_TAUROS_PALDEAN_BLAZE_BREED, SPECIES_TAUROS_PALDEAN_AQUA_BREED};
+/*0412*/static const u16 sBurmyForms[]          = {SPECIES_BURMY_PLANT_CLOAK, SPECIES_BURMY_SANDY_CLOAK, SPECIES_BURMY_TRASH_CLOAK};
+/*0413*/static const u16 sWormadamForms[]       = {SPECIES_WORMADAM_PLANT_CLOAK, SPECIES_WORMADAM_SANDY_CLOAK, SPECIES_WORMADAM_TRASH_CLOAK};
+/*0422*/static const u16 sShellosForms[]        = {SPECIES_SHELLOS_WEST_SEA, SPECIES_SHELLOS_EAST_SEA};
+/*0423*/static const u16 sGastrodonForms[]      = {SPECIES_GASTRODON_WEST_SEA, SPECIES_GASTRODON_EAST_SEA};
+/*0550*/static const u16 sBasculinForms[]       = {SPECIES_BASCULIN_RED_STRIPED, SPECIES_BASCULIN_BLUE_STRIPED, SPECIES_BASCULIN_WHITE_STRIPED};
+/*0585*/static const u16 sDeerlingForms[]       = {SPECIES_DEERLING_SPRING, SPECIES_DEERLING_AUTUMN, SPECIES_DEERLING_SUMMER, SPECIES_DEERLING_WINTER};
+/*0586*/static const u16 sSawsbuckForms[]       = {SPECIES_SAWSBUCK_SPRING, SPECIES_SAWSBUCK_AUTUMN, SPECIES_SAWSBUCK_SUMMER, SPECIES_SAWSBUCK_WINTER};
+/*0658*/static const u16 sGreninjaForms[]       = {SPECIES_GRENINJA, SPECIES_GRENINJA_BATTLE_BOND};
+/*0666*/static const u16 sVivillonForms[]       = {SPECIES_VIVILLON_ICY_SNOW, SPECIES_VIVILLON_POLAR, SPECIES_VIVILLON_TUNDRA, SPECIES_VIVILLON_CONTINENTAL, SPECIES_VIVILLON_GARDEN, SPECIES_VIVILLON_ELEGANT,
+                                                   SPECIES_VIVILLON_MEADOW, SPECIES_VIVILLON_MODERN, SPECIES_VIVILLON_MARINE, SPECIES_VIVILLON_ARCHIPELAGO, SPECIES_VIVILLON_HIGH_PLAINS,
+                                                   SPECIES_VIVILLON_SANDSTORM, SPECIES_VIVILLON_RIVER, SPECIES_VIVILLON_MONSOON, SPECIES_VIVILLON_SAVANNA, SPECIES_VIVILLON_SUN, SPECIES_VIVILLON_OCEAN,
+                                                   SPECIES_VIVILLON_JUNGLE, SPECIES_VIVILLON_FANCY, SPECIES_VIVILLON_POKE_BALL};
+/*0669*/static const u16 sFlabebeForms[]        = {SPECIES_FLABEBE_RED_FLOWER, SPECIES_FLABEBE_YELLOW_FLOWER, SPECIES_FLABEBE_BLUE_FLOWER, SPECIES_FLABEBE_ORANGE_FLOWER, SPECIES_FLABEBE_WHITE_FLOWER};
+/*0670*/static const u16 sFloetteForms[]        = {SPECIES_FLOETTE_RED_FLOWER, SPECIES_FLOETTE_YELLOW_FLOWER, SPECIES_FLOETTE_BLUE_FLOWER, SPECIES_FLOETTE_ORANGE_FLOWER, SPECIES_FLOETTE_WHITE_FLOWER};
+/*0671*/static const u16 sFlorgesForms[]        = {SPECIES_FLORGES_RED_FLOWER, SPECIES_FLORGES_YELLOW_FLOWER, SPECIES_FLORGES_BLUE_FLOWER, SPECIES_FLORGES_ORANGE_FLOWER, SPECIES_FLORGES_WHITE_FLOWER};
+/*0678*/static const u16 sMeowsticForms[]       = {SPECIES_MEOWSTIC_MALE, SPECIES_MEOWSTIC_FEMALE};
+/*0710*/static const u16 sPumpkabooForms[]      = {SPECIES_PUMPKABOO_AVERAGE, SPECIES_PUMPKABOO_SMALL, SPECIES_PUMPKABOO_LARGE, SPECIES_PUMPKABOO_SUPER};
+/*0711*/static const u16 sGourgeistForms[]      = {SPECIES_GOURGEIST_AVERAGE, SPECIES_GOURGEIST_SMALL, SPECIES_GOURGEIST_LARGE, SPECIES_GOURGEIST_SUPER};
+/*0741*/static const u16 sOricorioForms[]       = {SPECIES_ORICORIO_BAILE, SPECIES_ORICORIO_POM_POM, SPECIES_ORICORIO_PAU, SPECIES_ORICORIO_SENSU};
+/*0744*/static const u16 sRockruffForms[]       = {SPECIES_ROCKRUFF, SPECIES_ROCKRUFF_OWN_TEMPO};
+/*0745*/static const u16 sLycanrocForms[]       = {SPECIES_LYCANROC_MIDDAY, SPECIES_LYCANROC_MIDNIGHT, SPECIES_LYCANROC_DUSK};
+/*0774*/static const u16 sMiniorForms[]         = {SPECIES_MINIOR_METEOR_RED, SPECIES_MINIOR_METEOR_BLUE, SPECIES_MINIOR_METEOR_GREEN, SPECIES_MINIOR_METEOR_INDIGO, SPECIES_MINIOR_METEOR_ORANGE,
+                                                   SPECIES_MINIOR_METEOR_VIOLET, SPECIES_MINIOR_METEOR_YELLOW};
+/*0801*/static const u16 sMagearnaForms[]       = {SPECIES_MAGEARNA, SPECIES_MAGEARNA_ORIGINAL_COLOR};
+/*0849*/static const u16 sToxtricityForms[]     = {SPECIES_TOXTRICITY_AMPED, SPECIES_TOXTRICITY_LOW_KEY};
+/*0854*/static const u16 sSinisteaForms[]       = {SPECIES_SINISTEA_PHONY, SPECIES_SINISTEA_ANTIQUE};
+/*0855*/static const u16 sPolteageistForms[]    = {SPECIES_POLTEAGEIST_PHONY, SPECIES_POLTEAGEIST_ANTIQUE};
+/*0869*/static const u16 sAlcremieForms[]       = {SPECIES_ALCREMIE_BERRY_VANILLA_CREAM, SPECIES_ALCREMIE_BERRY_RUBY_CREAM, SPECIES_ALCREMIE_BERRY_MATCHA_CREAM, SPECIES_ALCREMIE_BERRY_MINT_CREAM,
+                                                   SPECIES_ALCREMIE_BERRY_LEMON_CREAM, SPECIES_ALCREMIE_BERRY_SALTED_CREAM, SPECIES_ALCREMIE_BERRY_RUBY_SWIRL, SPECIES_ALCREMIE_BERRY_CARAMEL_SWIRL,
+                                                   SPECIES_ALCREMIE_BERRY_RAINBOW_SWIRL, SPECIES_ALCREMIE_LOVE_VANILLA_CREAM, SPECIES_ALCREMIE_LOVE_RUBY_CREAM, SPECIES_ALCREMIE_LOVE_MATCHA_CREAM,
+                                                   SPECIES_ALCREMIE_LOVE_MINT_CREAM, SPECIES_ALCREMIE_LOVE_LEMON_CREAM, SPECIES_ALCREMIE_LOVE_SALTED_CREAM, SPECIES_ALCREMIE_LOVE_RUBY_SWIRL,
+                                                   SPECIES_ALCREMIE_LOVE_CARAMEL_SWIRL, SPECIES_ALCREMIE_LOVE_RAINBOW_SWIRL, SPECIES_ALCREMIE_STAR_VANILLA_CREAM, SPECIES_ALCREMIE_STAR_RUBY_CREAM,
+                                                   SPECIES_ALCREMIE_STAR_MATCHA_CREAM, SPECIES_ALCREMIE_STAR_MINT_CREAM, SPECIES_ALCREMIE_STAR_LEMON_CREAM, SPECIES_ALCREMIE_STAR_SALTED_CREAM,
+                                                   SPECIES_ALCREMIE_STAR_RUBY_SWIRL, SPECIES_ALCREMIE_STAR_CARAMEL_SWIRL, SPECIES_ALCREMIE_STAR_RAINBOW_SWIRL, SPECIES_ALCREMIE_CLOVER_VANILLA_CREAM,
+                                                   SPECIES_ALCREMIE_CLOVER_RUBY_CREAM, SPECIES_ALCREMIE_CLOVER_MATCHA_CREAM, SPECIES_ALCREMIE_CLOVER_MINT_CREAM, SPECIES_ALCREMIE_CLOVER_LEMON_CREAM,
+                                                   SPECIES_ALCREMIE_CLOVER_SALTED_CREAM, SPECIES_ALCREMIE_CLOVER_RUBY_SWIRL, SPECIES_ALCREMIE_CLOVER_CARAMEL_SWIRL, SPECIES_ALCREMIE_CLOVER_RAINBOW_SWIRL,
+                                                   SPECIES_ALCREMIE_FLOWER_VANILLA_CREAM, SPECIES_ALCREMIE_FLOWER_RUBY_CREAM, SPECIES_ALCREMIE_FLOWER_MATCHA_CREAM, SPECIES_ALCREMIE_FLOWER_MINT_CREAM,
+                                                   SPECIES_ALCREMIE_FLOWER_LEMON_CREAM, SPECIES_ALCREMIE_FLOWER_SALTED_CREAM, SPECIES_ALCREMIE_FLOWER_RUBY_SWIRL, SPECIES_ALCREMIE_FLOWER_CARAMEL_SWIRL,
+                                                   SPECIES_ALCREMIE_FLOWER_RAINBOW_SWIRL, SPECIES_ALCREMIE_RIBBON_VANILLA_CREAM, SPECIES_ALCREMIE_RIBBON_RUBY_CREAM, SPECIES_ALCREMIE_RIBBON_MATCHA_CREAM,
+                                                   SPECIES_ALCREMIE_RIBBON_MINT_CREAM, SPECIES_ALCREMIE_RIBBON_LEMON_CREAM, SPECIES_ALCREMIE_RIBBON_SALTED_CREAM, SPECIES_ALCREMIE_RIBBON_RUBY_SWIRL,
+                                                   SPECIES_ALCREMIE_RIBBON_CARAMEL_SWIRL, SPECIES_ALCREMIE_RIBBON_RAINBOW_SWIRL};
+/*0876*/static const u16 sIndeedeeForms[]       = {SPECIES_INDEEDEE_MALE, SPECIES_INDEEDEE_FEMALE};
+/*0893*/static const u16 sZarudeForms[]         = {SPECIES_ZARUDE, SPECIES_ZARUDE_DADA};
+/*0901*/static const u16 sUrsalunaForms[]       = {SPECIES_URSALUNA, SPECIES_URSALUNA_BLOODMOON};
+/*0902*/static const u16 sBasculegionForms[]    = {SPECIES_BASCULEGION_MALE, SPECIES_BASCULEGION_FEMALE};
+/*0916*/static const u16 sOinkologneForms[]     = {SPECIES_OINKOLOGNE_MALE, SPECIES_OINKOLOGNE_FEMALE};
+/*0925*/static const u16 sMausholdForms[]       = {SPECIES_MAUSHOLD_FAMILY_OF_THREE, SPECIES_MAUSHOLD_FAMILY_OF_FOUR};
+/*0931*/static const u16 sSquawkabillyForms[]   = {SPECIES_SQUAWKABILLY_GREEN_PLUMAGE, SPECIES_SQUAWKABILLY_BLUE_PLUMAGE, SPECIES_SQUAWKABILLY_YELLOW_PLUMAGE, SPECIES_SQUAWKABILLY_WHITE_PLUMAGE};
+/*0978*/static const u16 sTatsugiriForms[]      = {SPECIES_TATSUGIRI_CURLY, SPECIES_TATSUGIRI_DROOPY, SPECIES_TATSUGIRI_STRETCHY};
+/*0982*/static const u16 sDudunsparceForms[]    = {SPECIES_DUDUNSPARCE_TWO_SEGMENT, SPECIES_DUDUNSPARCE_THREE_SEGMENT};
+/*0999*/static const u16 sGimmighoulForms[]     = {SPECIES_GIMMIGHOUL_CHEST, SPECIES_GIMMIGHOUL_ROAMING};
+/*1012*/static const u16 sPoltchageistForms[]   = {SPECIES_POLTCHAGEIST_COUNTERFEIT, SPECIES_POLTCHAGEIST_ARTISAN};
+/*1013*/static const u16 sSinistchaForms[]      = {SPECIES_SINISTCHA_UNREMARKABLE, SPECIES_SINISTCHA_MASTERPIECE};
+
 static void CreateWildMon(u16 species, u8 level)
 {
     bool32 checkCuteCharm;
@@ -451,6 +506,121 @@ static void CreateWildMon(u16 species, u8 level)
     case MON_GENDERLESS:
         checkCuteCharm = FALSE;
         break;
+    }
+
+    switch (species)
+    {
+    case SPECIES_TAUROS_PALDEAN_COMBAT_BREED:
+    species = sPaldeanTaurosForms[Random() % 3];
+    break;
+    case SPECIES_BURMY:
+    species = sBurmyForms[Random() % 3];
+    break;
+    case SPECIES_WORMADAM:
+    species = sWormadamForms[Random() % 3];
+    break;
+    case SPECIES_SHELLOS:
+    species = sShellosForms[Random() % 2];
+    break;
+    case SPECIES_GASTRODON:
+    species = sGastrodonForms[Random() % 2];
+    break;
+    case SPECIES_BASCULIN:
+    species = sBasculinForms[Random() % 3];
+    break;
+    case SPECIES_DEERLING:
+    species = sDeerlingForms[Random() % 4];
+    break;
+    case SPECIES_SAWSBUCK:
+    species = sSawsbuckForms[Random() % 4];
+    break;
+    case SPECIES_GRENINJA:
+    species = sGreninjaForms[Random() % 2];
+    break;
+    case SPECIES_VIVILLON:
+    species = sVivillonForms[Random() % 20];
+    break;
+    case SPECIES_FLABEBE:
+    species = sFlabebeForms[Random() % 5];
+    break;
+    case SPECIES_FLOETTE:
+    species = sFloetteForms[Random() % 5];
+    break;
+    case SPECIES_FLORGES:
+    species = sFlorgesForms[Random() % 5];
+    break;
+    case SPECIES_MEOWSTIC:
+    species = sMeowsticForms[Random() % 2];
+    break;
+    case SPECIES_PUMPKABOO:
+    species = sPumpkabooForms[Random() % 4];
+    break;
+    case SPECIES_GOURGEIST:
+    species = sGourgeistForms[Random() % 4];
+    break;
+    case SPECIES_ORICORIO:
+    species = sOricorioForms[Random() % 4];
+    break;
+    case SPECIES_ROCKRUFF:
+    species = sRockruffForms[Random() % 2];
+    break;
+    case SPECIES_LYCANROC:
+    species = sLycanrocForms[Random() % 3];
+    break;
+    case SPECIES_MINIOR:
+    species = sMiniorForms[Random() % 7];
+    break;
+    case SPECIES_MAGEARNA:
+    species = sMagearnaForms[Random() % 2];
+    break;
+    case SPECIES_TOXTRICITY:
+    species = sToxtricityForms[Random() % 2];
+    break;
+    case SPECIES_SINISTEA:
+    species = sSinisteaForms[Random() % 2];
+    break;
+    case SPECIES_POLTEAGEIST:
+    species = sPolteageistForms[Random() % 2];
+    break;
+    case SPECIES_ALCREMIE:
+    species = sAlcremieForms[Random() % 63];
+    break;
+    case SPECIES_INDEEDEE:
+    species = sIndeedeeForms[Random() % 2];
+    break;
+    case SPECIES_ZARUDE:
+    species = sZarudeForms[Random() % 2];
+    break;
+    case SPECIES_URSALUNA:
+    species = sUrsalunaForms[Random() % 2];
+    break;
+    case SPECIES_BASCULEGION:
+    species = sBasculegionForms[Random() % 2];
+    break;
+    case SPECIES_OINKOLOGNE:
+    species = sOinkologneForms[Random() % 2];
+    break;
+    case SPECIES_MAUSHOLD:
+    species = sMausholdForms[Random() % 2];
+    break;
+    case SPECIES_SQUAWKABILLY:
+    species = sSquawkabillyForms[Random() % 4];
+    break;
+    case SPECIES_TATSUGIRI:
+    species = sTatsugiriForms[Random() % 3];
+    break;
+    case SPECIES_DUDUNSPARCE:
+    species = sDudunsparceForms[Random() % 2];
+    break;
+    case SPECIES_GIMMIGHOUL:
+    species = sGimmighoulForms[Random() % 2];
+    break;
+    case SPECIES_POLTCHAGEIST:
+    species = sPoltchageistForms[Random() % 2];
+    break;
+    case SPECIES_SINISTCHA:
+    species = sSinistchaForms[Random() % 2];
+    break;
     }
 
     if (checkCuteCharm
