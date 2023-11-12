@@ -241,6 +241,7 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrou::
     case 7, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouKabuki
     case 8, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouPharaoh
     case 9, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouNatural
+    case 10, SlateportCity_PokemonFanClub_EventScript_AnswerNo
     case MULTI_B_PRESSED, SlateportCity_PokemonFanClub_EventScript_AnswerNo
     release
     end
