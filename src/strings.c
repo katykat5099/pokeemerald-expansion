@@ -1842,3 +1842,15 @@ const u8 gText_NuzlockeCantThrowPokeBallSpeciesClause[]     = _("You have alread
 const u8 gText_NuzlockeCantThrowPokeBallAlreadyCaught[]     = _("You have already caught this POKéMON!{PAUSE_UNTIL_PRESS}");
 const u8 gText_OneTypeChallengeCantThrowPokeBall[]          = _("One Type Challenge active, capture blocked!{PAUSE_UNTIL_PRESS}");
 const u8 gText_BattleRules_NoItems_Player[]                 = _("Competitive rules!\nNo items in battle!{PAUSE_UNTIL_PRESS}");
+
+//Furfrou Forms
+const u8 gText_Heart[]     = _("Heart Trim");
+const u8 gText_Star[]      = _("Star Trim");
+const u8 gText_Diamond[]   = _("Diamond Trim");
+const u8 gText_Debutante[] = _("Debutante Trim");
+const u8 gText_Matron[]    = _("Matron Trim");
+const u8 gText_Dandy[]     = _("Dandy Trim");
+const u8 gText_LaReine[]   = _("La Reine Trim");
+const u8 gText_Kabuki[]    = _("Kabuki Trim");
+const u8 gText_Pharaoh[]   = _("Pharaoh Trim");
+const u8 gText_Natural[]   = _("Back to natural");

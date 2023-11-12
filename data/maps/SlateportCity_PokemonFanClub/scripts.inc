@@ -229,6 +229,19 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrou::
     specialvar VAR_RESULT, CheckPartyPokemon
     goto_if_ne VAR_RESULT, SPECIES_FURFROU, SlateportCity_PokemonFanClub_EventScript_NoFurfrou
     msgbox SlateportCity_PokemonFanClub_Text_WhatStyle, MSGBOX_DEFAULT
+    multichoice 16, 0, MULTI_FURFROU_STYLES, TRUE
+    switch VAR_RESULT
+    case 0, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouHeart
+    case 1, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouStar
+    case 2, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouDiamond
+    case 3, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouDebutante
+    case 4, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouMatron
+    case 5, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouDandy
+    case 6, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouLaReine
+    case 7, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouKabuki
+    case 8, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouPharaoh
+    case 9, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouNatural
+    case MULTI_B_PRESSED, SlateportCity_PokemonFanClub_EventScript_AnswerNo
     release
     end
 
@@ -236,8 +249,150 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrouHeart::
 	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
     playse SE_PIN
     removemoney 500
+    hidemoneybox
     msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
-	goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+    fadescreen FADE_TO_BLACK
+    playse SE_PIN
+    special ChangeFurfrouFormHeart
+    fadescreen FADE_FROM_BLACK
+    msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
+    msgbox SlateportCity_PokemonFanClub_Text_AnswerNo, MSGBOX_DEFAULT
+    release
+	end
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrouStar::
+	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
+    playse SE_PIN
+    removemoney 500
+    hidemoneybox
+    msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    fadescreen FADE_TO_BLACK
+    playse SE_PIN
+    special ChangeFurfrouFormStar
+    fadescreen FADE_FROM_BLACK
+    msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
+    msgbox SlateportCity_PokemonFanClub_Text_AnswerNo, MSGBOX_DEFAULT
+    release
+	end
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrouDiamond::
+	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
+    playse SE_PIN
+    removemoney 500
+    hidemoneybox
+    msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    fadescreen FADE_TO_BLACK
+    playse SE_PIN
+    special ChangeFurfrouFormDiamond
+    fadescreen FADE_FROM_BLACK
+    msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
+    msgbox SlateportCity_PokemonFanClub_Text_AnswerNo, MSGBOX_DEFAULT
+    release
+	end
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrouDebutante::
+	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
+    playse SE_PIN
+    removemoney 500
+    hidemoneybox
+    msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    fadescreen FADE_TO_BLACK
+    playse SE_PIN
+    special ChangeFurfrouFormDebutante
+    fadescreen FADE_FROM_BLACK
+    msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
+    msgbox SlateportCity_PokemonFanClub_Text_AnswerNo, MSGBOX_DEFAULT
+    release
+	end
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrouMatron::
+	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
+    playse SE_PIN
+    removemoney 500
+    hidemoneybox
+    msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    fadescreen FADE_TO_BLACK
+    playse SE_PIN
+    special ChangeFurfrouFormMatron
+    fadescreen FADE_FROM_BLACK
+    msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
+    msgbox SlateportCity_PokemonFanClub_Text_AnswerNo, MSGBOX_DEFAULT
+    release
+	end
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrouDandy::
+	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
+    playse SE_PIN
+    removemoney 500
+    hidemoneybox
+    msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    fadescreen FADE_TO_BLACK
+    playse SE_PIN
+    special ChangeFurfrouFormDandy
+    fadescreen FADE_FROM_BLACK
+    msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
+    msgbox SlateportCity_PokemonFanClub_Text_AnswerNo, MSGBOX_DEFAULT
+    release
+	end
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrouLaReine::
+	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
+    playse SE_PIN
+    removemoney 500
+    hidemoneybox
+    msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    fadescreen FADE_TO_BLACK
+    playse SE_PIN
+    special ChangeFurfrouFormLaReine
+    fadescreen FADE_FROM_BLACK
+    msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
+    msgbox SlateportCity_PokemonFanClub_Text_AnswerNo, MSGBOX_DEFAULT
+    release
+	end
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrouKabuki::
+	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
+    playse SE_PIN
+    removemoney 500
+    hidemoneybox
+    msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    fadescreen FADE_TO_BLACK
+    playse SE_PIN
+    special ChangeFurfrouFormKabuki
+    fadescreen FADE_FROM_BLACK
+    msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
+    msgbox SlateportCity_PokemonFanClub_Text_AnswerNo, MSGBOX_DEFAULT
+    release
+	end
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrouPharaoh::
+	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
+    playse SE_PIN
+    removemoney 500
+    hidemoneybox
+    msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    fadescreen FADE_TO_BLACK
+    playse SE_PIN
+    special ChangeFurfrouFormPharaoh
+    fadescreen FADE_FROM_BLACK
+    msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
+    msgbox SlateportCity_PokemonFanClub_Text_AnswerNo, MSGBOX_DEFAULT
+    release
+	end
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrouNatural::
+	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
+    playse SE_PIN
+    removemoney 500
+    hidemoneybox
+    msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    fadescreen FADE_TO_BLACK
+    playse SE_PIN
+    special ChangeFurfrouFormNatural
+    fadescreen FADE_FROM_BLACK
+    msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
+    msgbox SlateportCity_PokemonFanClub_Text_AnswerNo, MSGBOX_DEFAULT
+    release
 	end
 
 SlateportCity_PokemonFanClub_EventScript_NoFurfrou::
@@ -447,6 +602,11 @@ SlateportCity_PokemonFanClub_Text_PickStyle:
 SlateportCity_PokemonFanClub_Text_StartTrim:
     .string "Then let's start.\n"
     .string "Please stay calm, Furfrou.$"
+
+SlateportCity_PokemonFanClub_Text_FinishTrim:
+    .string "Thank you for your patience!\n"
+    .string "It's all done. Your Furfrou looks\l"
+    .string "gorgeous!$"
 
 SlateportCity_PokemonFanClub_Text_AnswerNo:
     .string "If you ever wish to try out a new\n"

@@ -3049,4 +3049,16 @@ extern const u8 gText_NuzlockeCantThrowPokeBallAlreadyCaught[];
 extern const u8 gText_OneTypeChallengeCantThrowPokeBall[];
 extern const u8 gText_BattleRules_NoItems_Player[];
 
+//Furfrou Forms
+extern const u8 gText_Heart[];
+extern const u8 gText_Star[];
+extern const u8 gText_Diamond[];
+extern const u8 gText_Debutante[];
+extern const u8 gText_Matron[];
+extern const u8 gText_Dandy[];
+extern const u8 gText_LaReine[];
+extern const u8 gText_Kabuki[];
+extern const u8 gText_Pharaoh[];
+extern const u8 gText_Natural[];
+
 #endif // GUARD_STRINGS_H

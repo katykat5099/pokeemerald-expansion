@@ -771,6 +771,21 @@ static const struct MenuAction MultichoiceList_TagMatchType[] =
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_FurfrouStyles[] =
+{
+    {gText_Heart},
+    {gText_Star},
+    {gText_Diamond},
+    {gText_Debutante},
+    {gText_Matron},
+    {gText_Dandy},
+    {gText_LaReine},
+    {gText_Kabuki},
+    {gText_Pharaoh},
+    {gText_Natural},
+    {gText_Exit},
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -898,6 +913,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_SLATEPORT_TENT_RULES]       = MULTICHOICE(MultichoiceList_SlateportTentRules),
     [MULTI_FALLARBOR_TENT_RULES]       = MULTICHOICE(MultichoiceList_FallarborTentRules),
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
+    [MULTI_FURFROU_STYLES]             = MULTICHOICE(MultichoiceList_FurfrouStyles),
 };
 
 const u8 *const gStdStrings[] =

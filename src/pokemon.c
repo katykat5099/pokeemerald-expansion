@@ -16409,7 +16409,7 @@ u16 CheckPartyPokemon(void)
     u32 i;
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        switch(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG, 0))
+        switch(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES))
         {
         case SPECIES_FURFROU_NATURAL:
         case SPECIES_FURFROU_DANDY_TRIM:
@@ -16422,6 +16422,7 @@ u16 CheckPartyPokemon(void)
         case SPECIES_FURFROU_PHARAOH_TRIM:
         case SPECIES_FURFROU_STAR_TRIM:
             return SPECIES_FURFROU;
+            break;
         }
     }
     return SPECIES_NONE;

@@ -543,3 +543,13 @@ gSpecials::
 	def_special SetTotemBoost
 	def_special TrySpecialOverworldEvo
 	def_special CheckPartyPokemon
+	def_special ChangeFurfrouFormHeart
+	def_special ChangeFurfrouFormStar
+	def_special ChangeFurfrouFormDiamond
+	def_special ChangeFurfrouFormDebutante
+	def_special ChangeFurfrouFormMatron
+	def_special ChangeFurfrouFormDandy
+	def_special ChangeFurfrouFormLaReine
+	def_special ChangeFurfrouFormKabuki
+	def_special ChangeFurfrouFormPharaoh
+	def_special ChangeFurfrouFormNatural
