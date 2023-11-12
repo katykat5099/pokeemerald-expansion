@@ -844,7 +844,7 @@
     {
       "id": "LAYOUT_SLATEPORT_CITY_POKEMON_FAN_CLUB",
       "name": "SlateportCity_PokemonFanClub_Layout",
-      "width": 14,
+      "width": 21,
       "height": 11,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_PokemonFanClub",
