@@ -226,12 +226,14 @@ SlateportCity_PokemonFanClub_EventScript_FurfrouGrooming::
 	end
 
 SlateportCity_PokemonFanClub_EventScript_StyleFurfrou::
+    setvar VAR_PARTY_POKEMON_CHECK, 676
     specialvar VAR_RESULT, CheckPartyPokemon
-    goto_if_ne VAR_RESULT, SPECIES_FURFROU, SlateportCity_PokemonFanClub_EventScript_NoFurfrou
+    goto_if_ne VAR_RESULT, TRUE, SlateportCity_PokemonFanClub_EventScript_NoFurfrou
 	checkmoney 500
 	goto_if_eq VAR_RESULT, 0, SlateportCity_PokemonFanClub_EventScript_NoMoney
     msgbox SlateportCity_PokemonFanClub_Text_WhatStyle, MSGBOX_DEFAULT
     hidemoneybox
+    setvar VAR_PARTY_POKEMON_CHECK, 0
     dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_0, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_1, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_2, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_3, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_4, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_5, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_6, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_7, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_8, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_9
     switch VAR_RESULT
     case 0, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouHeart
