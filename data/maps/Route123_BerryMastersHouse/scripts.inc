@@ -128,3 +128,50 @@ Route123_BerryMastersHouse_EventScript_GaveBerry::
 	release
 	end
 
+Route123_BerryMastersHouse_EventScript_DoYouHaveShaymin::
+    lock
+    faceplayer
+    goto_if_set FLAG_RECEIVED_GRACIDEA, Route123_BerryMastersHouse_EventScript_ReceivedGracidea
+    setvar VAR_PARTY_POKEMON_CHECK, 492
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_ne VAR_RESULT, TRUE, Route123_BerryMastersHouse_EventScript_NoShaymin
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    msgbox Route123_BerryMastersHouse_Text_YouHaveAShaymin, MSGBOX_DEFAULT
+    setflag FLAG_RECEIVED_GRACIDEA
+    giveitem ITEM_GRACIDEA
+    goto Route123_BerryMastersHouse_EventScript_ReceivedGracidea
+
+Route123_BerryMastersHouse_EventScript_NoShaymin::
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    msgbox Route123_BerryMastersHouse_Text_NoShaymin, MSGBOX_DEFAULT
+    release
+    end
+
+Route123_BerryMastersHouse_EventScript_ReceivedGracidea::
+    msgbox Route123_BerryMastersHouse_Text_ReceivedGracidea, MSGBOX_DEFAULT
+    release
+    end
+
+Route123_BerryMastersHouse_Text_YouHaveAShaymin:
+	.string "Golly! You have a Shaymin!\p"
+	.string "Speaking of Shaymin,\n"
+	.string "do you have a Gracidea?\p"
+	.string "I have many Gracidea right now,\n"
+	.string "so I'll give you one.$"
+
+Route123_BerryMastersHouse_Text_NoShaymin:
+	.string "Do you know Gracidea?\p"
+	.string "In the Sinnoh region, people give a\n"
+	.string "bouquet of Gracidea to convey their\l"
+	.string "gratitude!\p"
+	.string "It's a very old custom!$"
+
+Route123_BerryMastersHouse_Text_ReceivedGracidea:
+	.string "In the Sinnoh region, there's an old\n"
+	.string "custom that they give a bouquet\l"
+	.string "of Gracidea to convey gratitude.\p"
+	.string "In other words, if you give Gracidea,\n"
+	.string "you can express your feeling even\l"
+	.string "without saying it.\p"
+	.string "For a shy person like me, there's nothing\n"
+	.string "more useful than this.$"

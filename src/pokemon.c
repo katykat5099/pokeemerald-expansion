@@ -16410,6 +16410,8 @@ bool8 CheckPartyPokemon(void)
     u16 *var = GetVarPointer(VAR_PARTY_POKEMON_CHECK);
     for (i = 0; i < PARTY_SIZE; i++)
     {
+/*SHAYMIN*/ if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_SHAYMIN) && (*var == 492))
+                { return TRUE; }
 /*FURFROU*/ if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_FURFROU) && (*var == 676))
                 { return TRUE; }
     }
