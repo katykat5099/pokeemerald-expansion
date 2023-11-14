@@ -228,8 +228,11 @@ SlateportCity_PokemonFanClub_EventScript_FurfrouGrooming::
 SlateportCity_PokemonFanClub_EventScript_StyleFurfrou::
     specialvar VAR_RESULT, CheckPartyPokemon
     goto_if_ne VAR_RESULT, SPECIES_FURFROU, SlateportCity_PokemonFanClub_EventScript_NoFurfrou
+	checkmoney 500
+	goto_if_eq VAR_RESULT, 0, SlateportCity_PokemonFanClub_EventScript_NoMoney
     msgbox SlateportCity_PokemonFanClub_Text_WhatStyle, MSGBOX_DEFAULT
-    multichoice 16, 0, MULTI_FURFROU_STYLES, TRUE
+    hidemoneybox
+    dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_0, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_1, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_2, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_3, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_4, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_5, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_6, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_7, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_8, SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_9
     switch VAR_RESULT
     case 0, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouHeart
     case 1, SlateportCity_PokemonFanClub_EventScript_StyleFurfrouStar
@@ -247,13 +250,17 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrou::
     end
 
 SlateportCity_PokemonFanClub_EventScript_StyleFurfrouHeart::
+    showmoneybox 0, 0
 	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
-    playse SE_PIN
+    playse SE_SHOP
     removemoney 500
-    hidemoneybox
+    updatemoneybox
     msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    hidemoneybox
+    closemessage
     fadescreen FADE_TO_BLACK
-    playse SE_PIN
+    playse SE_SUDOWOODO_SHAKE
+    waitse
     special ChangeFurfrouFormHeart
     fadescreen FADE_FROM_BLACK
     msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
@@ -262,13 +269,17 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrouHeart::
 	end
 
 SlateportCity_PokemonFanClub_EventScript_StyleFurfrouStar::
+    showmoneybox 0, 0
 	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
-    playse SE_PIN
+    playse SE_SHOP
     removemoney 500
-    hidemoneybox
+    updatemoneybox
     msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    hidemoneybox
+    closemessage
     fadescreen FADE_TO_BLACK
-    playse SE_PIN
+    playse SE_SUDOWOODO_SHAKE
+    waitse
     special ChangeFurfrouFormStar
     fadescreen FADE_FROM_BLACK
     msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
@@ -277,13 +288,17 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrouStar::
 	end
 
 SlateportCity_PokemonFanClub_EventScript_StyleFurfrouDiamond::
+    showmoneybox 0, 0
 	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
-    playse SE_PIN
+    playse SE_SHOP
     removemoney 500
-    hidemoneybox
+    updatemoneybox
     msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    hidemoneybox
+    closemessage
     fadescreen FADE_TO_BLACK
-    playse SE_PIN
+    playse SE_SUDOWOODO_SHAKE
+    waitse
     special ChangeFurfrouFormDiamond
     fadescreen FADE_FROM_BLACK
     msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
@@ -292,13 +307,17 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrouDiamond::
 	end
 
 SlateportCity_PokemonFanClub_EventScript_StyleFurfrouDebutante::
+    showmoneybox 0, 0
 	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
-    playse SE_PIN
+    playse SE_SHOP
     removemoney 500
-    hidemoneybox
+    updatemoneybox
     msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    hidemoneybox
+    closemessage
     fadescreen FADE_TO_BLACK
-    playse SE_PIN
+    playse SE_SUDOWOODO_SHAKE
+    waitse
     special ChangeFurfrouFormDebutante
     fadescreen FADE_FROM_BLACK
     msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
@@ -307,13 +326,17 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrouDebutante::
 	end
 
 SlateportCity_PokemonFanClub_EventScript_StyleFurfrouMatron::
+    showmoneybox 0, 0
 	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
-    playse SE_PIN
+    playse SE_SHOP
     removemoney 500
-    hidemoneybox
+    updatemoneybox
     msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    hidemoneybox
+    closemessage
     fadescreen FADE_TO_BLACK
-    playse SE_PIN
+    playse SE_SUDOWOODO_SHAKE
+    waitse
     special ChangeFurfrouFormMatron
     fadescreen FADE_FROM_BLACK
     msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
@@ -322,13 +345,17 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrouMatron::
 	end
 
 SlateportCity_PokemonFanClub_EventScript_StyleFurfrouDandy::
+    showmoneybox 0, 0
 	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
-    playse SE_PIN
+    playse SE_SHOP
     removemoney 500
-    hidemoneybox
+    updatemoneybox
     msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    hidemoneybox
+    closemessage
     fadescreen FADE_TO_BLACK
-    playse SE_PIN
+    playse SE_SUDOWOODO_SHAKE
+    waitse
     special ChangeFurfrouFormDandy
     fadescreen FADE_FROM_BLACK
     msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
@@ -337,13 +364,17 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrouDandy::
 	end
 
 SlateportCity_PokemonFanClub_EventScript_StyleFurfrouLaReine::
+    showmoneybox 0, 0
 	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
-    playse SE_PIN
+    playse SE_SHOP
     removemoney 500
-    hidemoneybox
+    updatemoneybox
     msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    hidemoneybox
+    closemessage
     fadescreen FADE_TO_BLACK
-    playse SE_PIN
+    playse SE_SUDOWOODO_SHAKE
+    waitse
     special ChangeFurfrouFormLaReine
     fadescreen FADE_FROM_BLACK
     msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
@@ -352,13 +383,17 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrouLaReine::
 	end
 
 SlateportCity_PokemonFanClub_EventScript_StyleFurfrouKabuki::
+    showmoneybox 0, 0
 	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
-    playse SE_PIN
+    playse SE_SHOP
     removemoney 500
-    hidemoneybox
+    updatemoneybox
     msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    hidemoneybox
+    closemessage
     fadescreen FADE_TO_BLACK
-    playse SE_PIN
+    playse SE_SUDOWOODO_SHAKE
+    waitse
     special ChangeFurfrouFormKabuki
     fadescreen FADE_FROM_BLACK
     msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
@@ -367,13 +402,17 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrouKabuki::
 	end
 
 SlateportCity_PokemonFanClub_EventScript_StyleFurfrouPharaoh::
+    showmoneybox 0, 0
 	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
-    playse SE_PIN
+    playse SE_SHOP
     removemoney 500
-    hidemoneybox
+    updatemoneybox
     msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    hidemoneybox
+    closemessage
     fadescreen FADE_TO_BLACK
-    playse SE_PIN
+    playse SE_SUDOWOODO_SHAKE
+    waitse
     special ChangeFurfrouFormPharaoh
     fadescreen FADE_FROM_BLACK
     msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
@@ -382,13 +421,17 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrouPharaoh::
 	end
 
 SlateportCity_PokemonFanClub_EventScript_StyleFurfrouNatural::
+    showmoneybox 0, 0
 	msgbox SlateportCity_PokemonFanClub_Text_PickStyle, MSGBOX_DEFAULT
-    playse SE_PIN
+    playse SE_SHOP
     removemoney 500
-    hidemoneybox
+    updatemoneybox
     msgbox SlateportCity_PokemonFanClub_Text_StartTrim, MSGBOX_DEFAULT
+    hidemoneybox
+    closemessage
     fadescreen FADE_TO_BLACK
-    playse SE_PIN
+    playse SE_SUDOWOODO_SHAKE
+    waitse
     special ChangeFurfrouFormNatural
     fadescreen FADE_FROM_BLACK
     msgbox SlateportCity_PokemonFanClub_Text_FinishTrim, MSGBOX_DEFAULT
@@ -398,6 +441,10 @@ SlateportCity_PokemonFanClub_EventScript_StyleFurfrouNatural::
 
 SlateportCity_PokemonFanClub_EventScript_NoFurfrou::
     msgbox SlateportCity_PokemonFanClub_Text_NoFurfrou, MSGBOX_DEFAULT
+    goto SlateportCity_PokemonFanClub_EventScript_AnswerNo
+
+SlateportCity_PokemonFanClub_EventScript_NoMoney::
+    msgbox SlateportCity_PokemonFanClub_Text_NoMoney, MSGBOX_DEFAULT
     goto SlateportCity_PokemonFanClub_EventScript_AnswerNo
 
 SlateportCity_PokemonFanClub_EventScript_AnswerNo::
@@ -608,6 +655,47 @@ SlateportCity_PokemonFanClub_Text_FinishTrim:
     .string "Thank you for your patience!\n"
     .string "It's all done. Your Furfrou looks\l"
     .string "gorgeous!$"
+
+SlateportCity_PokemonFanClub_Text_test:
+    .string "$"
+
+SlateportCity_PokemonFanClub_Text_NoMoney:
+	.string "You don't have enough money.\n"
+	.string "Sorry.$"
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_0:
+	.string "Heart Trim$"
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_1:
+	.string "Star Trim$"
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_2:
+	.string "Diamond Trim$"
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_3:
+	.string "Debutante Trim$"
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_4:
+	.string "Matron Trim$"
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_5:
+	.string "Dandy Trim$"
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_6:
+	.string "La Reine Trim$"
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_7:
+	.string "Kabuki Trim$"
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_8:
+	.string "Pharaoh Trim$"
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_9:
+	.string "Back to natural$"
+
+SlateportCity_PokemonFanClub_EventScript_StyleFurfrou_Text_10:
+	.string "{STR_VAR_1}$"
+
 
 SlateportCity_PokemonFanClub_Text_AnswerNo:
     .string "If you ever wish to try out a new\n"
