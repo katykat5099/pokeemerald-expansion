@@ -54,6 +54,14 @@ MauvilleCity_EventScript_GameCornerSign::
 	msgbox MauvilleCity_Text_GameCornerSign, MSGBOX_SIGN
 	end
 
+MauvilleCity_EventScript_MirrorShopSign::
+	msgbox MauvilleCity_Text_MirrorShopSign, MSGBOX_SIGN
+	end
+
+MauvilleCity_EventScript_CroonersCafeSign::
+	msgbox MauvilleCity_Text_CroonersCafeSign, MSGBOX_SIGN
+	end
+
 MauvilleCity_EventScript_SchoolKidM::
 	lock
 	faceplayer
@@ -650,6 +658,12 @@ MauvilleCity_Text_BikeShopSign:
 MauvilleCity_Text_GameCornerSign:
 	.string "“The play spot for all!”\n"
 	.string "MAUVILLE GAME CORNER$"
+
+MauvilleCity_Text_MirrorShopSign:
+	.string "MIRROR SHOP$"
+
+MauvilleCity_Text_CroonersCafeSign:
+    .string "CROONER'S CAFE$"
 
 MauvilleCity_Text_ExplainTV:
 	.string "Hi, do you check out TV at all?\p"

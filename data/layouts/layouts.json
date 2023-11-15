@@ -4415,9 +4415,9 @@
       "id": "LAYOUT_MAUVILLE_CITY_MIRROR_SHOP",
       "name": "MauvilleCity_MirrorShop_Layout",
       "width": 10,
-      "height": 8,
+      "height": 6,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
+      "secondary_tileset": "gTileset_MirrorShop",
       "border_filepath": "data/layouts/MauvilleCity_MirrorShop/border.bin",
       "blockdata_filepath": "data/layouts/MauvilleCity_MirrorShop/map.bin"
     },

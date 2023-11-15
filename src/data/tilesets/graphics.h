@@ -1634,3 +1634,22 @@ const u16 gTilesetPalettes_UnionRoom[][16] =
 };
 
 const u32 gTilesetTiles_UnionRoom[] = INCBIN_U32("data/tilesets/secondary/union_room/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_MirrorShop[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/mirror_shop/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mirror_shop/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mirror_shop/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mirror_shop/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mirror_shop/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mirror_shop/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mirror_shop/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mirror_shop/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mirror_shop/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mirror_shop/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mirror_shop/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mirror_shop/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mirror_shop/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_MirrorShop[] = INCBIN_U32("data/tilesets/secondary/mirror_shop/tiles.4bpp.lz");
