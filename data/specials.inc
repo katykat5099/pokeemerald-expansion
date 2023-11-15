@@ -554,3 +554,4 @@ gSpecials::
 	def_special ChangeFurfrouFormPharaoh
 	def_special ChangeFurfrouFormNatural
 	def_special ChangeRotomForm
+	def_special ChangeDeoxysForm

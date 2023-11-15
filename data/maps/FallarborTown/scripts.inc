@@ -21,6 +21,29 @@ FallarborTown_EventScript_ExpertMNormal::
 	release
 	end
 
+FallarborTown_EventScript_Meteor::
+    setvar VAR_PARTY_POKEMON_CHECK, 386
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_eq VAR_RESULT, TRUE, FallarborTown_EventScript_DeoxysReacts
+	msgbox FallarborTown_Text_Meteor, MSGBOX_SIGN
+	end
+
+FallarborTown_EventScript_DeoxysReacts::
+    lock
+    msgbox FallarborTown_Text_DeoxysReactsToMeteor, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, YES, FallarborTown_EventScript_DeoxysChangeForm
+    closemessage
+    release
+    end
+
+FallarborTown_EventScript_DeoxysChangeForm::
+    playmoncry SPECIES_DEOXYS, CRY_MODE_NORMAL
+    special ChangeDeoxysForm
+    waitmoncry
+    closemessage
+    release
+    end
+
 FallarborTown_EventScript_Girl::
 	msgbox FallarborTown_Text_MyPreciousAzurill, MSGBOX_NPC
 	end
@@ -93,3 +116,11 @@ FallarborTown_Text_MoveTutorSign:
 	.string "MOVE TUTOR'S HOUSE\n"
 	.string "“New moves taught to POKéMON.”$"
 
+FallarborTown_Text_Meteor:
+	.string "This is a meteorite that fell from\n"
+	.string "space…$"
+
+FallarborTown_Text_DeoxysReactsToMeteor:
+	.string "Deoxys is reaction to the meteorite…\p"
+	.string "Would you like to bring the Deoxys in\n"
+	.string "your party closer to the meteorite?$"

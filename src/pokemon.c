@@ -16410,6 +16410,8 @@ bool8 CheckPartyPokemon(void)
     u16 *var = GetVarPointer(VAR_PARTY_POKEMON_CHECK);
     for (i = 0; i < PARTY_SIZE; i++)
     {
+/*DEOXYS*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_DEOXYS) && (*var == 386))
+                { return TRUE; }
 /*ROTOM*/   if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_ROTOM) && (*var == 479))
                 { return TRUE; }
 /*SHAYMIN*/ if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_SHAYMIN) && (*var == 492))
@@ -16450,6 +16452,39 @@ void ChangeRotomForm(void)
                 targetSpecies = SPECIES_ROTOM;
                 break;
             }
+            SetMonData(&gPlayerParty[i], MON_DATA_SPECIES, &targetSpecies);
+            CalculateMonStats(&gPlayerParty[i]);
+        }
+    }
+}
+
+void ChangeDeoxysForm(void)
+{
+    u32 i;
+    u16 targetSpecies = SPECIES_NONE;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if((GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_DEOXYS_NORMAL)
+        {
+            targetSpecies = SPECIES_DEOXYS_ATTACK;
+            SetMonData(&gPlayerParty[i], MON_DATA_SPECIES, &targetSpecies);
+            CalculateMonStats(&gPlayerParty[i]);
+        }
+        else if((GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_DEOXYS_ATTACK)
+        {
+            targetSpecies = SPECIES_DEOXYS_DEFENSE;
+            SetMonData(&gPlayerParty[i], MON_DATA_SPECIES, &targetSpecies);
+            CalculateMonStats(&gPlayerParty[i]);
+        }
+        else if((GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_DEOXYS_DEFENSE)
+        {
+            targetSpecies = SPECIES_DEOXYS_SPEED;
+            SetMonData(&gPlayerParty[i], MON_DATA_SPECIES, &targetSpecies);
+            CalculateMonStats(&gPlayerParty[i]);
+        }
+        else if((GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_DEOXYS_SPEED)
+        {
+            targetSpecies = SPECIES_DEOXYS_NORMAL;
             SetMonData(&gPlayerParty[i], MON_DATA_SPECIES, &targetSpecies);
             CalculateMonStats(&gPlayerParty[i]);
         }
