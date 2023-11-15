@@ -719,6 +719,33 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ScottAboardSSTidalCall::
 	releaseall
 	end
 
+LittlerootTown_ProfessorBirchsLab_EventScript_ElectricalAppliances::
+    setvar VAR_PARTY_POKEMON_CHECK, 479
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_eq VAR_RESULT, TRUE, LittlerootTown_ProfessorBirchsLab_EventScript_RotomChangeForm
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ElectricalAppliances, MSGBOX_SIGN
+	end
+
+LittlerootTown_ProfessorBirchsLab_EventScript_RotomChangeForm::
+    lock
+    msgbox LittlerootTown_ProfessorBirchsLab_Text_RotomAppliances, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, YES, LittlerootTown_ProfessorBirchsLab_EventScript_RotomChangeFormYes
+    closemessage
+    release
+    end
+
+LittlerootTown_ProfessorBirchsLab_EventScript_RotomChangeFormYes::
+    msgbox LittlerootTown_ProfessorBirchsLab_Text_RotomAppliances2, MSGBOX_DEFAULT
+    dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, LittlerootTown_ProfessorBirchsLab_Text_RotomMultichoiceText1, LittlerootTown_ProfessorBirchsLab_Text_RotomMultichoiceText2, LittlerootTown_ProfessorBirchsLab_Text_RotomMultichoiceText3, LittlerootTown_ProfessorBirchsLab_Text_RotomMultichoiceText4, LittlerootTown_ProfessorBirchsLab_Text_RotomMultichoiceText5, LittlerootTown_ProfessorBirchsLab_Text_RotomMultichoiceText6
+    copyvar VAR_PARTY_POKEMON_CHECK, VAR_RESULT
+    special ChangeRotomForm
+    playmoncry SPECIES_ROTOM, CRY_MODE_NORMAL
+    msgbox LittlerootTown_ProfessorBirchsLab_Text_RotomEnterMotor, MSGBOX_DEFAULT
+    waitmoncry
+    closemessage
+    release
+    end
+
 LittlerootTown_ProfessorBirchsLab_Text_BirchAwayOnFieldwork:
 	.string "Hunh? PROF. BIRCH?\p"
 	.string "The PROF's away on fieldwork.\n"
@@ -1059,3 +1086,38 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 	.string "we meet. I'll be waiting!\p"
 	.string "… … … … … …\n"
 	.string "… … … … … Click!$"
+
+LittlerootTown_ProfessorBirchsLab_Text_ElectricalAppliances:
+	.string "It's full of cardboard boxes with\n"
+	.string "electrical appliances in them.$"
+
+LittlerootTown_ProfessorBirchsLab_Text_RotomAppliances:
+	.string "Oh? Rotom would like to investigate\n"
+	.string "the motors of the electrical\l"
+	.string "appliances…\p"
+	.string "Is that OK?$"
+
+LittlerootTown_ProfessorBirchsLab_Text_RotomAppliances2:
+	.string "Which appliance's motor will you\n"
+	.string "allow Rotom to enter?$"
+
+LittlerootTown_ProfessorBirchsLab_Text_RotomEnterMotor:
+	.string "Rotom entered the motor.$"
+
+LittlerootTown_ProfessorBirchsLab_Text_RotomMultichoiceText1:
+	.string "Microwave oven$"
+
+LittlerootTown_ProfessorBirchsLab_Text_RotomMultichoiceText2:
+	.string "Washing machine$"
+
+LittlerootTown_ProfessorBirchsLab_Text_RotomMultichoiceText3:
+	.string "Refrigerator$"
+
+LittlerootTown_ProfessorBirchsLab_Text_RotomMultichoiceText4:
+	.string "Electric fan$"
+
+LittlerootTown_ProfessorBirchsLab_Text_RotomMultichoiceText5:
+	.string "Lawnmower$"
+
+LittlerootTown_ProfessorBirchsLab_Text_RotomMultichoiceText6:
+	.string "Recall$"

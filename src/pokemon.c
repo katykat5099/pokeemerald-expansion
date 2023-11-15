@@ -16410,10 +16410,48 @@ bool8 CheckPartyPokemon(void)
     u16 *var = GetVarPointer(VAR_PARTY_POKEMON_CHECK);
     for (i = 0; i < PARTY_SIZE; i++)
     {
+/*ROTOM*/   if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_ROTOM) && (*var == 479))
+                { return TRUE; }
 /*SHAYMIN*/ if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_SHAYMIN) && (*var == 492))
                 { return TRUE; }
 /*FURFROU*/ if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_FURFROU) && (*var == 676))
                 { return TRUE; }
     }
     return FALSE;
+}
+
+void ChangeRotomForm(void)
+{
+    u32 i;
+    u16 *var = GetVarPointer(VAR_PARTY_POKEMON_CHECK);
+    u16 targetSpecies = SPECIES_NONE;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if(GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_ROTOM)
+        {
+            switch(*var)
+            {
+            case 0:
+                targetSpecies = SPECIES_ROTOM_HEAT;
+                break;
+            case 1:
+                targetSpecies = SPECIES_ROTOM_WASH;
+                break;
+            case 2:
+                targetSpecies = SPECIES_ROTOM_FROST;
+                break;
+            case 3:
+                targetSpecies = SPECIES_ROTOM_FAN;
+                break;
+            case 4:
+                targetSpecies = SPECIES_ROTOM_MOW;
+                break;
+            case 5:
+                targetSpecies = SPECIES_ROTOM;
+                break;
+            }
+            SetMonData(&gPlayerParty[i], MON_DATA_SPECIES, &targetSpecies);
+            CalculateMonStats(&gPlayerParty[i]);
+        }
+    }
 }
