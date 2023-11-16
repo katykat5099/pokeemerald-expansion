@@ -25,11 +25,13 @@ FallarborTown_EventScript_Meteor::
     setvar VAR_PARTY_POKEMON_CHECK, 386
     specialvar VAR_RESULT, CheckPartyPokemon
     goto_if_eq VAR_RESULT, TRUE, FallarborTown_EventScript_DeoxysReacts
+    setvar VAR_PARTY_POKEMON_CHECK, 0
 	msgbox FallarborTown_Text_Meteor, MSGBOX_SIGN
 	end
 
 FallarborTown_EventScript_DeoxysReacts::
     lock
+    setvar VAR_PARTY_POKEMON_CHECK, 0
     msgbox FallarborTown_Text_DeoxysReactsToMeteor, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, YES, FallarborTown_EventScript_DeoxysChangeForm
     closemessage
