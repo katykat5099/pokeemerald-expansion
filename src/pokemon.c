@@ -16435,13 +16435,21 @@ bool8 CheckPartyPokemon(void)
     u16 *var = GetVarPointer(VAR_PARTY_POKEMON_CHECK);
     for (i = 0; i < PARTY_SIZE; i++)
     {
-/*DEOXYS*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_DEOXYS) && (*var == 386))
+/*DEOXYS*/    if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_DEOXYS) && (*var == 386))
                 { return TRUE; }
-/*ROTOM*/   if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_ROTOM) && (*var == 479))
+/*ROTOM*/     if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_ROTOM) && (*var == 479))
                 { return TRUE; }
-/*SHAYMIN*/ if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_SHAYMIN) && (*var == 492))
+/*SHAYMIN*/   if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_SHAYMIN) && (*var == 492))
                 { return TRUE; }
-/*FURFROU*/ if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_FURFROU) && (*var == 676))
+/*TORNADUS*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_TORNADUS) && (*var == 641))
+                { return TRUE; }
+/*THUNDURUS*/ if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_THUNDURUS) && (*var == 642))
+                { return TRUE; }
+/*LANDORUS*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_LANDORUS) && (*var == 645))
+                { return TRUE; }
+/*FURFROU*/   if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_FURFROU) && (*var == 676))
+                { return TRUE; }
+/*ENAMORUS*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_ENAMORUS) && (*var == 905))
                 { return TRUE; }
     }
     return FALSE;
