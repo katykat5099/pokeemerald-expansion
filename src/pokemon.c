@@ -4085,7 +4085,7 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     [SPECIES_PONYTA]            = EVO_TYPE_0,
     [SPECIES_RAPIDASH]          = EVO_TYPE_1,
     [SPECIES_SLOWPOKE]          = EVO_TYPE_0,
-    [SPECIES_SLOWBRO]           = EVO_TYPE_2,
+    [SPECIES_SLOWBRO]           = EVO_TYPE_1,
     [SPECIES_MAGNEMITE]         = EVO_TYPE_0,
     [SPECIES_MAGNETON]          = EVO_TYPE_1,
     [SPECIES_FARFETCHD]         = EVO_TYPE_NONE,
@@ -4143,7 +4143,7 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     [SPECIES_PINSIR]            = EVO_TYPE_NONE,
     [SPECIES_TAUROS]            = EVO_TYPE_NONE,
     [SPECIES_MAGIKARP]          = EVO_TYPE_0,
-    [SPECIES_GYARADOS]          = EVO_TYPE_2,
+    [SPECIES_GYARADOS]          = EVO_TYPE_1,
     [SPECIES_LAPRAS]            = EVO_TYPE_NONE,
     [SPECIES_DITTO]             = EVO_TYPE_NONE,
     [SPECIES_EEVEE]             = EVO_TYPE_0,
@@ -4212,10 +4212,18 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     [SPECIES_HOPPIP]            = EVO_TYPE_0,
     [SPECIES_SKIPLOOM]          = EVO_TYPE_1,
     [SPECIES_JUMPLUFF]          = EVO_TYPE_2,
+    #if P_GEN_4_POKEMON == TRUE
     [SPECIES_AIPOM]             = EVO_TYPE_0,
+    #else
+    [SPECIES_AIPOM]             = EVO_TYPE_NONE,
+    #endif
     [SPECIES_SUNKERN]           = EVO_TYPE_0,
     [SPECIES_SUNFLORA]          = EVO_TYPE_1,
+    #if P_GEN_4_POKEMON == TRUE
     [SPECIES_YANMA]             = EVO_TYPE_0,
+    #else
+    [SPECIES_YANMA]             = EVO_TYPE_NONE,
+    #endif
     [SPECIES_WOOPER]            = EVO_TYPE_0,
     [SPECIES_QUAGSIRE]          = EVO_TYPE_1,
     [SPECIES_ESPEON]            = EVO_TYPE_1,
@@ -4251,7 +4259,7 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     #if P_GEN_4_POKEMON == TRUE
     [SPECIES_MANTINE]           = EVO_TYPE_1,
     #else
-    [SPECIES_MANTINE]           = EVO_TYPE_0,
+    [SPECIES_MANTINE]           = EVO_TYPE_NONE,
     #endif
     [SPECIES_SKARMORY]          = EVO_TYPE_NONE,
     [SPECIES_HOUNDOUR]          = EVO_TYPE_0,
@@ -4260,7 +4268,11 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     [SPECIES_PHANPY]            = EVO_TYPE_0,
     [SPECIES_DONPHAN]           = EVO_TYPE_1,
     [SPECIES_PORYGON2]          = EVO_TYPE_1,
+    #if P_GEN_8_POKEMON == TRUE
     [SPECIES_STANTLER]          = EVO_TYPE_0,
+    #else
+    [SPECIES_STANTLER]          = EVO_TYPE_NONE,
+    #endif
     [SPECIES_SMEARGLE]          = EVO_TYPE_NONE,
     [SPECIES_TYROGUE]           = EVO_TYPE_0,
     [SPECIES_HITMONTOP]         = EVO_TYPE_1,
@@ -4282,33 +4294,6 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     [SPECIES_LUGIA]             = EVO_TYPE_LEGENDARY,
     [SPECIES_HO_OH]             = EVO_TYPE_LEGENDARY,
     [SPECIES_CELEBI]            = EVO_TYPE_LEGENDARY,
-    #ifndef POKEMON_EXPANSION
-    [SPECIES_OLD_UNOWN_B]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_C]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_D]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_E]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_F]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_G]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_H]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_I]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_J]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_K]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_L]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_M]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_N]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_O]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_P]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_Q]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_R]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_S]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_T]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_U]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_V]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_W]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_X]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_Y]       = EVO_TYPE_SELF,
-    [SPECIES_OLD_UNOWN_Z]       = EVO_TYPE_SELF,
-    #endif
     // Gen 3
     [SPECIES_TREECKO]           = EVO_TYPE_0,
     [SPECIES_GROVYLE]           = EVO_TYPE_1,
@@ -4336,7 +4321,7 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     [SPECIES_SHIFTRY]           = EVO_TYPE_2,
     [SPECIES_NINCADA]           = EVO_TYPE_0,
     [SPECIES_NINJASK]           = EVO_TYPE_1,
-    [SPECIES_SHEDINJA]          = EVO_TYPE_1,
+    [SPECIES_SHEDINJA]          = EVO_TYPE_1,//Not None bc technically an evo
     [SPECIES_TAILLOW]           = EVO_TYPE_0,
     [SPECIES_SWELLOW]           = EVO_TYPE_1,
     [SPECIES_SHROOMISH]         = EVO_TYPE_0,
@@ -4357,7 +4342,7 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     [SPECIES_TORKOAL]           = EVO_TYPE_NONE,
     [SPECIES_SABLEYE]           = EVO_TYPE_NONE,
     [SPECIES_BARBOACH]          = EVO_TYPE_0,
-    [SPECIES_WHISCASH]          = EVO_TYPE_0,
+    [SPECIES_WHISCASH]          = EVO_TYPE_1,
     [SPECIES_LUVDISC]           = EVO_TYPE_NONE,
     [SPECIES_CORPHISH]          = EVO_TYPE_0,
     [SPECIES_CRAWDAUNT]         = EVO_TYPE_1,
@@ -4422,7 +4407,7 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     [SPECIES_ARON]              = EVO_TYPE_0,
     [SPECIES_LAIRON]            = EVO_TYPE_1,
     [SPECIES_AGGRON]            = EVO_TYPE_2,
-    [SPECIES_CASTFORM]          = EVO_TYPE_SELF,
+    [SPECIES_CASTFORM]          = EVO_TYPE_NONE,
     [SPECIES_VOLBEAT]           = EVO_TYPE_1,
     [SPECIES_ILLUMISE]          = EVO_TYPE_1,
     [SPECIES_LILEEP]            = EVO_TYPE_0,
@@ -4837,7 +4822,7 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     [SPECIES_BOUNSWEET]         = EVO_TYPE_0,
     [SPECIES_STEENEE]           = EVO_TYPE_1,
     [SPECIES_TSAREENA]          = EVO_TYPE_2,
-    [SPECIES_COMFEY]            = EVO_TYPE_0,
+    [SPECIES_COMFEY]            = EVO_TYPE_NONE,
     [SPECIES_ORANGURU]          = EVO_TYPE_NONE,
     [SPECIES_PASSIMIAN]         = EVO_TYPE_NONE,
     [SPECIES_WIMPOD]            = EVO_TYPE_0,
@@ -4941,7 +4926,13 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     [SPECIES_PERRSERKER]        = EVO_TYPE_1,
     [SPECIES_CURSOLA]           = EVO_TYPE_1,
     [SPECIES_SIRFETCHD]         = EVO_TYPE_1,
+    #endif
+    #if (P_GEN_4_POKEMON == FALSE) && (P_GEN_8_POKEMON == TRUE)
+    [SPECIES_MR_RIME]           = EVO_TYPE_1,
+    #else
     [SPECIES_MR_RIME]           = EVO_TYPE_2,
+    #endif
+    #if P_GEN_8_POKEMON == TRUE
     [SPECIES_RUNERIGUS]         = EVO_TYPE_1,
     [SPECIES_MILCERY]           = EVO_TYPE_0,
     [SPECIES_ALCREMIE]          = EVO_TYPE_1,
@@ -5096,59 +5087,6 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     [SPECIES_FEZANDIPITI]       = EVO_TYPE_LEGENDARY,
     [SPECIES_OGERPON]           = EVO_TYPE_LEGENDARY,
     #endif
-    #if P_GEN_6_POKEMON == TRUE
-    // Mega Evolution Forms
-    [SPECIES_VENUSAUR_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_CHARIZARD_MEGA_X]  = EVO_TYPE_SELF,
-    [SPECIES_CHARIZARD_MEGA_Y]  = EVO_TYPE_SELF,
-    [SPECIES_BLASTOISE_MEGA]    = EVO_TYPE_SELF,
-    [SPECIES_BEEDRILL_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_PIDGEOT_MEGA]      = EVO_TYPE_SELF,
-    [SPECIES_ALAKAZAM_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_SLOWBRO_MEGA]      = EVO_TYPE_SELF,
-    [SPECIES_GENGAR_MEGA]       = EVO_TYPE_SELF,
-    [SPECIES_KANGASKHAN_MEGA]   = EVO_TYPE_SELF,
-    [SPECIES_PINSIR_MEGA]       = EVO_TYPE_SELF,
-    [SPECIES_GYARADOS_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_AERODACTYL_MEGA]   = EVO_TYPE_SELF,
-    [SPECIES_MEWTWO_MEGA_X]     = EVO_TYPE_SELF,
-    [SPECIES_MEWTWO_MEGA_Y]     = EVO_TYPE_SELF,
-    [SPECIES_AMPHAROS_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_STEELIX_MEGA]      = EVO_TYPE_SELF,
-    [SPECIES_SCIZOR_MEGA]       = EVO_TYPE_SELF,
-    [SPECIES_HERACROSS_MEGA]    = EVO_TYPE_SELF,
-    [SPECIES_HOUNDOOM_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_TYRANITAR_MEGA]    = EVO_TYPE_SELF,
-    [SPECIES_SCEPTILE_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_BLAZIKEN_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_SWAMPERT_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_GARDEVOIR_MEGA]    = EVO_TYPE_SELF,
-    [SPECIES_SABLEYE_MEGA]      = EVO_TYPE_SELF,
-    [SPECIES_MAWILE_MEGA]       = EVO_TYPE_SELF,
-    [SPECIES_AGGRON_MEGA]       = EVO_TYPE_SELF,
-    [SPECIES_MEDICHAM_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_MANECTRIC_MEGA]    = EVO_TYPE_SELF,
-    [SPECIES_SHARPEDO_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_CAMERUPT_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_ALTARIA_MEGA]      = EVO_TYPE_SELF,
-    [SPECIES_BANETTE_MEGA]      = EVO_TYPE_SELF,
-    [SPECIES_ABSOL_MEGA]        = EVO_TYPE_SELF,
-    [SPECIES_GLALIE_MEGA]       = EVO_TYPE_SELF,
-    [SPECIES_SALAMENCE_MEGA]    = EVO_TYPE_SELF,
-    [SPECIES_METAGROSS_MEGA]    = EVO_TYPE_SELF,
-    [SPECIES_LATIAS_MEGA]       = EVO_TYPE_SELF,
-    [SPECIES_LATIOS_MEGA]       = EVO_TYPE_SELF,
-    [SPECIES_LOPUNNY_MEGA]      = EVO_TYPE_SELF,
-    [SPECIES_GARCHOMP_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_LUCARIO_MEGA]      = EVO_TYPE_SELF,
-    [SPECIES_ABOMASNOW_MEGA]    = EVO_TYPE_SELF,
-    [SPECIES_GALLADE_MEGA]      = EVO_TYPE_SELF,
-    [SPECIES_AUDINO_MEGA]       = EVO_TYPE_SELF,
-    [SPECIES_DIANCIE_MEGA]      = EVO_TYPE_SELF,
-    [SPECIES_RAYQUAZA_MEGA]     = EVO_TYPE_SELF,
-    [SPECIES_KYOGRE_PRIMAL]     = EVO_TYPE_SELF,
-    [SPECIES_GROUDON_PRIMAL]    = EVO_TYPE_SELF,
-    #endif
     #if P_GEN_7_POKEMON == TRUE
     // Alolan Forms
     [SPECIES_RATTATA_ALOLAN]    = EVO_TYPE_0,
@@ -5221,7 +5159,7 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     #if P_GEN_6_POKEMON == TRUE
     [SPECIES_PIKACHU_COSPLAY]   = EVO_TYPE_0,
     #endif
-    [SPECIES_EGG]             = EVO_TYPE_SELF,
+    //[SPECIES_EGG]             = EVO_TYPE_SELF,
 };
 #define RANDOM_SPECIES_COUNT ARRAY_COUNT(sRandomSpecies)
 static const u16 sRandomSpecies[] =
@@ -5479,31 +5417,6 @@ static const u16 sRandomSpecies[] =
     // SPECIES_LUGIA     ,
     // SPECIES_HO_OH     ,
     // SPECIES_CELEBI    ,
-    // SPECIES_OLD_UNOWN_B,
-    // SPECIES_OLD_UNOWN_C,
-    // SPECIES_OLD_UNOWN_D,
-    // SPECIES_OLD_UNOWN_E,
-    // SPECIES_OLD_UNOWN_F,
-    // SPECIES_OLD_UNOWN_G,
-    // SPECIES_OLD_UNOWN_H,
-    // SPECIES_OLD_UNOWN_I,
-    // SPECIES_OLD_UNOWN_J,
-    // SPECIES_OLD_UNOWN_K,
-    // SPECIES_OLD_UNOWN_L,
-    // SPECIES_OLD_UNOWN_M,
-    // SPECIES_OLD_UNOWN_N,
-    // SPECIES_OLD_UNOWN_O,
-    // SPECIES_OLD_UNOWN_P,
-    // SPECIES_OLD_UNOWN_Q,
-    // SPECIES_OLD_UNOWN_R,
-    // SPECIES_OLD_UNOWN_S,
-    // SPECIES_OLD_UNOWN_T,
-    // SPECIES_OLD_UNOWN_U,
-    // SPECIES_OLD_UNOWN_V,
-    // SPECIES_OLD_UNOWN_W,
-    // SPECIES_OLD_UNOWN_X,
-    // SPECIES_OLD_UNOWN_Y,
-    // SPECIES_OLD_UNOWN_Z,
     // Gen 3
     SPECIES_TREECKO           ,
     SPECIES_GROVYLE           ,
@@ -5613,7 +5526,7 @@ static const u16 sRandomSpecies[] =
     SPECIES_ARON              ,
     SPECIES_LAIRON            ,
     SPECIES_AGGRON            ,
-    // SPECIES_CASTFORM          ,
+    SPECIES_CASTFORM          ,
     SPECIES_VOLBEAT           ,
     SPECIES_ILLUMISE          ,
     SPECIES_LILEEP            ,
@@ -6288,59 +6201,6 @@ static const u16 sRandomSpecies[] =
     //SPECIES_FEZANDIPITI       ,
     //SPECIES_OGERPON           ,
     #endif
-    #if P_GEN_6_POKEMON == TRUE
-    // Mega / Primal Forms
-    //SPECIES_VENUSAUR_MEGA     ,
-    //SPECIES_CHARIZARD_MEGA_X  ,
-    //SPECIES_CHARIZARD_MEGA_Y  ,
-    //SPECIES_BLASTOISE_MEGA    ,
-    //SPECIES_BEEDRILL_MEGA     ,
-    //SPECIES_PIDGEOT_MEGA      ,
-    //SPECIES_ALAKAZAM_MEGA     ,
-    //SPECIES_SLOWBRO_MEGA      ,
-    //SPECIES_GENGAR_MEGA       ,
-    //SPECIES_KANGASKHAN_MEGA   ,
-    //SPECIES_PINSIR_MEGA       ,
-    //SPECIES_GYARADOS_MEGA     ,
-    //SPECIES_AERODACTYL_MEGA   ,
-    //SPECIES_MEWTWO_MEGA_X     ,
-    //SPECIES_MEWTWO_MEGA_Y     ,
-    //SPECIES_AMPHAROS_MEGA     ,
-    //SPECIES_STEELIX_MEGA      ,
-    //SPECIES_SCIZOR_MEGA       ,
-    //SPECIES_HERACROSS_MEGA    ,
-    //SPECIES_HOUNDOOM_MEGA     ,
-    //SPECIES_TYRANITAR_MEGA    ,
-    //SPECIES_SCEPTILE_MEGA     ,
-    //SPECIES_BLAZIKEN_MEGA     ,
-    //SPECIES_SWAMPERT_MEGA     ,
-    //SPECIES_GARDEVOIR_MEGA    ,
-    //SPECIES_SABLEYE_MEGA      ,
-    //SPECIES_MAWILE_MEGA       ,
-    //SPECIES_AGGRON_MEGA       ,
-    //SPECIES_MEDICHAM_MEGA     ,
-    //SPECIES_MANECTRIC_MEGA    ,
-    //SPECIES_SHARPEDO_MEGA     ,
-    //SPECIES_CAMERUPT_MEGA     ,
-    //SPECIES_ALTARIA_MEGA      ,
-    //SPECIES_BANETTE_MEGA      ,
-    //SPECIES_ABSOL_MEGA        ,
-    //SPECIES_GLALIE_MEGA       ,
-    //SPECIES_SALAMENCE_MEGA    ,
-    //SPECIES_METAGROSS_MEGA    ,
-    //SPECIES_LATIAS_MEGA       ,
-    //SPECIES_LATIOS_MEGA       ,
-    //SPECIES_LOPUNNY_MEGA      ,
-    //SPECIES_GARCHOMP_MEGA     ,
-    //SPECIES_LUCARIO_MEGA      ,
-    //SPECIES_ABOMASNOW_MEGA    ,
-    //SPECIES_GALLADE_MEGA      ,
-    //SPECIES_AUDINO_MEGA       ,
-    //SPECIES_DIANCIE_MEGA      ,
-    //SPECIES_RAYQUAZA_MEGA     ,
-    //SPECIES_KYOGRE_PRIMAL     ,
-    //SPECIES_GROUDON_PRIMAL    ,
-    #endif
     #if P_GEN_7_POKEMON == TRUE
     // Alolan Forms
     SPECIES_RATTATA_ALOLAN    ,
@@ -6670,31 +6530,6 @@ static const u16 sRandomSpeciesLegendary[] =
     SPECIES_LUGIA                      ,
     SPECIES_HO_OH                      ,
     SPECIES_CELEBI                     ,
-    // SPECIES_OLD_UNOWN_B,
-    // SPECIES_OLD_UNOWN_C,
-    // SPECIES_OLD_UNOWN_D,
-    // SPECIES_OLD_UNOWN_E,
-    // SPECIES_OLD_UNOWN_F,
-    // SPECIES_OLD_UNOWN_G,
-    // SPECIES_OLD_UNOWN_H,
-    // SPECIES_OLD_UNOWN_I,
-    // SPECIES_OLD_UNOWN_J,
-    // SPECIES_OLD_UNOWN_K,
-    // SPECIES_OLD_UNOWN_L,
-    // SPECIES_OLD_UNOWN_M,
-    // SPECIES_OLD_UNOWN_N,
-    // SPECIES_OLD_UNOWN_O,
-    // SPECIES_OLD_UNOWN_P,
-    // SPECIES_OLD_UNOWN_Q,
-    // SPECIES_OLD_UNOWN_R,
-    // SPECIES_OLD_UNOWN_S,
-    // SPECIES_OLD_UNOWN_T,
-    // SPECIES_OLD_UNOWN_U,
-    // SPECIES_OLD_UNOWN_V,
-    // SPECIES_OLD_UNOWN_W,
-    // SPECIES_OLD_UNOWN_X,
-    // SPECIES_OLD_UNOWN_Y,
-    // SPECIES_OLD_UNOWN_Z,
     // Gen 3
     SPECIES_TREECKO           ,
     SPECIES_GROVYLE           ,
@@ -6722,7 +6557,7 @@ static const u16 sRandomSpeciesLegendary[] =
     SPECIES_SHIFTRY           ,
     SPECIES_NINCADA           ,
     SPECIES_NINJASK           ,
-    // SPECIES_SHEDINJA          ,
+    SPECIES_SHEDINJA          ,
     SPECIES_TAILLOW           ,
     SPECIES_SWELLOW           ,
     SPECIES_SHROOMISH         ,
@@ -6804,7 +6639,7 @@ static const u16 sRandomSpeciesLegendary[] =
     SPECIES_ARON              ,
     SPECIES_LAIRON            ,
     SPECIES_AGGRON            ,
-    // SPECIES_CASTFORM          ,
+    SPECIES_CASTFORM          ,
     SPECIES_VOLBEAT           ,
     SPECIES_ILLUMISE          ,
     SPECIES_LILEEP            ,
@@ -7477,59 +7312,6 @@ static const u16 sRandomSpeciesLegendary[] =
     SPECIES_FEZANDIPITI       ,
     SPECIES_OGERPON           ,
     #endif
-    #if P_GEN_6_POKEMON == TRUE
-    // Mega / Primal Forms
-    //SPECIES_VENUSAUR_MEGA     ,
-    //SPECIES_CHARIZARD_MEGA_X  ,
-    //SPECIES_CHARIZARD_MEGA_Y  ,
-    //SPECIES_BLASTOISE_MEGA    ,
-    //SPECIES_BEEDRILL_MEGA     ,
-    //SPECIES_PIDGEOT_MEGA      ,
-    //SPECIES_ALAKAZAM_MEGA     ,
-    //SPECIES_SLOWBRO_MEGA      ,
-    //SPECIES_GENGAR_MEGA       ,
-    //SPECIES_KANGASKHAN_MEGA   ,
-    //SPECIES_PINSIR_MEGA       ,
-    //SPECIES_GYARADOS_MEGA     ,
-    //SPECIES_AERODACTYL_MEGA   ,
-    //SPECIES_MEWTWO_MEGA_X     ,
-    //SPECIES_MEWTWO_MEGA_Y     ,
-    //SPECIES_AMPHAROS_MEGA     ,
-    //SPECIES_STEELIX_MEGA      ,
-    //SPECIES_SCIZOR_MEGA       ,
-    //SPECIES_HERACROSS_MEGA    ,
-    //SPECIES_HOUNDOOM_MEGA     ,
-    //SPECIES_TYRANITAR_MEGA    ,
-    //SPECIES_SCEPTILE_MEGA     ,
-    //SPECIES_BLAZIKEN_MEGA     ,
-    //SPECIES_SWAMPERT_MEGA     ,
-    //SPECIES_GARDEVOIR_MEGA    ,
-    //SPECIES_SABLEYE_MEGA      ,
-    //SPECIES_MAWILE_MEGA       ,
-    //SPECIES_AGGRON_MEGA       ,
-    //SPECIES_MEDICHAM_MEGA     ,
-    //SPECIES_MANECTRIC_MEGA    ,
-    //SPECIES_SHARPEDO_MEGA     ,
-    //SPECIES_CAMERUPT_MEGA     ,
-    //SPECIES_ALTARIA_MEGA      ,
-    //SPECIES_BANETTE_MEGA      ,
-    //SPECIES_ABSOL_MEGA        ,
-    //SPECIES_GLALIE_MEGA       ,
-    //SPECIES_SALAMENCE_MEGA    ,
-    //SPECIES_METAGROSS_MEGA    ,
-    //SPECIES_LATIAS_MEGA       ,
-    //SPECIES_LATIOS_MEGA       ,
-    //SPECIES_LOPUNNY_MEGA      ,
-    //SPECIES_GARCHOMP_MEGA     ,
-    //SPECIES_LUCARIO_MEGA      ,
-    //SPECIES_ABOMASNOW_MEGA    ,
-    //SPECIES_GALLADE_MEGA      ,
-    //SPECIES_AUDINO_MEGA       ,
-    //SPECIES_DIANCIE_MEGA      ,
-    //SPECIES_RAYQUAZA_MEGA     ,
-    //SPECIES_KYOGRE_PRIMAL     ,
-    //SPECIES_GROUDON_PRIMAL    ,
-    #endif
     #if P_GEN_7_POKEMON == TRUE
     // Alolan Forms
     SPECIES_RATTATA_ALOLAN    ,
@@ -7648,28 +7430,26 @@ static const u16 sRandomSpeciesEvo0[] =
     SPECIES_VOLTORB         ,    //= EVO_TYPE_0,
     SPECIES_EXEGGCUTE       ,    //= EVO_TYPE_0,
     SPECIES_CUBONE          ,    //= EVO_TYPE_0,
+    #if P_GEN_4_POKEMON == FALSE
     SPECIES_LICKITUNG       ,    //= EVO_TYPE_0,
+    #endif
     SPECIES_KOFFING         ,    //= EVO_TYPE_0,
     SPECIES_RHYHORN         ,    //= EVO_TYPE_0,
     #if P_GEN_4_POKEMON == FALSE
     SPECIES_CHANSEY         ,    //= EVO_TYPE_0,
     #endif
+    #if P_GEN_4_POKEMON == TRUE
     SPECIES_TANGELA         ,    //= EVO_TYPE_0,
+    #endif
     SPECIES_HORSEA          ,    //= EVO_TYPE_0,
     SPECIES_GOLDEEN         ,    //= EVO_TYPE_0,
     SPECIES_STARYU          ,    //= EVO_TYPE_0,
-    #if P_GEN_4_POKEMON == FALSE
-    SPECIES_MR_MIME         ,    //= EVO_TYPE_0,
-    #endif
     SPECIES_SCYTHER         ,    //= EVO_TYPE_0,
     SPECIES_MAGIKARP        ,    //= EVO_TYPE_0,
     SPECIES_EEVEE           ,    //= EVO_TYPE_0,
     SPECIES_PORYGON         ,    //= EVO_TYPE_0,
     SPECIES_OMANYTE         ,    //= EVO_TYPE_0,
     SPECIES_KABUTO          ,    //= EVO_TYPE_0,
-    #if P_GEN_4_POKEMON == FALSE
-    SPECIES_SNORLAX         ,    //= EVO_TYPE_0,
-    #endif
     SPECIES_DRATINI         ,    //= EVO_TYPE_0,
     // Gen 2
     SPECIES_CHIKORITA       ,    //= EVO_TYPE_0,
@@ -7686,33 +7466,41 @@ static const u16 sRandomSpeciesEvo0[] =
     SPECIES_TOGEPI          ,    //= EVO_TYPE_0,
     SPECIES_NATU            ,    //= EVO_TYPE_0,
     SPECIES_MAREEP          ,    //= EVO_TYPE_0,
-    #if P_GEN_4_POKEMON == FALSE
-    SPECIES_SUDOWOODO       ,    //= EVO_TYPE_0,
-    #endif
     SPECIES_HOPPIP          ,    //= EVO_TYPE_0,
+    #if P_GEN_4_POKEMON == TRUE
     SPECIES_AIPOM           ,    //= EVO_TYPE_0,
+    #endif
     SPECIES_SUNKERN         ,    //= EVO_TYPE_0,
+    #if P_GEN_4_POKEMON == TRUE
     SPECIES_YANMA           ,    //= EVO_TYPE_0,
+    #endif
     SPECIES_WOOPER          ,    //= EVO_TYPE_0,
+    #if P_GEN_4_POKEMON == TRUE
     SPECIES_MURKROW         ,    //= EVO_TYPE_0,
     SPECIES_MISDREAVUS      ,    //= EVO_TYPE_0,
+    #endif
+    #if P_GEN_9_POKEMON == TRUE
     SPECIES_GIRAFARIG       ,    //= EVO_TYPE_0,
+    #endif
     SPECIES_PINECO          ,    //= EVO_TYPE_0,
+    #if P_GEN_9_POKEMON == TRUE
     SPECIES_DUNSPARCE       ,    //= EVO_TYPE_0,
+    #endif
     SPECIES_GLIGAR          ,    //= EVO_TYPE_0,
     SPECIES_SNUBBULL        ,    //= EVO_TYPE_0,
+    #if P_GEN_4_POKEMON == TRUE
     SPECIES_SNEASEL         ,    //= EVO_TYPE_0,
+    #endif
     SPECIES_TEDDIURSA       ,    //= EVO_TYPE_0,
     SPECIES_SLUGMA          ,    //= EVO_TYPE_0,
     SPECIES_SWINUB          ,    //= EVO_TYPE_0,
     SPECIES_CORSOLA         ,    //= EVO_TYPE_0,
     SPECIES_REMORAID        ,    //= EVO_TYPE_0,
-    #if P_GEN_4_POKEMON == FALSE
-    SPECIES_MANTINE         ,    //= EVO_TYPE_0,
-    #endif
     SPECIES_HOUNDOUR        ,    //= EVO_TYPE_0,
     SPECIES_PHANPY          ,    //= EVO_TYPE_0,
+    #if P_GEN_8_POKEMON == TRUE
     SPECIES_STANTLER        ,    //= EVO_TYPE_0,
+    #endif
     SPECIES_TYROGUE         ,    //= EVO_TYPE_0,
     SPECIES_SMOOCHUM        ,    //= EVO_TYPE_0,
     SPECIES_ELEKID          ,    //= EVO_TYPE_0,
@@ -7753,9 +7541,6 @@ static const u16 sRandomSpeciesEvo0[] =
     SPECIES_SWABLU          ,    //= EVO_TYPE_0,
     SPECIES_WYNAUT          ,    //= EVO_TYPE_0,
     SPECIES_DUSKULL         ,    //= EVO_TYPE_0,
-    #if P_GEN_4_POKEMON == FALSE
-    SPECIES_ROSELIA         ,    //= EVO_TYPE_0,
-    #endif
     SPECIES_SLAKOTH         ,    //= EVO_TYPE_0,
     SPECIES_GULPIN          ,    //= EVO_TYPE_0,
     SPECIES_WHISMUR         ,    //= EVO_TYPE_0,
@@ -7767,9 +7552,6 @@ static const u16 sRandomSpeciesEvo0[] =
     SPECIES_RALTS           ,    //= EVO_TYPE_0,
     SPECIES_BAGON           ,    //= EVO_TYPE_0,
     SPECIES_BELDUM          ,    //= EVO_TYPE_0,
-    #if P_GEN_4_POKEMON == FALSE
-    SPECIES_CHIMECHO        ,    //= EVO_TYPE_0,
-    #endif
     #if P_GEN_4_POKEMON == TRUE
     // Gen 4
     SPECIES_TURTWIG           , //= EVO_TYPE_0,
@@ -8008,7 +7790,6 @@ static const u16 sRandomSpeciesEvo0[] =
     SPECIES_PICHU_SPIKY_EARED  , //= EVO_TYPE_0,
     #endif
     #if P_GEN_6_POKEMON == TRUE
-    SPECIES_PIKACHU_COSPLAY    , //= EVO_TYPE_0,
     #endif
 };
 #define RANDOM_SPECIES_EVO_1_COUNT ARRAY_COUNT(sRandomSpeciesEvo1)
@@ -8046,6 +7827,7 @@ static const u16 sRandomSpeciesEvo1[] =
     SPECIES_TENTACRUEL      , //= EVO_TYPE_1,
     SPECIES_GRAVELER        , //= EVO_TYPE_1,
     SPECIES_RAPIDASH        , //= EVO_TYPE_1,
+    SPECIES_SLOWBRO         , //= EVO_TYPE_1,
     SPECIES_MAGNETON        , //= EVO_TYPE_1,
     SPECIES_DODRIO          , //= EVO_TYPE_1,
     SPECIES_DEWGONG         , //= EVO_TYPE_1,
@@ -8073,6 +7855,7 @@ static const u16 sRandomSpeciesEvo1[] =
     SPECIES_JYNX            , //= EVO_TYPE_1,
     SPECIES_ELECTABUZZ      , //= EVO_TYPE_1,
     SPECIES_MAGMAR          , //= EVO_TYPE_1,
+    SPECIES_GYARADOS        , //= EVO_TYPE_1,
     SPECIES_VAPOREON        , //= EVO_TYPE_1,
     SPECIES_JOLTEON         , //= EVO_TYPE_1,
     SPECIES_FLAREON         , //= EVO_TYPE_1,
@@ -8097,6 +7880,7 @@ static const u16 sRandomSpeciesEvo1[] =
     SPECIES_QUAGSIRE        , //= EVO_TYPE_1,
     SPECIES_ESPEON          , //= EVO_TYPE_1,
     SPECIES_UMBREON         , //= EVO_TYPE_1,
+    SPECIES_SLOWKING        , //= EVO_TYPE_1,
     SPECIES_WOBBUFFET       , //= EVO_TYPE_1,
     SPECIES_FORRETRESS      , //= EVO_TYPE_1,
     SPECIES_STEELIX         , //= EVO_TYPE_1,
@@ -8421,6 +8205,9 @@ static const u16 sRandomSpeciesEvo1[] =
     SPECIES_SLIGGOO_HISUIAN , //= EVO_TYPE_1,
     SPECIES_AVALUGG_HISUIAN , //= EVO_TYPE_1,
     #endif
+    #if P_GEN_6_POKEMON == TRUE
+    SPECIES_PIKACHU_COSPLAY    , //= EVO_TYPE_0,
+    #endif
 };
 #define RANDOM_SPECIES_EVO_2_COUNT ARRAY_COUNT(sRandomSpeciesEvo2)
 static const u16 sRandomSpeciesEvo2[] =
@@ -8442,9 +8229,7 @@ static const u16 sRandomSpeciesEvo2[] =
     SPECIES_MACHAMP         , //= EVO_TYPE_2,
     SPECIES_VICTREEBEL      , //= EVO_TYPE_2,
     SPECIES_GOLEM           , //= EVO_TYPE_2,
-    SPECIES_SLOWBRO         , //= EVO_TYPE_2,
     SPECIES_GENGAR          , //= EVO_TYPE_2,
-    SPECIES_GYARADOS        , //= EVO_TYPE_2,
     SPECIES_DRAGONITE       , //= EVO_TYPE_2,
     // Gen 2
     SPECIES_MEGANIUM        , //= EVO_TYPE_2,
@@ -8456,7 +8241,6 @@ static const u16 sRandomSpeciesEvo2[] =
     SPECIES_AZUMARILL       , //= EVO_TYPE_2,
     SPECIES_POLITOED        , //= EVO_TYPE_2,
     SPECIES_JUMPLUFF        , //= EVO_TYPE_2,
-    SPECIES_SLOWKING        , //= EVO_TYPE_2,
     SPECIES_KINGDRA         , //= EVO_TYPE_2,
     SPECIES_BLISSEY         , //= EVO_TYPE_2,
     SPECIES_TYRANITAR       , //= EVO_TYPE_2,
@@ -8726,8 +8510,10 @@ static const u16 sRandomSpeciesEvoNone[] =
     SPECIES_MISDREAVUS      ,    //= EVO_TYPE_NONE,
     #endif
     SPECIES_UNOWN           ,    //= EVO_TYPE_NONE,
-    SPECIES_GIRAFARIG       ,    //= EVO_TYPE_NONE, // Not in gen 9
-    SPECIES_DUNSPARCE       ,    //= EVO_TYPE_NONE, // Not in gen 9
+    #if P_GEN_9_POKEMON == FALSE
+    SPECIES_GIRAFARIG       ,    //= EVO_TYPE_NONE,
+    SPECIES_DUNSPARCE       ,    //= EVO_TYPE_NONE,
+    #endif
     #if P_GEN_4_POKEMON == FALSE
     SPECIES_GLIGAR          ,    //= EVO_TYPE_NONE,
     #endif
