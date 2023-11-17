@@ -43,6 +43,7 @@ VictoryRoad_1F_EventScript_WallyEntranceBattle::
 	msgbox VictoryRoad_1F_Text_WallyNotGoingToLoseAnymore, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_WALLY_VR_1, VictoryRoad_1F_Text_WallyEntranceDefeat
 	msgbox VictoryRoad_1F_Text_WallyPostEntranceBattle, MSGBOX_DEFAULT
+	giveitem ITEM_DAWN_STONE
 	clearflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
 	copyobjectxytoperm LOCALID_WALLY_ENTRANCE
 	setflag FLAG_DEFEATED_WALLY_VICTORY_ROAD
@@ -139,7 +140,8 @@ VictoryRoad_1F_Text_WallyEntranceDefeat:
 VictoryRoad_1F_Text_WallyPostEntranceBattle:
 	.string "WALLY: I couldn't beat you today,\n"
 	.string "{PLAYER}, but one of these days, I'll\l"
-	.string "catch up to you!$"
+	.string "catch up to you!\p"
+	.string "Take this.$"
 
 VictoryRoad_1F_Text_WallyIntro:
 	.string "WALLY: Hi! {PLAYER}!\p"

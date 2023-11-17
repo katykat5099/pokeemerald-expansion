@@ -222,6 +222,10 @@ Route121_EventScript_ItemZinc::
 	finditem ITEM_ZINC
 	end
 
+Route121_EventScript_ItemShinyStone::
+	finditem ITEM_SHINY_STONE
+	end
+
 Route123_EventScript_ItemCalcium::
 	finditem ITEM_CALCIUM
 	end
@@ -490,6 +494,10 @@ MtPyre_3F_EventScript_ItemSuperRepel::
 	finditem ITEM_SUPER_REPEL
 	end
 
+MtPyre_3F_EventScript_ItemDuskStone::
+	finditem ITEM_DUSK_STONE
+	end
+
 MtPyre_4F_EventScript_ItemSeaIncense::
 	finditem ITEM_SEA_INCENSE
 	end
@@ -560,6 +568,10 @@ ShoalCave_LowTideIceRoom_EventScript_ItemTMHail::
 
 ShoalCave_LowTideIceRoom_EventScript_ItemNeverMeltIce::
 	finditem ITEM_NEVER_MELT_ICE
+	end
+
+ShoalCave_LowTideIceRoom_EventScript_IceStone::
+	finditem ITEM_ICE_STONE
 	end
 
 SeafloorCavern_Room9_EventScript_ItemTMEarthquake::
