@@ -1,5 +1,6 @@
 Route130_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route130_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, Route130_OnResume
 	.byte 0
 
 Route130_OnTransition:
@@ -23,6 +24,10 @@ Route130_OnTransition:
 	setflag FLAG_TEMP_1E
 	setflag FLAG_TEMP_1F
 	setmaplayoutindex LAYOUT_ROUTE130
+	end
+
+Route130_OnResume:
+	setdivewarp MAP_UNDERWATER_ROUTE130, 42, 23
 	end
 
 Route130_EventScript_SetMirageIslandLayout::

@@ -1064,3 +1064,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/MauvilleCity_MirrorShop/scripts.inc"
 
 	.include "data/maps/MauvilleCity_CroonersCafe/scripts.inc"
+
+	.include "data/maps/Underwater_Route130/scripts.inc"
