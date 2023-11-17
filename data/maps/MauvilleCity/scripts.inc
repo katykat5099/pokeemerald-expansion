@@ -470,6 +470,35 @@ MauvilleCity_EventScript_RegisterWallyCall::
 	releaseall
 	end
 
+MauvilleCity_EventScript_GenesectThug::
+    lockall
+    faceplayer
+    checkitem ITEM_DOUSE_DRIVE
+    goto_if_eq VAR_RESULT, TRUE, MauvilleCity_EventScript_GenesectLesson
+    setvar VAR_PARTY_POKEMON_CHECK, 649
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_eq VAR_RESULT, TRUE, MauvilleCity_EventScript_GiveGenesectDrives
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    msgbox MauvilleCity_Text_WaitForGenesect, MSGBOX_DEFAULT
+    releaseall
+    end
+
+MauvilleCity_EventScript_GiveGenesectDrives::
+    msgbox MauvilleCity_Text_GenesectGiveDrives, MSGBOX_DEFAULT
+    giveitem ITEM_DOUSE_DRIVE
+    giveitem ITEM_SHOCK_DRIVE
+    giveitem ITEM_BURN_DRIVE
+    giveitem ITEM_CHILL_DRIVE
+    msgbox MauvilleCity_Text_GenesectDrivesList, MSGBOX_DEFAULT
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    releaseall
+    end
+
+MauvilleCity_EventScript_GenesectLesson::
+    msgbox MauvilleCity_Text_GenesectLesson, MSGBOX_DEFAULT
+    releaseall
+    end
+
 MauvilleCity_Text_UncleHesTooPeppy:
 	.string "UNCLE: It's because of POKéMON that\n"
 	.string "this boy's got more pep, I suppose…\l"
@@ -679,3 +708,35 @@ MauvilleCity_Text_ExplainTV:
 
 MauvilleCity_Text_BeenCheckingOutTV:
 	.string "Hi, have you been checking out TVs?$"
+
+MauvilleCity_Text_WaitForGenesect:
+    .string "Hey, what are you staring at me for?\n"
+    .string "I have to wait here for Genesect…\l"
+    .string "Oops, forget what I just said!$"
+
+MauvilleCity_Text_GenesectGiveDrives:
+	.string "Hey, that POKéMON you have…\n"
+	.string "It's Genesect, isn't it?\p"
+	.string "Shhhh! Don't worry!\n"
+	.string "You must be the one to give these to,\l"
+	.string "eh?\p"
+	.string "Say nothing. Just take them.$"
+
+MauvilleCity_Text_GenesectDrivesList:
+    .string "Douse Drive…\n"
+    .string "Shock Drive…\p"
+    .string "Burn Drive…\n"
+    .string "and Chill Drive!\p"
+    .string "Just between you and me,\n"
+    .string "these are some really rare items.\p"
+    .string "They come from the Unova region\n"
+    .string "through some shady market, you know?\p"
+    .string "Let Genesect hold one of these and…\n"
+    .string "Oh, you already know that, right?$"
+
+MauvilleCity_Text_GenesectLesson:
+    .string "Hey, it's you!\p"
+    .string "You know what they say? That 300 million\n"
+    .string "years ago, Genesect ruled the world!\p"
+    .string "Imagine if we suddenly went back in time…\n"
+    .string "I'd feel lonely and homesick… and scared!$"

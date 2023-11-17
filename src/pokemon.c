@@ -16233,6 +16233,8 @@ bool8 CheckPartyPokemon(void)
                 { return TRUE; }
 /*LANDORUS*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_LANDORUS) && (*var == 645))
                 { return TRUE; }
+/*GENESECT*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_GENESECT) && (*var == 649))
+                { return TRUE; }
 /*FURFROU*/   if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_FURFROU) && (*var == 676))
                 { return TRUE; }
 /*ENAMORUS*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_ENAMORUS) && (*var == 905))
