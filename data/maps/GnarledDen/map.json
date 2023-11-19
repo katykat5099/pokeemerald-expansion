@@ -1,0 +1,41 @@
+{
+  "id": "MAP_GNARLED_DEN",
+  "name": "GnarledDen",
+  "layout": "LAYOUT_GNARLED_DEN",
+  "music": "MUS_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_GNARLED_DEN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 15,
+      "y": 28,
+      "elevation": 0,
+      "dest_map": "MAP_JAGGED_PASS",
+      "dest_warp_id": "5"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 4,
+      "y": 8,
+      "elevation": 0,
+      "item": "ITEM_DNA_SPLICERS",
+      "flag": "FLAG_HIDDEN_ITEM_GNARLED_DEN_DNA_SPLICERS"
+    }
+  ]
+}

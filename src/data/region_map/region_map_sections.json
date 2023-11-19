@@ -1718,6 +1718,14 @@
       "y": 10,
       "width": 1,
       "height": 1
+    },
+    {
+      "map_section": "MAPSEC_GNARLED_DEN",
+      "name": "GNARLED DEN",
+      "x": 6,
+      "y": 8,
+      "width": 1,
+      "height": 1
     }
   ]
 }

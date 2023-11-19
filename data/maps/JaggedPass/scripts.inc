@@ -31,11 +31,13 @@ JaggedPass_EventScript_SetWeatherAsh::
 
 JaggedPass_OnLoad:
 	goto_if_le VAR_JAGGED_PASS_STATE, 1, JaggedPass_EventScript_ConcealHideoutEntrance
-	end
+	goto_if_le VAR_GNARLED_DEN, 1, JaggedPass_EventScript_ConcealGnarledDenEntrance
+    end
 
 JaggedPass_EventScript_ConcealHideoutEntrance::
 	setmetatile 16, 17, METATILE_Lavaridge_RockWall, TRUE
 	setmetatile 16, 18, METATILE_Lavaridge_RockWall, TRUE
+	goto_if_le VAR_GNARLED_DEN, 1, JaggedPass_EventScript_ConcealGnarledDenEntrance
 	end
 
 JaggedPass_EventScript_OpenMagmaHideout::
@@ -148,6 +150,79 @@ JaggedPass_EventScript_Autumn::
 	trainerbattle_single TRAINER_AUTUMN, JaggedPass_Text_AutumnIntro, JaggedPass_Text_AutumnDefeat
 	msgbox JaggedPass_Text_AutumnPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+JaggedPass_EventScript_ConcealGnarledDenEntrance::
+	setmetatile 22, 12, METATILE_Lavaridge_RockWallCorner, TRUE
+	setmetatile 21, 12, METATILE_Lavaridge_RockWall, TRUE
+	setmetatile 22, 11, METATILE_Lavaridge_RockWallCornerInverse, TRUE
+	setmetatile 21, 11, METATILE_Lavaridge_LavaField, FALSE
+	setmetatile 22, 10, METATILE_Lavaridge_RockWall, TRUE
+	special DrawWholeMapView
+	end
+
+JaggedPass_EventScript_GnarledDen::
+    goto_if_eq VAR_GNARLED_DEN, 2, JaggedPass_EventScript_GnarledDenOpened
+    setvar VAR_PARTY_POKEMON_CHECK, 643
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_eq VAR_RESULT, TRUE, JaggedPass_EventScript_OpenGnarledDen0
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    release
+    end
+
+JaggedPass_EventScript_OpenGnarledDen0::
+    setvar VAR_PARTY_POKEMON_CHECK, 644
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_eq VAR_RESULT, TRUE, JaggedPass_EventScript_OpenGnarledDen
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    release
+    end
+
+JaggedPass_EventScript_OpenGnarledDen::
+    lockall
+    setvar VAR_0x8004, 1
+    setvar VAR_0x8005, 1
+    setvar VAR_0x8006, 8
+    setvar VAR_0x8007, 5
+    special ShakeCamera
+    waitstate
+    playse SE_M_EARTHQUAKE
+    setvar VAR_0x8004, 2
+    setvar VAR_0x8005, 2
+    setvar VAR_0x8006, 16
+    setvar VAR_0x8007, 3
+    special ShakeCameraNoSE
+    waitstate
+    setvar VAR_0x8004, 1
+    setvar VAR_0x8005, 1
+    setvar VAR_0x8006, 16
+    setvar VAR_0x8007, 3
+    special ShakeCameraNoSE
+    waitstate
+    setvar VAR_0x8004, 1
+    setvar VAR_0x8005, 1
+    setvar VAR_0x8006, 16
+    setvar VAR_0x8007, 4
+    special ShakeCameraNoSE
+    waitstate
+    setvar VAR_0x8004, 0
+    setvar VAR_0x8005, 1
+    setvar VAR_0x8006, 8
+    setvar VAR_0x8007, 6
+    special ShakeCameraNoSE
+    waitstate
+	setmetatile 22, 12, METATILE_Lavaridge_LavaField, FALSE
+	setmetatile 21, 12, METATILE_Lavaridge_RockWallCorner, TRUE
+	setmetatile 22, 11, METATILE_Lavaridge_CaveEntrance_Bottom, FALSE
+	setmetatile 21, 11, METATILE_Lavaridge_RockWallCornerInverse, TRUE
+	setmetatile 22, 10, METATILE_Lavaridge_CaveEntrance_Top, TRUE
+    special DrawWholeMapView
+    delay 30
+    setvar VAR_GNARLED_DEN, 2
+    releaseall
+    end
+
+JaggedPass_EventScript_GnarledDenOpened::
+    end
 
 JaggedPass_Text_EricIntro:
 	.string "MT. CHIMNEY's JAGGED PASS…\p"

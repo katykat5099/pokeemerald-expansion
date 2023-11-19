@@ -1066,3 +1066,7 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/MauvilleCity_CroonersCafe/scripts.inc"
 
 	.include "data/maps/Underwater_Route130/scripts.inc"
+
+	.include "data/maps/Gnarled_Den/scripts.inc"
+
+	.include "data/maps/GnarledDen/scripts.inc"

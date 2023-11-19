@@ -4440,6 +4440,16 @@
       "secondary_tileset": "gTileset_Underwater",
       "border_filepath": "data/layouts/Underwater_Route130/border.bin",
       "blockdata_filepath": "data/layouts/Underwater_Route130/map.bin"
+    },
+    {
+      "id": "LAYOUT_GNARLED_DEN",
+      "name": "GnarledDen_Layout",
+      "width": 28,
+      "height": 33,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Lavaridge",
+      "border_filepath": "data/layouts/GnarledDen/border.bin",
+      "blockdata_filepath": "data/layouts/GnarledDen/map.bin"
     }
   ]
 }

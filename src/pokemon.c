@@ -16226,6 +16226,10 @@ bool8 CheckPartyPokemon(void)
                 { return TRUE; }
 /*THUNDURUS*/ if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_THUNDURUS) && (*var == 642))
                 { return TRUE; }
+/*RESHIRAM*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_RESHIRAM) && (*var == 643))
+                { return TRUE; }
+/*ZEKROM*/    if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_ZEKROM) && (*var == 644))
+                { return TRUE; }
 /*LANDORUS*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_LANDORUS) && (*var == 645))
                 { return TRUE; }
 /*GENESECT*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_GENESECT) && (*var == 649))
