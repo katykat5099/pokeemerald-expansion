@@ -961,6 +961,46 @@ RustboroCity_EventScript_BattleBrendanMudkip::
 	goto RustboroCity_EventScript_BrendanBrineyHint
 	end
 
+RustboroCity_EventScript_MemoryThug::
+    lockall
+    faceplayer
+    goto_if_set FLAG_RECEIVED_MEMORIES_PHYSICAL, RustboroCity_EventScript_MemoryThugGiven
+    setvar VAR_PARTY_POKEMON_CHECK, 773
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_eq VAR_RESULT, TRUE, RustboroCity_EventScript_MemoryThugGiveMemoryPhysical
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    msgbox RustboroCity_Text_MemoryThugUgly, MSGBOX_DEFAULT
+    releaseall
+    end
+
+RustboroCity_EventScript_MemoryThugGiveMemoryPhysical::
+    checkitemspace ITEM_FIRE_MEMORY, 8
+    goto_if_eq VAR_RESULT, FALSE, RustboroCity_EventScript_MemoryThugBagFull
+    msgbox RustboroCity_Text_MemoryThugGiveMemory, MSGBOX_DEFAULT
+    setflag FLAG_RECEIVED_MEMORIES_PHYSICAL
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    giveitem ITEM_ROCK_MEMORY
+    giveitem ITEM_STEEL_MEMORY
+    giveitem ITEM_POISON_MEMORY
+    giveitem ITEM_FLYING_MEMORY
+    giveitem ITEM_FIGHTING_MEMORY
+    giveitem ITEM_GHOST_MEMORY
+    giveitem ITEM_GROUND_MEMORY
+    giveitem ITEM_BUG_MEMORY
+    msgbox RustboroCity_Text_MemoryThugGiveMemory2, MSGBOX_DEFAULT
+    releaseall
+    end
+
+RustboroCity_EventScript_MemoryThugGiven::
+    msgbox RustboroCity_Text_MemoryThugGiven, MSGBOX_DEFAULT
+    releaseall
+    end
+
+RustboroCity_EventScript_MemoryThugBagFull::
+    msgbox RustboroCity_Text_MemoryThugBagFull, MSGBOX_DEFAULT
+    releaseall
+    end
+
 RustboroCity_Movement_RivalApproachPlayer0:
 	walk_down
 	walk_left
@@ -1297,3 +1337,25 @@ RustboroCity_Text_YouCanHave2On2Battle:
 	.string "they'll both challenge you.\p"
 	.string "Don't you think it'd be cool if you\n"
 	.string "could beat two TRAINERS by yourself?$"
+
+RustboroCity_Text_MemoryThugUgly:
+    .string "What are you staring at?\p"
+    .string "…Do you think im ugly?$"
+
+RustboroCity_Text_MemoryThugGiveMemory:
+    .string "Hey there…\n"
+    .string "Stop, are you the legendary collector?\p"
+    .string "Thanks for paying in advance. Here's\n"
+    .string "your stuff…$"
+
+RustboroCity_Text_MemoryThugGiveMemory2:
+    .string "…And done… Ugh.\n"
+    .string "Where do you even put all that!?$"
+
+RustboroCity_Text_MemoryThugGiven:
+    .string "Make sure you go pick up your other\n"
+    .string "stuff in Sootopolis…\p"
+    .string "…What do you mean “What stuff?”!?$"
+
+RustboroCity_Text_MemoryThugBagFull:
+    .string "There's no way you can carry all this.$"
