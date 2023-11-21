@@ -1408,6 +1408,7 @@ SootopolisCity_EventScript_MemoryThug::
 
 SootopolisCity_EventScript_MemoryThugGiveMemorySpecial::
     checkitemspace ITEM_FIRE_MEMORY, 9
+    goto_if_eq VAR_RESULT, FALSE, RustboroCity_EventScript_MemoryThugBagFull
     msgbox SootopolisCity_Text_MemoryThugGiveMemory, MSGBOX_DEFAULT
     setflag FLAG_RECEIVED_MEMORIES_SPECIAL
     setvar VAR_PARTY_POKEMON_CHECK, 0
@@ -1426,6 +1427,11 @@ SootopolisCity_EventScript_MemoryThugGiveMemorySpecial::
 
 SootopolisCity_EventScript_MemoryThugGiven::
     msgbox SootopolisCity_Text_MemoryThugGiven, MSGBOX_DEFAULT
+    releaseall
+    end
+
+SootopolisCity_EventScript_MemoryThugBagFull::
+    msgbox SootopolisCity_Text_MemoryThugBagFull, MSGBOX_DEFAULT
     releaseall
     end
 
@@ -1778,3 +1784,7 @@ SootopolisCity_Text_MemoryThugGiven:
     .string "Make sure you go pick up your other\n"
     .string "package in Rustboro…\p"
     .string "…What do you mean “What package?”!?$"
+
+SootopolisCity_Text_MemoryThugBagFull:
+    .string "You wont be able to carry this all.$"
+
