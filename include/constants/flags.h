@@ -1311,8 +1311,8 @@
 #define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag
 #define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag
 #define FLAG_UNUSED_0x4EC                                           0x4EC // Unused Flag
-#define FLAG_UNUSED_0x4ED                                           0x4ED // Unused Flag
-#define FLAG_UNUSED_0x4EE                                           0x4EE // Unused Flag
+#define FLAG_RECEIVED_MEMORIES_PHYSICAL                             0x4ED
+#define FLAG_RECEIVED_MEMORIES_SPECIAL                              0x4EE
 #define FLAG_RECEIVED_GRACIDEA                                      0x4EF // Unused Flag
 
 #define FLAG_DEFEATED_RUSTBORO_GYM                                  0x4F0

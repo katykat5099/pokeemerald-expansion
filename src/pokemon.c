@@ -9784,6 +9784,8 @@ bool8 CheckPartyPokemon(void)
                 { return TRUE; }
 /*FURFROU*/   if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_FURFROU) && (*var == 676))
                 { return TRUE; }
+/*SILVALLY*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_SILVALLY) && (*var == 773))
+                { return TRUE; }
 /*ENAMORUS*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_ENAMORUS) && (*var == 905))
                 { return TRUE; }
     }

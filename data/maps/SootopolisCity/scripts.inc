@@ -1394,6 +1394,41 @@ SootopolisCity_EventScript_MaxieArchieLeave::
 	releaseall
 	end
 
+SootopolisCity_EventScript_MemoryThug::
+    lockall
+    faceplayer
+    goto_if_set FLAG_RECEIVED_MEMORIES_SPECIAL, SootopolisCity_EventScript_MemoryThugGiven
+    setvar VAR_PARTY_POKEMON_CHECK, 773
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_eq VAR_RESULT, TRUE, SootopolisCity_EventScript_MemoryThugGiveMemorySpecial
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    msgbox SootopolisCity_Text_MemoryThugHot, MSGBOX_DEFAULT
+    releaseall
+    end
+
+SootopolisCity_EventScript_MemoryThugGiveMemorySpecial::
+    checkitemspace ITEM_FIRE_MEMORY, 9
+    msgbox SootopolisCity_Text_MemoryThugGiveMemory, MSGBOX_DEFAULT
+    setflag FLAG_RECEIVED_MEMORIES_SPECIAL
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    giveitem ITEM_FIRE_MEMORY
+    giveitem ITEM_WATER_MEMORY
+    giveitem ITEM_ELECTRIC_MEMORY
+    giveitem ITEM_GRASS_MEMORY
+    giveitem ITEM_ICE_MEMORY
+    giveitem ITEM_PSYCHIC_MEMORY
+    giveitem ITEM_DRAGON_MEMORY
+    giveitem ITEM_DARK_MEMORY
+    giveitem ITEM_FAIRY_MEMORY
+    msgbox SootopolisCity_Text_MemoryThugGiveMemory2, MSGBOX_DEFAULT
+    releaseall
+    end
+
+SootopolisCity_EventScript_MemoryThugGiven::
+    msgbox SootopolisCity_Text_MemoryThugGiven, MSGBOX_DEFAULT
+    releaseall
+    end
+
 @ Unused
 SootopolisCity_Movement_Levitate::
 	levitate
@@ -1724,3 +1759,22 @@ SootopolisCity_Text_DazzledByMentor:
 	.string "WALLACE: I'm sure that you will be\n"
 	.string "dazzled by my mentor's breathtakingly\l"
 	.string "elegant battle style.$"
+
+SootopolisCity_Text_MemoryThugHot:
+    .string "What are you staring at?\p"
+    .string "…Do you think im hot?$"
+
+SootopolisCity_Text_MemoryThugGiveMemory:
+    .string "Hey there…\n"
+    .string "Wait, are you the legendary collector?\p"
+    .string "Thanks for paying in advance. Here's\n"
+    .string "your package…$"
+
+SootopolisCity_Text_MemoryThugGiveMemory2:
+    .string "…And done… Phew.\n"
+    .string "Where do you even put all that!?$"
+
+SootopolisCity_Text_MemoryThugGiven:
+    .string "Make sure you go pick up your other\n"
+    .string "package in Rustboro…\p"
+    .string "…What do you mean “What package?”!?$"
