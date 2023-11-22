@@ -1302,7 +1302,7 @@
 #define FLAG_UNUSED_0x4E3                                           0x4E3 // Unused Flag
 #define FLAG_UNUSED_0x4E4                                           0x4E4 // Unused Flag
 #define FLAG_UNUSED_0x4E5                                           0x4E5 // Unused Flag
-#define FLAG_UNUSED_0x4E6                                           0x4E6 // Unused Flag
+#define FLAG_HELPED_ALOLAN_WOMAN                                    0x4E6
 #define FLAG_ORICORIO_KNOWLEDGE                                     0x4E7
 #define FLAG_PURPLE_NECTAR                                          0x4E8
 #define FLAG_YELLOW_NECTAR                                          0x4E9

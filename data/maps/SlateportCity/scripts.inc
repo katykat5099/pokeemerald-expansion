@@ -18,6 +18,7 @@
 .set LOCALID_GRUNT_9, 31
 .set LOCALID_GRUNT_11, 33
 .set LOCALID_SCOTT, 35
+.set LOCALID_ALOLAN_WOMAN, 36
 
 @ Note: LOCALID_SLATEPORT_ENERGY_GURU is a local id for this map used elsewhere. It's defined in event_objects.h
 
@@ -950,6 +951,77 @@ SlateportCity_EventScript_BerryCrushRankingsSign::
 	releaseall
 	end
 
+SlateportCity_EventScript_AlolanWoman::
+    lock
+    msgbox SlateportCity_Text_AlolanStrangers, MSGBOX_DEFAULT
+    applymovement LOCALID_ALOLAN_WOMAN, Common_Movement_QuestionMark
+    waitmovement 0
+    applymovement LOCALID_ALOLAN_WOMAN, Common_Movement_FacePlayer
+    waitmovement 0
+    msgbox SlateportCity_Text_AlolanStrangers2, MSGBOX_DEFAULT
+    applymovement LOCALID_ALOLAN_WOMAN, Common_Movement_FaceOriginalDirection
+    waitmovement 0
+    end
+
+SlateportCity_EventScript_AlolanWomanOricorio::
+    goto_if_set FLAG_PINK_NECTAR, SlateportCity_EventScript_AlolanWomanSellNectar
+    setvar VAR_PARTY_POKEMON_CHECK, 741
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_ne VAR_RESULT, TRUE, SlateportCity_EventScript_AlolanWoman
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    lock
+    faceplayer
+    msgbox SlateportCity_Text_AlolanWomanOricorio, MSGBOX_DEFAULT
+    msgbox SlateportCity_Text_AlolanWomanOricorio2, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, SlateportCity_EventScript_AlolanWomanDenied
+    msgbox SlateportCity_Text_AlolanWomanFreeNectar, MSGBOX_DEFAULT
+    giveitem ITEM_PINK_NECTAR
+    goto_if_eq VAR_RESULT, FALSE, SlateportCity_EventScript_AlolanWomanBagFull
+    setflag FLAG_PINK_NECTAR
+    setflag FLAG_HELPED_ALOLAN_WOMAN
+    release
+    end
+
+SlateportCity_EventScript_AlolanWomanSellNectar::
+    lock
+    faceplayer
+    msgbox SlateportCity_Text_AlolanWomanSelling, MSGBOX_DEFAULT
+    showmoneybox 0, 0
+    msgbox SlateportCity_Text_AlolanWomanSelling2, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, SlateportCity_EventScript_AlolanWomanDenied2
+    checkmoney 800
+    goto_if_eq VAR_RESULT, 0, SlateportCity_EventScript_AlolanWomanCantAfford
+    checkitemspace ITEM_YELLOW_NECTAR
+    call_if_eq VAR_RESULT, TRUE, RustboroCity_EventScript_RemoveMoney @reuse
+    giveitem ITEM_PINK_NECTAR
+    goto_if_eq VAR_RESULT, FALSE, SlateportCity_EventScript_AlolanWomanBagFull
+    hidemoneybox
+    release
+    end
+
+SlateportCity_EventScript_AlolanWomanCantAfford::
+    msgbox SlateportCity_Text_AlolanWomanYouCantAfford, MSGBOX_DEFAULT
+    hidemoneybox
+    release
+    end
+
+SlateportCity_EventScript_AlolanWomanDenied::
+    msgbox SlateportCity_Text_AlolanWomanDenied, MSGBOX_DEFAULT
+    setflag FLAG_PINK_NECTAR
+    release
+    end
+
+SlateportCity_EventScript_AlolanWomanDenied2::
+    msgbox SlateportCity_Text_AlolanWomanDenied2, MSGBOX_DEFAULT
+    hidemoneybox
+    release
+    end
+
+SlateportCity_EventScript_AlolanWomanBagFull::
+    msgbox SlateportCity_Text_AlolanWomanBagFull, MSGBOX_DEFAULT
+    release
+    end
+
 SlateportCity_Text_EnergyGuruSellWhatYouNeed:
 	.string "I'm the ENERGY GURU! I'll go for it and\n"
 	.string "sell you what you need!$"
@@ -1383,3 +1455,51 @@ SlateportCity_Text_TakingBattleTentChallenge:
 	.string "After all, a tough TRAINER is\n"
 	.string "the perfect fit for the BATTLE TENT!\p"
 	.string "Give it your best effort!$"
+
+SlateportCity_Text_AlolanStrangers:
+    .string "Oh man…$"
+SlateportCity_Text_AlolanStrangers2:
+    .string "Alola, stranger!\p"
+    .string "… … … “What's wrong?”\p"
+    .string "Well, my family and I work together\n"
+    .string "as a team to sell Oricorio's Nectar.\p"
+    .string "But they all rushed off after getting\n"
+    .string "into an argument about which Style of\l"
+    .string "Oricorio is.\p"
+    .string "They're really a silly bunch.$"
+
+SlateportCity_Text_AlolanWomanOricorio:
+    .string "What should I do,\n"
+    .string "What should I do…\p"
+    .string "Oh, Alola! I thought you were my\n"
+    .string "husband… Oh you have Oricorio! That\l"
+    .string "would do it.\p"
+    .string "Oricorio is not common around here.$"
+SlateportCity_Text_AlolanWomanOricorio2:
+    .string "My family and I work together to\n"
+    .string "sell Nectar, but we got seperated\l"
+    .string "after we had a disagreement.\p"
+    .string "I'm not sure, but, I'm thinking that\n"
+    .string "maybe I should get them together to have\l"
+    .string "a family meeting. What do you think?$"
+
+SlateportCity_Text_AlolanWomanFreeNectar:
+    .string "Alright, I'll do that as soon as I can!\p"
+    .string "Thank's for helping me decide. Take this.$"
+
+SlateportCity_Text_AlolanWomanSelling:
+    .string "Alola! Want some Pink Nectar?$"
+SlateportCity_Text_AlolanWomanSelling2:
+    .string "Selling for a mere ¥800!$"
+
+SlateportCity_Text_AlolanWomanDenied:
+    .string "Hmm. I see… Alright.$"
+
+SlateportCity_Text_AlolanWomanDenied2:
+    .string "Alright! Have a good day.$"
+
+SlateportCity_Text_AlolanWomanBagFull:
+    .string "Oh, hold on. Your bag's full.$"
+
+SlateportCity_Text_AlolanWomanYouCantAfford:
+    .string "Sorry! You cant afford this!$"
