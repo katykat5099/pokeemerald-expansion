@@ -240,7 +240,7 @@ MauvilleCity_EventScript_AlolanBoy::
     end
 
 MauvilleCity_EventScript_AlolanBoyOricorio::
-    goto_if_set FLAG_RECEIVED_PURPLE_NECTAR, MauvilleCity_EventScript_AlolanBoySellNectar
+    goto_if_set FLAG_PURPLE_NECTAR, MauvilleCity_EventScript_AlolanBoySellNectar
     setvar VAR_PARTY_POKEMON_CHECK, 741
     specialvar VAR_RESULT, CheckPartyPokemon
     goto_if_ne VAR_RESULT, TRUE, MauvilleCity_EventScript_AlolanBoy
@@ -252,7 +252,7 @@ MauvilleCity_EventScript_AlolanBoyOricorio::
     msgbox MauvilleCity_Text_AlolanBoyFreeNectar, MSGBOX_DEFAULT
     giveitem ITEM_PURPLE_NECTAR
     goto_if_eq VAR_RESULT, FALSE, MauvilleCity_EventScript_AlolanBoyBagFull
-    setflag FLAG_RECEIVED_PURPLE_NECTAR
+    setflag FLAG_PURPLE_NECTAR
     msgbox MauvilleCity_Text_AlolanBoyEnd, MSGBOX_DEFAULT
     release
     end

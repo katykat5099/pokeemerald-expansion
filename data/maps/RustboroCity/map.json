@@ -250,6 +250,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_MemoryThug",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "x": 26,
+      "y": 39,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RustboroCity_EventScript_AlolanMan",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -527,6 +540,33 @@
       "var": "VAR_RUSTBORO_CITY_STATE",
       "var_value": "7",
       "script": "RustboroCity_EventScript_RivalTrigger7"
+    },
+    {
+      "type": "trigger",
+      "x": 25,
+      "y": 39,
+      "elevation": 0,
+      "var": "VAR_ALOLAN_MAN_SAD",
+      "var_value": "0",
+      "script": "RustboroCity_EventScript_AlolanManOricorio"
+    },
+    {
+      "type": "trigger",
+      "x": 26,
+      "y": 40,
+      "elevation": 0,
+      "var": "VAR_ALOLAN_MAN_SAD",
+      "var_value": "0",
+      "script": "RustboroCity_EventScript_AlolanManOricorio"
+    },
+    {
+      "type": "trigger",
+      "x": 26,
+      "y": 38,
+      "elevation": 0,
+      "var": "VAR_ALOLAN_MAN_SAD",
+      "var_value": "0",
+      "script": "RustboroCity_EventScript_AlolanManOricorio"
     }
   ],
   "bg_events": [

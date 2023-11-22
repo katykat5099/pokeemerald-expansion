@@ -4,6 +4,7 @@
 .set LOCALID_GRUNT, 10
 .set LOCALID_RIVAL, 14
 .set LOCALID_SCIENTIST, 15
+.set LOCALID_ALOLANMAN, 18
 
 RustboroCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_OnTransition
@@ -1001,6 +1002,97 @@ RustboroCity_EventScript_MemoryThugBagFull::
     releaseall
     end
 
+
+RustboroCity_EventScript_AlolanMan::
+    lock
+    faceplayer
+    goto_if_set FLAG_RED_NECTAR, RustboroCity_EventScript_AlolanManSellNectar
+    msgbox RustboroCity_Text_AlolanStrangers, MSGBOX_DEFAULT
+    waitbuttonpress
+    applymovement LOCALID_ALOLANMAN, Common_Movement_FaceOriginalDirection
+    waitmovement 0
+    release
+    end
+
+RustboroCity_EventScript_AlolanManOricorio::
+    setvar VAR_PARTY_POKEMON_CHECK, 741
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_ne VAR_RESULT, TRUE, RustboroCity_EventScript_Nothing
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    lock
+    playse SE_PIN
+    applymovement LOCALID_ALOLANMAN, Common_Movement_ExclamationMark
+    waitmovement 0
+    applymovement LOCALID_ALOLANMAN, Common_Movement_FacePlayer
+    waitmovement 0
+    msgbox RustboroCity_Text_AlolanManOricorio, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, RustboroCity_EventScript_AlolanManDenied
+    msgbox RustboroCity_Text_AlolanManFreeNectar, MSGBOX_DEFAULT
+    giveitem ITEM_RED_NECTAR
+    goto_if_eq VAR_RESULT, FALSE, RustboroCity_EventScript_AlolanManBagFull
+    setflag FLAG_RED_NECTAR
+    setvar VAR_ALOLAN_MAN_SAD, 1
+    msgbox RustboroCity_Text_AlolanManEnd, MSGBOX_DEFAULT
+    release
+    end
+
+RustboroCity_EventScript_Nothing::
+    release
+    end
+
+RustboroCity_EventScript_AlolanManSellNectar::
+    lock
+    faceplayer
+    msgbox RustboroCity_Text_AlolanManSellNectar, MSGBOX_DEFAULT
+    showmoneybox 0, 0
+    msgbox RustboroCity_Text_AlolanManSellNectar2, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, RustboroCity_EventScript_AlolanManDenied2
+    checkmoney 800
+    goto_if_eq VAR_RESULT, 0, RustboroCity_EventScript_AlolanManCantAfford
+    checkitemspace ITEM_RED_NECTAR
+    call_if_eq VAR_RESULT, TRUE, RustboroCity_EventScript_RemoveMoney
+    giveitem ITEM_RED_NECTAR
+    goto_if_eq VAR_RESULT, FALSE, RustboroCity_EventScript_AlolanManBagFull2
+    hidemoneybox
+    release
+    end
+
+RustboroCity_EventScript_RemoveMoney::
+    playse SE_SHOP
+	removemoney 800
+	updatemoneybox
+	return
+
+RustboroCity_EventScript_AlolanManDenied::
+    msgbox RustboroCity_Text_AlolanManDenied, MSGBOX_DEFAULT
+    setflag FLAG_RED_NECTAR
+    setvar VAR_ALOLAN_MAN_SAD, 2
+    release
+    end
+
+RustboroCity_EventScript_AlolanManDenied2::
+    msgbox RustboroCity_Text_AlolanManDenied, MSGBOX_DEFAULT
+    hidemoneybox
+    release
+    end
+
+RustboroCity_EventScript_AlolanManBagFull::
+    msgbox RustboroCity_Text_AlolanManBagFull, MSGBOX_DEFAULT
+    release
+    end
+
+RustboroCity_EventScript_AlolanManBagFull2::
+    msgbox RustboroCity_Text_AlolanManBagFull, MSGBOX_DEFAULT
+    hidemoneybox
+    release
+    end
+
+RustboroCity_EventScript_AlolanManCantAfford::
+    msgbox RustboroCity_Text_AlolanManCantAfford, MSGBOX_DEFAULT
+    hidemoneybox
+    release
+    end
+
 RustboroCity_Movement_RivalApproachPlayer0:
 	walk_down
 	walk_left
@@ -1359,3 +1451,34 @@ RustboroCity_Text_MemoryThugGiven:
 
 RustboroCity_Text_MemoryThugBagFull:
     .string "There's no way you can carry all this.$"
+
+RustboroCity_Text_AlolanStrangers:
+    .string "Sorry, we're not open right now…$"
+
+RustboroCity_Text_AlolanManOricorio:
+    .string "Hello, hello! I can sense you have\n"
+    .string "an Oricorio with you. Is that right?$"
+
+RustboroCity_Text_AlolanManFreeNectar:
+    .string "Ah, I'm so glad to meet another fan.\n"
+    .string "You've made my day. Take this$"
+
+RustboroCity_Text_AlolanManEnd:
+    .string "Show everyone how elegant the\n"
+    .string "Baile Style is!$"
+
+RustboroCity_Text_AlolanManSellNectar:
+    .string "Alola! Welcome!\n"
+    .string "Did you want some Red Nectar?$"
+RustboroCity_Text_AlolanManSellNectar2:
+    .string "I can sell you one,\n"
+    .string "It's ¥800!$"
+
+RustboroCity_Text_AlolanManDenied:
+    .string "Oh, I see…$"
+
+RustboroCity_Text_AlolanManBagFull:
+    .string "Oh, but your bag's full.$"
+
+RustboroCity_Text_AlolanManCantAfford:
+    .string "Oh, you don't have enough money.$"
