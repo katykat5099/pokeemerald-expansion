@@ -1002,7 +1002,6 @@ RustboroCity_EventScript_MemoryThugBagFull::
     releaseall
     end
 
-
 RustboroCity_EventScript_AlolanMan::
     lock
     faceplayer

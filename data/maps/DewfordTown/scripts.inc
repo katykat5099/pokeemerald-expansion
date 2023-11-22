@@ -10,6 +10,8 @@
 .equ LOCALID_BOAT_R104, 7
 .equ LOCALID_BRINEY_R104, 8
 
+.set LOCALID_ALOLANGIRL, 6
+
 DewfordTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_OnTransition
 	.byte 0
@@ -198,6 +200,78 @@ DewfordTown_EventScript_LandedSlateportDeliverGoods::
 DewfordTown_EventScript_LandedSlateport::
 	msgbox DewfordTown_Text_BrineyLandedInSlateport, MSGBOX_DEFAULT
 	return
+
+DewfordTown_EventScript_AlolanGirl::
+    msgbox DewfordTown_Text_AlolanStrangers, MSGBOX_NPC
+    end
+
+DewfordTown_EventScript_AlolanGirlOricorio::
+    goto_if_set FLAG_YELLOW_NECTAR, DewfordTown_EventScript_AlolanGirlSellNectar
+    setvar VAR_PARTY_POKEMON_CHECK, 741
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_ne VAR_RESULT, TRUE, DewfordTown_EventScript_AlolanGirl
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    lock
+    faceplayer
+    msgbox DewfordTown_Text_AlolanGirlOricorio, MSGBOX_DEFAULT
+    applymovement LOCALID_ALOLANGIRL, DewfordTown_Movement_SpinAround
+    waitmovement 0
+    msgbox DewfordTown_Text_AlolanGirlOricorio2, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, DewfordTown_EventScript_AlolanGirlDenied
+    msgbox DewfordTown_Text_AlolanGirlFreeNectar, MSGBOX_DEFAULT
+    giveitem ITEM_YELLOW_NECTAR
+    goto_if_eq VAR_RESULT, FALSE, DewfordTown_EventScript_AlolanGirlBagFull
+    setflag FLAG_YELLOW_NECTAR
+    setflag FLAG_ORICORIO_KNOWLEDGE
+    release
+    end
+
+DewfordTown_EventScript_AlolanGirlSellNectar::
+    lock
+    faceplayer
+    msgbox DewfordTown_Text_AlolanGirlSellNectar, MSGBOX_DEFAULT
+    showmoneybox 0, 0
+    msgbox DewfordTown_Text_AlolanGirlSellNectar2, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, DewfordTown_EventScript_AlolanGirlDenied2
+    checkmoney 800
+    goto_if_eq VAR_RESULT, 0, DewfordTown_EventScript_AlolanGirlCantAfford
+    checkitemspace ITEM_YELLOW_NECTAR
+    call_if_eq VAR_RESULT, TRUE, RustboroCity_EventScript_RemoveMoney @reuse
+    giveitem ITEM_YELLOW_NECTAR
+    goto_if_eq VAR_RESULT, FALSE, DewfordTown_EventScript_AlolanGirlBagFull2
+    hidemoneybox
+    release
+    end
+
+DewfordTown_EventScript_AlolanGirlDenied::
+    msgbox DewfordTown_Text_AlolanGirlDenied, MSGBOX_DEFAULT
+    setflag FLAG_YELLOW_NECTAR
+    release
+    end
+
+DewfordTown_EventScript_AlolanGirlDenied2::
+    msgbox DewfordTown_Text_AlolanGirlDenied2, MSGBOX_DEFAULT
+    hidemoneybox
+    release
+    end
+
+DewfordTown_EventScript_AlolanGirlBagFull::
+    msgbox DewfordTown_Text_AlolanGirlBagFull, MSGBOX_DEFAULT
+    release
+    end
+
+DewfordTown_EventScript_AlolanGirlBagFull2::
+    msgbox DewfordTown_Text_AlolanGirlBagFull, MSGBOX_DEFAULT
+    hidemoneybox
+    release
+    end
+
+DewfordTown_EventScript_AlolanGirlCantAfford::
+    msgbox DewfordTown_Text_AlolanGirlCantAfford, MSGBOX_DEFAULT
+    hidemoneybox
+    release
+    end
+
 
 DewfordTown_Movement_SailToPetalburg:
 	walk_up
@@ -597,6 +671,18 @@ DewfordTown_Movement_BrineyExitBoat:
 	walk_up
 	step_end
 
+DewfordTown_Movement_SpinAround:
+    walk_left
+    walk_right
+    walk_right
+    walk_left
+    walk_in_place_faster_down
+    walk_in_place_faster_right
+    walk_in_place_faster_up
+    walk_in_place_faster_left
+    face_player
+    step_end
+
 DewfordTown_EventScript_TrendyPhraseBoy::
 	lock
 	faceplayer
@@ -800,3 +886,38 @@ DewfordTown_Text_YeahDefinitionOfInRightNow:
 	.string "Yeah, absolutely right!\p"
 	.string "“{STR_VAR_1}” is the\n"
 	.string "definition of “in” right now.$"
+
+DewfordTown_Text_AlolanStrangers:
+    .string "When you're feeling stressed,\n"
+    .string "just dance it away, right?$"
+
+DewfordTown_Text_AlolanGirlOricorio:
+    .string "Huh! You have an Oricorio!\n"
+    .string "In the Hoenn region!? Wow!\p"
+    .string "Woohoo!$"
+DewfordTown_Text_AlolanGirlOricorio2:
+    .string "Since you watched my dance,\n"
+    .string "I bet Oricorio wanted to join in.\p"
+    .string "Would you agree?$"
+
+DewfordTown_Text_AlolanGirlFreeNectar:
+    .string "That's right! You sure know\n"
+    .string "your stuff! Give this to Oricorio\l"
+    .string "so it can dance like me!$"
+
+DewfordTown_Text_AlolanGirlSellNectar:
+    .string "Want some Yellow Nectar?\n"
+DewfordTown_Text_AlolanGirlSellNectar2:
+    .string "I can sell, just ¥800!$"
+
+DewfordTown_Text_AlolanGirlDenied:
+    .string "Eek!$"
+
+DewfordTown_Text_AlolanGirlDenied2:
+    .string "Too bad!$"
+
+DewfordTown_Text_AlolanGirlBagFull:
+    .string "Your bag's full?$"
+
+DewfordTown_Text_AlolanGirlCantAfford:
+    .string "Oh, you don't have enough money.$"
