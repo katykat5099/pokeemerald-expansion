@@ -3,7 +3,7 @@ PrisonBottle_OnTransition:
 	end
 
 PrisonBottle_EventScript_HideOrShowPrisonBottleMan::
-    goto_if_set ITEM_PRISON_BOTTLE, PrisonBottle_EventScript_HidePrisonBottleMan
+    goto_if_set FLAG_RECEIVED_PRISON_BOTTLE, PrisonBottle_EventScript_HidePrisonBottleMan
     setvar VAR_PARTY_POKEMON_CHECK, 720
     specialvar VAR_RESULT, CheckPartyPokemon
 	goto_if_eq VAR_RESULT, TRUE, PrisonBottle_EventScript_ShowPrisonBottleMan
