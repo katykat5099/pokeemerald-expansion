@@ -1,4 +1,5 @@
 FortreeCity_Mart_MapScripts::
+    map_script MAP_SCRIPT_ON_TRANSITION, PrisonBottle_OnTransition
 	.byte 0
 
 FortreeCity_Mart_EventScript_Clerk::

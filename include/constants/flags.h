@@ -774,9 +774,7 @@
 #define FLAG_HIDE_PETALBURG_CITY_WALLY                              0x2D6
 #define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY   0x2D7
 #define FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM                         0x2D8
-
-#define FLAG_UNUSED_0x2D9                                           0x2D9 // Unused Flag
-
+#define FLAG_HIDE_POKEMART_PRISON_BOTTLE_MAN                        0x2D9
 #define FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER                     0x2DA
 #define FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT                          0x2DB
 #define FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1                    0x2DC
@@ -1310,7 +1308,7 @@
 #define FLAG_UNUSED_0x4E9                                           0x4E9 // Unused Flag
 #define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag
 #define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag
-#define FLAG_UNUSED_0x4EC                                           0x4EC // Unused Flag
+#define FLAG_RECEIVED_PRISON_BOTTLE                                 0x4EC
 #define FLAG_RECEIVED_MEMORIES_PHYSICAL                             0x4ED
 #define FLAG_RECEIVED_MEMORIES_SPECIAL                              0x4EE
 #define FLAG_RECEIVED_GRACIDEA                                      0x4EF // Unused Flag

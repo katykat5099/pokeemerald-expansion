@@ -1068,3 +1068,6 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/Underwater_Route130/scripts.inc"
 
 	.include "data/maps/GnarledDen/scripts.inc"
+
+    .include "data/scripts/prison_bottle.inc"
+    .include "data/text/prison_bottle.inc"
