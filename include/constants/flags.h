@@ -1304,10 +1304,10 @@
 #define FLAG_UNUSED_0x4E5                                           0x4E5 // Unused Flag
 #define FLAG_UNUSED_0x4E6                                           0x4E6 // Unused Flag
 #define FLAG_UNUSED_0x4E7                                           0x4E7 // Unused Flag
-#define FLAG_UNUSED_0x4E8                                           0x4E8 // Unused Flag
-#define FLAG_UNUSED_0x4E9                                           0x4E9 // Unused Flag
-#define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag
-#define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag
+#define FLAG_RECEIVED_PURPLE_NECTAR                                 0x4E8
+#define FLAG_RECEIVED_YELLOW_NECTAR                                 0x4E9
+#define FLAG_RECEIVED_PINK_NECTAR                                   0x4EA
+#define FLAG_RECEIVED_RED_NECTAR                                    0x4EB
 #define FLAG_RECEIVED_PRISON_BOTTLE                                 0x4EC
 #define FLAG_RECEIVED_MEMORIES_PHYSICAL                             0x4ED
 #define FLAG_RECEIVED_MEMORIES_SPECIAL                              0x4EE

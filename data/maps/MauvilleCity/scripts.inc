@@ -235,6 +235,79 @@ MauvilleCity_EventScript_WallyRequestBattleAgain::
 	goto MauvilleCity_EventScript_BattleWallyPrompt
 	end
 
+MauvilleCity_EventScript_AlolanBoy::
+    msgbox MauvilleCity_Text_AlolanStrangers, MSGBOX_NPC
+    end
+
+MauvilleCity_EventScript_AlolanBoyOricorio::
+    goto_if_set FLAG_RECEIVED_PURPLE_NECTAR, MauvilleCity_EventScript_AlolanBoySellNectar
+    setvar VAR_PARTY_POKEMON_CHECK, 741
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_ne VAR_RESULT, TRUE, MauvilleCity_EventScript_AlolanBoy
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    lock
+    faceplayer
+    msgbox MauvilleCity_Text_AlolanBoyOricorio, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, MauvilleCity_EventScript_AlolanBoyDenied
+    msgbox MauvilleCity_Text_AlolanBoyFreeNectar, MSGBOX_DEFAULT
+    giveitem ITEM_PURPLE_NECTAR
+    goto_if_eq VAR_RESULT, FALSE, MauvilleCity_EventScript_AlolanBoyBagFull
+    setflag FLAG_RECEIVED_PURPLE_NECTAR
+    msgbox MauvilleCity_Text_AlolanBoyEnd, MSGBOX_DEFAULT
+    release
+    end
+
+MauvilleCity_EventScript_AlolanBoySellNectar::
+    lock
+    faceplayer
+    msgbox MauvilleCity_Text_AlolanBoySellNectar, MSGBOX_DEFAULT
+    showmoneybox 0, 0
+    msgbox MauvilleCity_Text_AlolanBoySellNectar2, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, MauvilleCity_EventScript_AlolanBoyDenied2
+    checkmoney 800
+    goto_if_eq VAR_RESULT, 0, MauvilleCity_EventScript_AlolanBoyCantAfford
+    checkitemspace ITEM_PURPLE_NECTAR
+    call_if_eq VAR_RESULT, TRUE, MauvilleCity_EventScript_RemoveMoney
+    giveitem ITEM_PURPLE_NECTAR
+    goto_if_eq VAR_RESULT, FALSE, MauvilleCity_EventScript_AlolanBoyBagFull2
+    hidemoneybox
+    release
+    end
+
+MauvilleCity_EventScript_RemoveMoney::
+    playse SE_SHOP
+	removemoney 800
+	updatemoneybox
+	return
+
+MauvilleCity_EventScript_AlolanBoyDenied::
+    msgbox MauvilleCity_Text_AlolanBoyDenied, MSGBOX_DEFAULT
+    release
+    end
+
+MauvilleCity_EventScript_AlolanBoyDenied2::
+    msgbox MauvilleCity_Text_AlolanBoyDenied, MSGBOX_DEFAULT
+    hidemoneybox
+    release
+    end
+
+MauvilleCity_EventScript_AlolanBoyBagFull::
+    msgbox MauvilleCity_Text_AlolanBoyBagFull, MSGBOX_DEFAULT
+    release
+    end
+
+MauvilleCity_EventScript_AlolanBoyBagFull2::
+    msgbox MauvilleCity_Text_AlolanBoyBagFull, MSGBOX_DEFAULT
+    hidemoneybox
+    release
+    end
+
+MauvilleCity_EventScript_AlolanBoyCantAfford::
+    msgbox MauvilleCity_Text_AlolanBoyCantAfford, MSGBOX_DEFAULT
+    hidemoneybox
+    release
+    end
+
 MauvilleCity_Movement_WallyExitNorth1:
 	walk_left
 	walk_left
@@ -740,3 +813,43 @@ MauvilleCity_Text_GenesectLesson:
     .string "years ago, Genesect ruled the world!\p"
     .string "Imagine if we suddenly went back in time…\n"
     .string "I'd feel lonely and homesick… and scared!$"
+
+MauvilleCity_Text_AlolanStrangers:
+    .string "Alola! I'm from the Alola Region!\n"
+    .string "Well, from Akala Island…\p"
+    .string "Oh, wait! I'm not supposed to tell\n"
+    .string "strangers that!$"
+
+MauvilleCity_Text_AlolanBoyOricorio:
+    .string "Alola! You have an Oricorio!\n"
+    .string "I can smell the nectar!\p"
+    .string "My family got into an argument\n"
+    .string "about which Oricorio style is the best.\p"
+    .string "I think Sensu Style is the best,\n"
+    .string "for sure. Don't you agree?$"
+
+MauvilleCity_Text_AlolanBoyFreeNectar:
+    .string "I knew it!\n"
+    .string "Here, have some purple nectar…\l"
+    .string "for free!$"
+
+MauvilleCity_Text_AlolanBoyEnd:
+    .string "Show everyone how elegant the\n"
+    .string "Sensu Style is!$"
+
+MauvilleCity_Text_AlolanBoySellNectar:
+    .string "Alola stranger! What's wrong?\n"
+    .string "Oh, let me guess. You want more of\l"
+    .string "my Purple Nectar?$"
+MauvilleCity_Text_AlolanBoySellNectar2:
+    .string "Well I can sell you some!\n"
+    .string "It's ¥800!$"
+
+MauvilleCity_Text_AlolanBoyDenied:
+    .string "Aw…$"
+
+MauvilleCity_Text_AlolanBoyBagFull:
+    .string "Oh, your bag's full?$"
+
+MauvilleCity_Text_AlolanBoyCantAfford:
+    .string "Oh, you don't have enough money.$"
