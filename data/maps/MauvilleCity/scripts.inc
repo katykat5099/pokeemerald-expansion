@@ -253,6 +253,7 @@ MauvilleCity_EventScript_AlolanBoyOricorio::
     giveitem ITEM_PURPLE_NECTAR
     goto_if_eq VAR_RESULT, FALSE, MauvilleCity_EventScript_AlolanBoyBagFull
     setflag FLAG_PURPLE_NECTAR
+    setflag FLAG_LIKE_ORICORIO
     msgbox MauvilleCity_Text_AlolanBoyEnd, MSGBOX_DEFAULT
     release
     end

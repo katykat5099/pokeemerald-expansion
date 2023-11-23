@@ -742,9 +742,9 @@
 #define FLAG_UNUSED_0x2B8  0x2B8 // Unused Flag
 #define FLAG_UNUSED_0x2B9  0x2B9 // Unused Flag
 #define FLAG_UNUSED_0x2BA  0x2BA // Unused Flag
-#define FLAG_UNUSED_0x2BB  0x2BB // Unused Flag
 
 // Event Flags
+#define FLAG_HIDE_ALOLAN_FAMILY                                     0x2BB
 #define FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG                      0x2BC
 #define FLAG_HIDE_APPRENTICE                                        0x2BD
 #define FLAG_HIDE_POKEMON_CENTER_2F_MYSTERY_GIFT_MAN                0x2BE
@@ -1301,7 +1301,7 @@
 #define FLAG_UNUSED_0x4E2                                           0x4E2 // Unused Flag
 #define FLAG_UNUSED_0x4E3                                           0x4E3 // Unused Flag
 #define FLAG_UNUSED_0x4E4                                           0x4E4 // Unused Flag
-#define FLAG_UNUSED_0x4E5                                           0x4E5 // Unused Flag
+#define FLAG_LIKE_ORICORIO                                          0x4E5
 #define FLAG_HELPED_ALOLAN_WOMAN                                    0x4E6
 #define FLAG_ORICORIO_KNOWLEDGE                                     0x4E7
 #define FLAG_PURPLE_NECTAR                                          0x4E8
