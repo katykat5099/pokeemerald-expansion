@@ -1071,3 +1071,5 @@ Common_EventScript_LegendaryFlewAway::
 
     .include "data/scripts/prison_bottle.inc"
     .include "data/text/prison_bottle.inc"
+
+	.include "data/maps/LilycoveCity_AntiquesShop/scripts.inc"

@@ -210,3 +210,6 @@ const u16 gMetatileAttributes_UnionRoom[] = INCBIN_U16("data/tilesets/secondary/
 
 const u16 gMetatiles_MirrorShop[] = INCBIN_U16("data/tilesets/secondary/mirror_shop/metatiles.bin");
 const u16 gMetatileAttributes_MirrorShop[] = INCBIN_U16("data/tilesets/secondary/mirror_shop/metatile_attributes.bin");
+
+const u16 gMetatiles_AntiquesShop[] = INCBIN_U16("data/tilesets/secondary/antiques_shop/metatiles.bin");
+const u16 gMetatileAttributes_AntiquesShop[] = INCBIN_U16("data/tilesets/secondary/antiques_shop/metatile_attributes.bin");

@@ -1299,8 +1299,8 @@
 #define FLAG_UNUSED_0x4E0                                           0x4E0 // Unused Flag
 #define FLAG_UNUSED_0x4E1                                           0x4E1 // Unused Flag
 #define FLAG_UNUSED_0x4E2                                           0x4E2 // Unused Flag
-#define FLAG_UNUSED_0x4E3                                           0x4E3 // Unused Flag
-#define FLAG_UNUSED_0x4E4                                           0x4E4 // Unused Flag
+#define FLAG_RECEIVED_SHIELD                                        0x4E3
+#define FLAG_RECEIVED_SWORD                                         0x4E4
 #define FLAG_LIKE_ORICORIO                                          0x4E5
 #define FLAG_HELPED_ALOLAN_WOMAN                                    0x4E6
 #define FLAG_ORICORIO_KNOWLEDGE                                     0x4E7

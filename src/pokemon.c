@@ -9788,6 +9788,10 @@ bool8 CheckPartyPokemon(void)
                 { return TRUE; }
 /*SILVALLY*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_SILVALLY) && (*var == 773))
                 { return TRUE; }
+/*ZACIAN*/    if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_ZACIAN) && (*var == 888))
+                { return TRUE; }
+/*ZAMAZENTA*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_ZAMAZENTA) && (*var == 889))
+                { return TRUE; }
 /*ENAMORUS*/  if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_ENAMORUS) && (*var == 905))
                 { return TRUE; }
     }

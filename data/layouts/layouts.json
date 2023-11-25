@@ -4450,6 +4450,16 @@
       "secondary_tileset": "gTileset_Lavaridge",
       "border_filepath": "data/layouts/GnarledDen/border.bin",
       "blockdata_filepath": "data/layouts/GnarledDen/map.bin"
+    },
+    {
+      "id": "LAYOUT_LILYCOVE_CITY_ANTIQUES_SHOP",
+      "name": "LilycoveCity_AntiquesShop_Layout",
+      "width": 14,
+      "height": 12,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_AntiquesShop",
+      "border_filepath": "data/layouts/LilycoveCity_AntiquesShop/border.bin",
+      "blockdata_filepath": "data/layouts/LilycoveCity_AntiquesShop/map.bin"
     }
   ]
 }
