@@ -25,8 +25,7 @@
 #include "constants/weather.h"
 #include "tx_randomizer_and_challenges.h"
 
-extern const u8 EventScript_RepelWoreOff[];
-extern const u8 EventScript_LureWoreOff[];
+extern const u8 EventScript_SprayWoreOff[];
 
 #define MAX_ENCOUNTER_RATE 2880
 
@@ -1147,7 +1146,7 @@ bool8 UpdateRepelCounter(void)
             VarSet(VAR_REPEL_STEP_COUNT, steps);
             if (steps == 0)
             {
-                ScriptContext_SetupScript(EventScript_RepelWoreOff);
+                ScriptContext_SetupScript(EventScript_SprayWoreOff);
                 return TRUE;
             }
         }
@@ -1156,7 +1155,7 @@ bool8 UpdateRepelCounter(void)
             VarSet(VAR_REPEL_STEP_COUNT, steps | REPEL_LURE_MASK);
             if (steps == 0)
             {
-                ScriptContext_SetupScript(EventScript_LureWoreOff);
+                ScriptContext_SetupScript(EventScript_SprayWoreOff);
                 return TRUE;
             }
         }
