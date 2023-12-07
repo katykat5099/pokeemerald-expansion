@@ -268,8 +268,26 @@ LilycoveCity_AntiquesShop_EventScript_Cabinet::
     getplayerxy VAR_TEMP_0, VAR_TEMP_1
     call_if_eq VAR_TEMP_0, 11, LilycoveCity_AntiquesShop_EventScript_MoveToPlayerClose
     call_if_eq VAR_TEMP_0, 12, LilycoveCity_AntiquesShop_EventScript_MoveToPlayerFar
-    release
-    end
+    waitmovement 0
+    msgbox LilycoveCity_AntiquesShop_Text_InterestedInWhatsInTheCabinet, MSGBOX_DEFAULT
+    waitmessage
+	pokemart LilycoveCity_AntiquesShop_Mart_Pokemart
+	msgbox LilycoveCity_AntiquesShop_Text_CancelBuy2, MSGBOX_DEFAULT
+	closemessage
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop
+    waitmovement 0
+	release
+	end
+
+	.align 2
+LilycoveCity_AntiquesShop_Mart_Pokemart:
+	.2byte ITEM_CRACKED_POT
+	.2byte ITEM_UNREMARKABLE_TEACUP
+	.2byte ITEM_CHIPPED_POT
+	.2byte ITEM_MASTERPIECE_TEACUP
+	.2byte ITEM_NONE
+	release
+	end
 
 LilycoveCity_AntiquesShop_EventScript_MoveToPlayerClose::
     applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_WalkToPlayerCloseCabinet
@@ -356,13 +374,13 @@ LilycoveCity_AntiquesShop_Text_IfYouWantTheOtherOne:
     .string "you'll have to buy it.$"
 
 LilycoveCity_AntiquesShop_Text_Option_1:
-    .string "SWORD$"
+    .string "Sword$"
 
 LilycoveCity_AntiquesShop_Text_Option_2:
-    .string "SHIELD$"
+    .string "Shield$"
 
 LilycoveCity_AntiquesShop_Text_Option_3:
-    .string "BOTH$"
+    .string "Both$"
 
 LilycoveCity_AntiquesShop_Text_Option_4:
     .string "Never mind.$"
@@ -395,3 +413,12 @@ LilycoveCity_AntiquesShop_Text_PurchaseReducedPrice:
 
 LilycoveCity_AntiquesShop_Text_WantToBuyTheShield:
     .string "Did you want to buy the Shield?$"
+
+LilycoveCity_AntiquesShop_Text_InterestedInWhatsInTheCabinet:
+    .string "Interested in what's inside the\n"
+    .string "cabinet? Let me help you.\p"
+    .string "Here's what we got.$"
+
+LilycoveCity_AntiquesShop_Text_CancelBuy2:
+    .string "Let me know if there's anything\n"
+    .string "else you'd like.$"
