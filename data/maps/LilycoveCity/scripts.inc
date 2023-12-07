@@ -195,6 +195,10 @@ LilycoveCity_EventScript_MoveDeletersHouseSign::
 	msgbox LilycoveCity_Text_MoveDeletersHouseSign, MSGBOX_SIGN
 	end
 
+LilycoveCity_EventScript_AntiquesShopSign::
+	msgbox LilycoveCity_Text_AntiquesShopSign, MSGBOX_SIGN
+	end
+
 LilycoveCity_EventScript_WailmerTrainerGrunt::
 	lockall
 	goto_if_set FLAG_MET_WAILMER_TRAINER, LilycoveCity_EventScript_MetWailmerTrainer
@@ -717,6 +721,9 @@ LilycoveCity_Text_DepartmentStoreSign:
 LilycoveCity_Text_MoveDeletersHouseSign:
 	.string "MOVE DELETER'S HOUSE\p"
 	.string "“Unwanted POKéMON moves deleted.”$"
+
+LilycoveCity_Text_AntiquesShopSign:
+	.string "ANTIQUES SHOP$"
 
 LilycoveCity_Text_DoYouKnowAboutBerryBlender:
 	.string "Do you know about the machine\n"

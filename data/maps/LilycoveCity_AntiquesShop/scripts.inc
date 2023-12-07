@@ -1,3 +1,4 @@
+.set LOCALID_ITEM_BALL, 1
 .set LOCALID_SHOP_MAN, 2
 
 LilycoveCity_AntiquesShop_MapScripts::
@@ -11,6 +12,7 @@ LilycoveCity_AntiquesShop_EventScript_BuySwordOrShield::
     lock
     goto_if_set FLAG_RECEIVED_SWORD, LilycoveCity_AntiquesShop_EventScript_CheckPartyZamazenta
     goto_if_set FLAG_RECEIVED_SHIELD, LilycoveCity_AntiquesShop_EventScript_CheckPartyZacian
+    goto_if_set FLAG_REDUCED_PRICE, LilycoveCity_AntiquesShop_EventScript_SellForReducedPrice
     setvar VAR_PARTY_POKEMON_CHECK, 888
     specialvar VAR_RESULT, CheckPartyPokemon
     goto_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_GiveSword
@@ -21,18 +23,172 @@ LilycoveCity_AntiquesShop_EventScript_BuySwordOrShield::
 LilycoveCity_AntiquesShop_EventScript_BuySwordOrShield2::
     applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_WalkToPlayerBall
     waitmovement 0
+    showmoneybox 0, 0
     msgbox LilycoveCity_AntiquesShop_Text_BuySwordOrShield, MSGBOX_DEFAULT
+    dynmultichoice 6, 6, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, LilycoveCity_AntiquesShop_Text_Option_1, LilycoveCity_AntiquesShop_Text_Option_2, LilycoveCity_AntiquesShop_Text_Option_3, LilycoveCity_AntiquesShop_Text_Option_4
+    switch VAR_RESULT
+    case 0, LilycoveCity_AntiquesShop_EventScript_BuyOnlySword
+    case 1, LilycoveCity_AntiquesShop_EventScript_BuyOnlyShield
+    case 2, LilycoveCity_AntiquesShop_EventScript_BuyBothSwordAndShield
+    case 3, LilycoveCity_AntiquesShop_EventScript_CancelBuy
+    case MULTI_B_PRESSED, LilycoveCity_AntiquesShop_EventScript_CancelBuy
+    release
+    end
+
+LilycoveCity_AntiquesShop_EventScript_BuyOnlySword::
+    checkmoney 10000
+    goto_if_eq VAR_RESULT, 0, LilycoveCity_AntiquesShop_EventScript_NotEnoughMoney
+    checkitemspace ITEM_RUSTED_SWORD
+    call_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveMoney
+    giveitem ITEM_RUSTED_SWORD
+    goto_if_eq VAR_RESULT, FALSE, LilycoveCity_AntiquesShop_EventScript_NoBagSpace
+    call_if_eq FLAG_RECEIVED_SHIELD, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveItemBall
+    hidemoneybox
+    msgbox LilycoveCity_AntiquesShop_Text_Purchase, MSGBOX_DEFAULT
+    setflag FLAG_RECEIVED_SWORD
+    closemessage
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop
+    waitmovement 0
+    return
+LilycoveCity_AntiquesShop_EventScript_BuyOnlyShield::
+    checkmoney 10000
+    goto_if_eq VAR_RESULT, 0, LilycoveCity_AntiquesShop_EventScript_NotEnoughMoney
+    checkitemspace ITEM_RUSTED_SHIELD
+    call_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveMoney
+    giveitem ITEM_RUSTED_SHIELD
+    goto_if_eq VAR_RESULT, FALSE, LilycoveCity_AntiquesShop_EventScript_NoBagSpace
+    call_if_eq FLAG_RECEIVED_SWORD, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveItemBall
+    hidemoneybox
+    msgbox LilycoveCity_AntiquesShop_Text_Purchase, MSGBOX_DEFAULT
+    setflag FLAG_RECEIVED_SHIELD
+    closemessage
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop
+    waitmovement 0
+    return
+
+LilycoveCity_AntiquesShop_EventScript_BuyBothSwordAndShield::
+    checkmoney 19000
+    goto_if_eq VAR_RESULT, 0, LilycoveCity_AntiquesShop_EventScript_NotEnoughMoney
+    checkitemspace ITEM_RUSTED_SHIELD
+    call_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveMoney
+    giveitem ITEM_RUSTED_SHIELD
+    goto_if_eq VAR_RESULT, FALSE, LilycoveCity_AntiquesShop_EventScript_NoBagSpace
+    checkitemspace ITEM_RUSTED_SWORD
+    call_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveMoney2
+    giveitem ITEM_RUSTED_SWORD
+    goto_if_eq VAR_RESULT, FALSE, LilycoveCity_AntiquesShop_EventScript_NoBagSpace2
+    call LilycoveCity_AntiquesShop_EventScript_RemoveItemBall
+    hidemoneybox
+    msgbox LilycoveCity_AntiquesShop_Text_Purchase, MSGBOX_DEFAULT
+    setflag FLAG_RECEIVED_SHIELD
+    closemessage
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop
+    waitmovement 0
+    release
+    end
+LilycoveCity_AntiquesShop_EventScript_SellForReducedPrice::
+    msgbox LilycoveCity_AntiquesShop_Text_PurchaseReducedPrice, MSGBOX_DEFAULT
+    checkmoney 9000
+    goto_if_eq VAR_RESULT, 0, LilycoveCity_AntiquesShop_EventScript_NotEnoughMoney
+    checkitemspace ITEM_RUSTED_SWORD
+    call_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveMoney2
+    giveitem ITEM_RUSTED_SWORD
+    goto_if_eq VAR_RESULT, FALSE, LilycoveCity_AntiquesShop_EventScript_NoBagSpace2
+    call LilycoveCity_AntiquesShop_EventScript_RemoveItemBall
+    hidemoneybox
+    msgbox LilycoveCity_AntiquesShop_Text_Purchase, MSGBOX_DEFAULT
+    setflag FLAG_RECEIVED_SHIELD
+    closemessage
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop
+    waitmovement 0
+    release
+    end
+
+LilycoveCity_AntiquesShop_EventScript_SpecialBuyShield::
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_WalkToPlayerBall
+    waitmovement 0
+    showmoneybox 0, 0
+    msgbox LilycoveCity_AntiquesShop_Text_WantToBuyTheShield, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, LilycoveCity_AntiquesShop_EventScript_BuyOnlyShield
+	goto_if_eq VAR_RESULT, NO, LilycoveCity_AntiquesShop_EventScript_CancelBuy
+	release
+	end
+LilycoveCity_AntiquesShop_EventScript_SpecialBuySword::
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_WalkToPlayerBall
+    waitmovement 0
+    showmoneybox 0, 0
+    msgbox LilycoveCity_AntiquesShop_Text_WantToBuyTheShield, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, LilycoveCity_AntiquesShop_EventScript_BuyOnlySword
+	goto_if_eq VAR_RESULT, NO, LilycoveCity_AntiquesShop_EventScript_CancelBuy
+	release
+	end
+
+LilycoveCity_AntiquesShop_EventScript_RemoveItemBall::
+    setflag FLAG_HIDE_ANTIQUE_POKEBALL
+    removeobject LOCALID_ITEM_BALL
+    return
+
+LilycoveCity_AntiquesShop_EventScript_CancelBuy::
+    hidemoneybox
+    msgbox LilycoveCity_AntiquesShop_Text_CancelBuy, MSGBOX_DEFAULT
+    closemessage
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop
+    waitmovement 0
+    release
+    end
+
+LilycoveCity_AntiquesShop_EventScript_NotEnoughMoney::
+    hidemoneybox
+    msgbox LilycoveCity_AntiquesShop_Text_NotEnoughMoney, MSGBOX_DEFAULT
+    closemessage
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop
+    waitmovement 0
+    release
+    end
+
+LilycoveCity_AntiquesShop_EventScript_NoBagSpace::
+    hidemoneybox
+    msgbox LilycoveCity_AntiquesShop_Text_YourBagIsFull, MSGBOX_DEFAULT
+    closemessage
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop
+    waitmovement 0
+    release
+    end
+
+LilycoveCity_AntiquesShop_EventScript_NoBagSpace2::
+    hidemoneybox
+    msgbox LilycoveCity_AntiquesShop_Text_YourBagIsFull2, MSGBOX_DEFAULT
+    setflag FLAG_REDUCED_PRICE
+    closemessage
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop
+    waitmovement 0
+    release
+    end
+
+LilycoveCity_AntiquesShop_EventScript_RemoveMoney::
+	removemoney 10000
+	updatemoneybox
+	return
+
+LilycoveCity_AntiquesShop_EventScript_RemoveMoney2::
+	removemoney 9000
+	updatemoneybox
+	return
 
 LilycoveCity_AntiquesShop_EventScript_CheckPartyZamazenta::
     setvar VAR_PARTY_POKEMON_CHECK, 889
     specialvar VAR_RESULT, CheckPartyPokemon
     goto_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_GiveShield2
-    return
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    goto LilycoveCity_AntiquesShop_EventScript_SpecialBuyShield
+    end
 LilycoveCity_AntiquesShop_EventScript_CheckPartyZacian::
     setvar VAR_PARTY_POKEMON_CHECK, 888
     specialvar VAR_RESULT, CheckPartyPokemon
     goto_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_GiveSword2
-    return
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    goto LilycoveCity_AntiquesShop_EventScript_SpecialBuySword
+    end
 
 LilycoveCity_AntiquesShop_EventScript_GiveSword::
     applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_WalkToPlayerBall
@@ -93,6 +249,8 @@ LilycoveCity_AntiquesShop_EventScript_GiveSword3::
     giveitem ITEM_RUSTED_SWORD
     setflag FLAG_RECEIVED_SWORD
     setvar VAR_PARTY_POKEMON_CHECK, 0
+    removeobject LOCALID_ITEM_BALL
+    setflag FLAG_HIDE_ANTIQUE_POKEBALL
     release
     end
 LilycoveCity_AntiquesShop_EventScript_GiveShield3::
@@ -100,6 +258,8 @@ LilycoveCity_AntiquesShop_EventScript_GiveShield3::
     giveitem ITEM_RUSTED_SHIELD
     setflag FLAG_RECEIVED_SHIELD
     setvar VAR_PARTY_POKEMON_CHECK, 0
+    removeobject LOCALID_ITEM_BALL
+    setflag FLAG_HIDE_ANTIQUE_POKEBALL
     release
     end
 
@@ -144,6 +304,15 @@ LilycoveCity_AntiquesShop_Movement_WalkToPlayerFarCabinet:
     walk_right
     step_end
 
+LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop:
+    walk_right
+    walk_right
+    walk_right
+    walk_right
+    walk_up
+    face_down
+    step_end
+
 LilycoveCity_AntiquesShop_Text_TakeALookAround:
     .string "Welcome to my Antiques shop!\n"
     .string "Please, take a look around.$"
@@ -185,3 +354,44 @@ LilycoveCity_AntiquesShop_Text_YouAlsoHaveShield:
 LilycoveCity_AntiquesShop_Text_IfYouWantTheOtherOne:
     .string "If you want the other one though,\n"
     .string "you'll have to buy it.$"
+
+LilycoveCity_AntiquesShop_Text_Option_1:
+    .string "SWORD$"
+
+LilycoveCity_AntiquesShop_Text_Option_2:
+    .string "SHIELD$"
+
+LilycoveCity_AntiquesShop_Text_Option_3:
+    .string "BOTH$"
+
+LilycoveCity_AntiquesShop_Text_Option_4:
+    .string "Never mind.$"
+
+LilycoveCity_AntiquesShop_Text_Purchase:
+    .string "Thanks for the buy.\n"
+    .string "Enjoy. He-he.$"
+
+LilycoveCity_AntiquesShop_Text_CancelBuy:
+    .string "Oh, if you want anything else\n"
+    .string "just let me know.$"
+
+LilycoveCity_AntiquesShop_Text_NotEnoughMoney:
+    .string "You can't afford this! You're\n"
+    .string "flat broke! Ha-ha-ha!$"
+
+LilycoveCity_AntiquesShop_Text_YourBagIsFull:
+    .string "Your bag is full, come back\n"
+    .string "once you make some space.$"
+
+LilycoveCity_AntiquesShop_Text_YourBagIsFull2:
+    .string "Your bag is full, come back\n"
+    .string "once you make some space.\p"
+    .string "Don't worry, I'll still give\n"
+    .string "you the discounted price.$"
+
+LilycoveCity_AntiquesShop_Text_PurchaseReducedPrice:
+    .string "As promised, here's the Shield at\n"
+    .string "the reduced price.$"
+
+LilycoveCity_AntiquesShop_Text_WantToBuyTheShield:
+    .string "Did you want to buy the Shield?$"
