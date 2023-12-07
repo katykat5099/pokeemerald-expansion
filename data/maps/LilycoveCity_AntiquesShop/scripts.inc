@@ -6,7 +6,8 @@ LilycoveCity_AntiquesShop_MapScripts::
 	.byte 0
 
 LilycoveCity_AntiquesShop_OnLoad:
-    goto_if_set FLAG_RECEIVED_AUSPICIOUS_ARMOR, LilycoveCity_AntiquesShop_EventScript_RemoveAusArmor
+    call_if_set FLAG_RECEIVED_AUSPICIOUS_ARMOR, LilycoveCity_AntiquesShop_EventScript_RemoveAusArmor
+    call_if_set FLAG_RECEIVED_MALICIOUS_ARMOR, LilycoveCity_AntiquesShop_EventScript_RemoveMalArmor
     end
 
 LilycoveCity_AntiquesShop_EventScript_TakeALookAround::
@@ -311,6 +312,13 @@ LilycoveCity_AntiquesShop_EventScript_RemoveAusArmor::
 	setmetatile 1, 1, METATILE_AntiquesShop_WallBottom, TRUE
 	special DrawWholeMapView
 	return
+LilycoveCity_AntiquesShop_EventScript_RemoveMalArmor::
+	setmetatile 2, 0, METATILE_AntiquesShop_ArmorHanger_Left, TRUE
+	setmetatile 3, 0, METATILE_AntiquesShop_ArmorHanger_Right, TRUE
+	setmetatile 2, 1, METATILE_AntiquesShop_WallBottom, TRUE
+	setmetatile 3, 1, METATILE_AntiquesShop_WallBottom, TRUE
+	special DrawWholeMapView
+	return
 
 LilycoveCity_AntiquesShop_EventScript_AuspiciousArmorDialog::
     goto_if_set FLAG_RECEIVED_AUSPICIOUS_ARMOR, LilycoveCity_AntiquesShop_EventScript_Nothing
@@ -325,6 +333,19 @@ LilycoveCity_AntiquesShop_EventScript_AuspiciousArmorDialog::
 	goto_if_eq VAR_RESULT, NO, LilycoveCity_AntiquesShop_EventScript_DeclineArmorSale
 	goto LilycoveCity_AntiquesShop_EventScript_DeclineArmorSale
 	end
+LilycoveCity_AntiquesShop_EventScript_MaliciousArmorDialog::
+    goto_if_set FLAG_RECEIVED_MALICIOUS_ARMOR, LilycoveCity_AntiquesShop_EventScript_Nothing
+    lock
+    getplayerxy VAR_TEMP_0, VAR_TEMP_1
+    call_if_eq VAR_TEMP_0, 2, LilycoveCity_AntiquesShop_EventScript_MoveToPlayerX2
+    call_if_eq VAR_TEMP_0, 3, LilycoveCity_AntiquesShop_EventScript_MoveToPlayerX3
+    waitmovement 0
+    showmoneybox 0, 0
+    msgbox LilycoveCity_AntiquesShop_Text_ISeeYourLookingAtMalArmor, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, LilycoveCity_AntiquesShop_EventScript_BuyMaliciousArmor
+	goto_if_eq VAR_RESULT, NO, LilycoveCity_AntiquesShop_EventScript_DeclineArmorSale
+	goto LilycoveCity_AntiquesShop_EventScript_DeclineArmorSale
+	end
 
 LilycoveCity_AntiquesShop_EventScript_BuyAuspiciousArmor::
     msgbox LilycoveCity_AntiquesShop_Text_OhYesThankYou, MSGBOX_DEFAULT
@@ -333,7 +354,7 @@ LilycoveCity_AntiquesShop_EventScript_BuyAuspiciousArmor::
     checkitemspace ITEM_AUSPICIOUS_ARMOR
     call_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveMoney3
     giveitem ITEM_AUSPICIOUS_ARMOR
-    goto_if_eq VAR_RESULT, FALSE, LilycoveCity_AntiquesShop_EventScript_NoBagSpace
+    goto_if_eq VAR_RESULT, FALSE, LilycoveCity_AntiquesShop_EventScript_NoBagSpaceArmor
     setflag FLAG_RECEIVED_AUSPICIOUS_ARMOR
     call LilycoveCity_AntiquesShop_EventScript_RemoveAusArmor
     hidemoneybox
@@ -341,6 +362,24 @@ LilycoveCity_AntiquesShop_EventScript_BuyAuspiciousArmor::
     getplayerxy VAR_TEMP_0, VAR_TEMP_1
     call_if_eq VAR_TEMP_0, 0, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX0
     call_if_eq VAR_TEMP_0, 1, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX1
+    waitmovement 0
+    release
+    end
+LilycoveCity_AntiquesShop_EventScript_BuyMaliciousArmor::
+    msgbox LilycoveCity_AntiquesShop_Text_OhYesThankYou, MSGBOX_DEFAULT
+    checkmoney 3500
+    goto_if_eq VAR_RESULT, 0, LilycoveCity_AntiquesShop_EventScript_NotEnoughMoneyArmor
+    checkitemspace ITEM_MALICIOUS_ARMOR
+    call_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveMoney3
+    giveitem ITEM_MALICIOUS_ARMOR
+    goto_if_eq VAR_RESULT, FALSE, LilycoveCity_AntiquesShop_EventScript_NoBagSpaceArmor
+    setflag FLAG_RECEIVED_MALICIOUS_ARMOR
+    call LilycoveCity_AntiquesShop_EventScript_RemoveMalArmor
+    hidemoneybox
+    closemessage
+    getplayerxy VAR_TEMP_0, VAR_TEMP_1
+    call_if_eq VAR_TEMP_0, 2, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX2
+    call_if_eq VAR_TEMP_0, 3, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX3
     waitmovement 0
     release
     end
@@ -352,6 +391,8 @@ LilycoveCity_AntiquesShop_EventScript_DeclineArmorSale::
     getplayerxy VAR_TEMP_0, VAR_TEMP_1
     call_if_eq VAR_TEMP_0, 0, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX0
     call_if_eq VAR_TEMP_0, 1, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX1
+    call_if_eq VAR_TEMP_0, 2, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX2
+    call_if_eq VAR_TEMP_0, 3, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX3
     waitmovement 0
     release
     end
@@ -368,6 +409,21 @@ LilycoveCity_AntiquesShop_EventScript_NotEnoughMoneyArmor::
     getplayerxy VAR_TEMP_0, VAR_TEMP_1
     call_if_eq VAR_TEMP_0, 0, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX0
     call_if_eq VAR_TEMP_0, 1, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX1
+    call_if_eq VAR_TEMP_0, 2, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX2
+    call_if_eq VAR_TEMP_0, 3, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX3
+    waitmovement 0
+    release
+    end
+
+LilycoveCity_AntiquesShop_EventScript_NoBagSpaceArmor::
+    hidemoneybox
+    msgbox LilycoveCity_AntiquesShop_Text_YourBagIsFull, MSGBOX_DEFAULT
+    closemessage
+    getplayerxy VAR_TEMP_0, VAR_TEMP_1
+    call_if_eq VAR_TEMP_0, 0, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX0
+    call_if_eq VAR_TEMP_0, 1, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX1
+    call_if_eq VAR_TEMP_0, 2, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX2
+    call_if_eq VAR_TEMP_0, 3, LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX3
     waitmovement 0
     release
     end
@@ -396,12 +452,28 @@ LilycoveCity_AntiquesShop_EventScript_MoveToPlayerX1::
     applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_MoveToPlayerX1
     return
 
+LilycoveCity_AntiquesShop_EventScript_MoveToPlayerX2::
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_MoveToPlayerX2
+    return
+
+LilycoveCity_AntiquesShop_EventScript_MoveToPlayerX3::
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_MoveToPlayerX3
+    return
+
 LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX0::
     applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_MoveBackToCenterFromArmor1
     return
 
 LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX1::
     applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_MoveBackToCenterFromArmor2
+    return
+
+LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX2::
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_MoveBackToCenterFromArmor3
+    return
+
+LilycoveCity_AntiquesShop_EventScript_MoveAwayFromPlayerX3::
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_MoveBackToCenterFromArmor4
     return
 
 LilycoveCity_AntiquesShop_EventScript_Nothing::
@@ -486,6 +558,27 @@ LilycoveCity_AntiquesShop_Movement_MoveToPlayerX1:
     walk_left
     step_end
 
+LilycoveCity_AntiquesShop_Movement_MoveToPlayerX2:
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    walk_left
+    walk_left
+    walk_left
+    step_end
+
+LilycoveCity_AntiquesShop_Movement_MoveToPlayerX3:
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    walk_left
+    walk_left
+    step_end
+
 LilycoveCity_AntiquesShop_Movement_MoveBackToCenterFromArmor1:
     walk_right
     walk_right
@@ -502,6 +595,27 @@ LilycoveCity_AntiquesShop_Movement_MoveBackToCenterFromArmor1:
 LilycoveCity_AntiquesShop_Movement_MoveBackToCenterFromArmor2:
     walk_right
     walk_right
+    walk_right
+    walk_right
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    step_end
+
+LilycoveCity_AntiquesShop_Movement_MoveBackToCenterFromArmor3:
+    walk_right
+    walk_right
+    walk_right
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    step_end
+
+LilycoveCity_AntiquesShop_Movement_MoveBackToCenterFromArmor4:
     walk_right
     walk_right
     walk_down
@@ -609,6 +723,10 @@ LilycoveCity_AntiquesShop_Text_CancelBuy2:
 LilycoveCity_AntiquesShop_Text_ISeeYourLookingAtAusArmor:
     .string "I see you're looking at the old\n"
     .string "Auspicious Armor. Are you looking\l"
+    .string "to buy? Just ¥3500.$"
+LilycoveCity_AntiquesShop_Text_ISeeYourLookingAtMalArmor:
+    .string "I see you're looking at the old\n"
+    .string "Malicious Armor. Are you looking\l"
     .string "to buy? Just ¥3500.$"
 
 LilycoveCity_AntiquesShop_Text_OhYesThankYou:
