@@ -741,9 +741,10 @@
 #define FLAG_UNUSED_0x2B7  0x2B7 // Unused Flag
 #define FLAG_UNUSED_0x2B8  0x2B8 // Unused Flag
 #define FLAG_UNUSED_0x2B9  0x2B9 // Unused Flag
-#define FLAG_UNUSED_0x2BA  0x2BA // Unused Flag
+
 
 // Event Flags
+#define FLAG_HIDE_ANTIQUE_POKEBALL                                  0x2BA
 #define FLAG_HIDE_ALOLAN_FAMILY                                     0x2BB
 #define FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG                      0x2BC
 #define FLAG_HIDE_APPRENTICE                                        0x2BD
@@ -1297,7 +1298,7 @@
 #define FLAG_UNUSED_0x4DE                                           0x4DE // Unused Flag
 #define FLAG_UNUSED_0x4DF                                           0x4DF // Unused Flag
 #define FLAG_UNUSED_0x4E0                                           0x4E0 // Unused Flag
-#define FLAG_HIDE_ANTIQUE_POKEBALL                                  0x4E1
+#define FLAG_UNUSED_0x4E1                                           0x4E1 // Unused Flag
 #define FLAG_REDUCED_PRICE                                          0x4E2
 #define FLAG_RECEIVED_SHIELD                                        0x4E3
 #define FLAG_RECEIVED_SWORD                                         0x4E4

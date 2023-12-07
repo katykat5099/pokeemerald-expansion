@@ -42,7 +42,7 @@ LilycoveCity_AntiquesShop_EventScript_BuyOnlySword::
     call_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveMoney
     giveitem ITEM_RUSTED_SWORD
     goto_if_eq VAR_RESULT, FALSE, LilycoveCity_AntiquesShop_EventScript_NoBagSpace
-    call_if_eq FLAG_RECEIVED_SHIELD, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveItemBall
+    call_if_set FLAG_RECEIVED_SHIELD, LilycoveCity_AntiquesShop_EventScript_RemoveItemBall
     hidemoneybox
     msgbox LilycoveCity_AntiquesShop_Text_Purchase, MSGBOX_DEFAULT
     setflag FLAG_RECEIVED_SWORD
@@ -57,7 +57,7 @@ LilycoveCity_AntiquesShop_EventScript_BuyOnlyShield::
     call_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveMoney
     giveitem ITEM_RUSTED_SHIELD
     goto_if_eq VAR_RESULT, FALSE, LilycoveCity_AntiquesShop_EventScript_NoBagSpace
-    call_if_eq FLAG_RECEIVED_SWORD, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveItemBall
+    call_if_set FLAG_RECEIVED_SWORD, LilycoveCity_AntiquesShop_EventScript_RemoveItemBall
     hidemoneybox
     msgbox LilycoveCity_AntiquesShop_Text_Purchase, MSGBOX_DEFAULT
     setflag FLAG_RECEIVED_SHIELD
@@ -176,11 +176,19 @@ LilycoveCity_AntiquesShop_EventScript_RemoveMoney2::
 	return
 
 LilycoveCity_AntiquesShop_EventScript_CheckPartyZamazenta::
+    goto_if_set FLAG_RECEIVED_SHIELD, LilycoveCity_AntiquesShop_EventScript_ThatItemsAllGone
     setvar VAR_PARTY_POKEMON_CHECK, 889
     specialvar VAR_RESULT, CheckPartyPokemon
     goto_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_GiveShield2
     setvar VAR_PARTY_POKEMON_CHECK, 0
     goto LilycoveCity_AntiquesShop_EventScript_SpecialBuyShield
+    end
+LilycoveCity_AntiquesShop_EventScript_ThatItemsAllGone::
+    lock
+    applymovement LOCALID_SHOP_MAN, Common_Movement_FaceLeft
+    waitmovement 0
+    msgbox LilycoveCity_AntiquesShop_Text_ThatItemsAllGone, MSGBOX_DEFAULT
+    release
     end
 LilycoveCity_AntiquesShop_EventScript_CheckPartyZacian::
     setvar VAR_PARTY_POKEMON_CHECK, 888
@@ -413,6 +421,9 @@ LilycoveCity_AntiquesShop_Text_PurchaseReducedPrice:
 
 LilycoveCity_AntiquesShop_Text_WantToBuyTheShield:
     .string "Did you want to buy the Shield?$"
+
+LilycoveCity_AntiquesShop_Text_ThatItemsAllGone:
+    .string "Sorry! That item's all gone.$"
 
 LilycoveCity_AntiquesShop_Text_InterestedInWhatsInTheCabinet:
     .string "Interested in what's inside the\n"
