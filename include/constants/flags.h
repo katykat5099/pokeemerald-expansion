@@ -1298,7 +1298,7 @@
 #define FLAG_UNUSED_0x4DE                                           0x4DE // Unused Flag
 #define FLAG_UNUSED_0x4DF                                           0x4DF // Unused Flag
 #define FLAG_UNUSED_0x4E0                                           0x4E0 // Unused Flag
-#define FLAG_UNUSED_0x4E1                                           0x4E1 // Unused Flag
+#define FLAG_RECEIVED_AUSPICIOUS_ARMOR                              0x4E1
 #define FLAG_REDUCED_PRICE                                          0x4E2
 #define FLAG_RECEIVED_SHIELD                                        0x4E3
 #define FLAG_RECEIVED_SWORD                                         0x4E4
