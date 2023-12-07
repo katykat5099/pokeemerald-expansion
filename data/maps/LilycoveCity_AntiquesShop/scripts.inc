@@ -282,7 +282,9 @@ LilycoveCity_AntiquesShop_EventScript_Cabinet::
 	pokemart LilycoveCity_AntiquesShop_Mart_Pokemart
 	msgbox LilycoveCity_AntiquesShop_Text_CancelBuy2, MSGBOX_DEFAULT
 	closemessage
-    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop
+    getplayerxy VAR_TEMP_0, VAR_TEMP_1
+    call_if_eq VAR_TEMP_0, 11, LilycoveCity_AntiquesShop_EventScript_MoveAwayPlayerClose
+    call_if_eq VAR_TEMP_0, 12, LilycoveCity_AntiquesShop_EventScript_MoveAwayPlayerFar
     waitmovement 0
 	release
 	end
@@ -303,6 +305,14 @@ LilycoveCity_AntiquesShop_EventScript_MoveToPlayerClose::
 
 LilycoveCity_AntiquesShop_EventScript_MoveToPlayerFar::
     applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_WalkToPlayerFarCabinet
+    return
+
+LilycoveCity_AntiquesShop_EventScript_MoveAwayPlayerClose::
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop1
+    return
+
+LilycoveCity_AntiquesShop_EventScript_MoveAwayPlayerFar::
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop2
     return
 
 LilycoveCity_AntiquesShop_Movement_WalkToPlayerBall:
@@ -335,6 +345,25 @@ LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop:
     walk_right
     walk_right
     walk_right
+    walk_up
+    face_down
+    step_end
+
+LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop1:
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_up
+    face_down
+    step_end
+
+LilycoveCity_AntiquesShop_Movement_ReturnToCenterOfShop2:
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
     walk_up
     face_down
     step_end
