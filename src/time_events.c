@@ -8,6 +8,7 @@
 #include "rtc.h"
 #include "script.h"
 #include "task.h"
+#include "clock.h"
 
 static u32 GetMirageRnd(void)
 {
@@ -88,6 +89,53 @@ void UpdateShoalTideFlag(void)
             FlagSet(FLAG_SYS_SHOAL_TIDE);
         else
             FlagClear(FLAG_SYS_SHOAL_TIDE);
+    }
+}
+
+void MakePeatBlockFindable(void)
+{
+    u8 *flag = GetFlagPointer(FLAG_DAILY_CHECK_HIDE_PEAT_BLOCK);
+    static const u8 isTimeNight[] =
+    {
+        1, // 00
+        1, // 01
+        1, // 02
+        1, // 03
+        0, // 04
+        0, // 05
+        0, // 06
+        0, // 07
+        0, // 08
+        0, // 09
+        0, // 10
+        0, // 11
+        0, // 12
+        0, // 13
+        0, // 14
+        0, // 15
+        0, // 16
+        0, // 17
+        0, // 18
+        1, // 19
+        1, // 20
+        1, // 21
+        1, // 22
+        1, // 23
+    };
+
+    if (IsMapTypeOutdoors(GetLastUsedWarpMapType()))
+    {
+        RtcCalcLocalTime();
+        if (isTimeNight[gLocalTime.hours]) {
+            FlagSet(FLAG_SYS_PEAT_BLOCK);
+            DoTimeBasedEvents();
+            if (*flag == FALSE)
+                FlagClear(FLAG_HIDE_PEAK_BLOCK);
+        }
+        else {
+            FlagClear(FLAG_SYS_PEAT_BLOCK);
+            FlagSet(FLAG_HIDE_PEAK_BLOCK);
+        }
     }
 }
 

@@ -562,3 +562,4 @@ gSpecials::
 	def_special ChangeFurfrouFormNatural
 	def_special ChangeRotomForm
 	def_special ChangeDeoxysForm
+	def_special MakePeatBlockFindable
