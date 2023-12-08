@@ -4460,6 +4460,16 @@
       "secondary_tileset": "gTileset_AntiquesShop",
       "border_filepath": "data/layouts/LilycoveCity_AntiquesShop/border.bin",
       "blockdata_filepath": "data/layouts/LilycoveCity_AntiquesShop/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE114_PEAT_BLOCK",
+      "name": "Route114_PeatBlock_Layout",
+      "width": 40,
+      "height": 80,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fallarbor",
+      "border_filepath": "data/layouts/Route114_PeatBlock/border.bin",
+      "blockdata_filepath": "data/layouts/Route114_PeatBlock/map.bin"
     }
   ]
 }

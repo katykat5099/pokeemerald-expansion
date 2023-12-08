@@ -8,13 +8,13 @@ Route114_MapScripts::
 
 Route114_OnTransition:
     special MakePeatBlockFindable
+    call_if_set FLAG_SYS_PEAT_BLOCK, Route114_EventScript_PeakBlockSpot
 	call_if_eq VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_HideMapNamePopup
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_114_NORTH, AbnormalWeather_StartGroudonWeather
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_114_SOUTH, AbnormalWeather_StartGroudonWeather
 	end
 
 Route114_OnLoad:
-    call_if_set FLAG_SYS_PEAT_BLOCK, Route114_EventScript_PeakBlockSpot
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_114_NORTH, AbnormalWeather_EventScript_PlaceTilesRoute114North
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_114_SOUTH, AbnormalWeather_EventScript_PlaceTilesRoute114South
 	end
@@ -24,13 +24,7 @@ Route114_OnFrame:
 	.2byte 0
 
 Route114_EventScript_PeakBlockSpot::
-	setmetatile 17, 5, METATILE_Fallarbor_ShadedGround_Top, FALSE
-	setmetatile 18, 5, METATILE_Fallarbor_ShadedGround_UpperRight, FALSE
-	setmetatile 17, 6, METATILE_Fallarbor_ShadedGround_Bottom, FALSE
-	setmetatile 18, 6, METATILE_Fallarbor_ShadedGround_BottomRight, FALSE
-	setmetatile 16, 5, METATILE_General_WaterLedge_TopRightCorner, FALSE
-	setmetatile 16, 6, METATILE_General_WaterLedge_Right, FALSE
-	special DrawWholeMapView
+	setmaplayoutindex LAYOUT_ROUTE114_PEAT_BLOCK
 	return
 
 Route114_EventScript_PeakBlockItem::
