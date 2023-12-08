@@ -30,6 +30,10 @@ Route105_EventScript_ItemIron::
 	finditem ITEM_IRON
 	end
 
+Route105_EventScript_ItemRazorClaw::
+	finditem ITEM_RAZOR_CLAW
+	end
+
 Route106_EventScript_ItemProtein::
 	finditem ITEM_PROTEIN
 	end
@@ -260,6 +264,10 @@ Route124_EventScript_ItemYellowShard::
 
 Route125_EventScript_ItemBigPearl::
 	finditem ITEM_BIG_PEARL
+	end
+
+Route125_EventScript_ItemRazorFang::
+	finditem ITEM_RAZOR_FANG
 	end
 
 Route126_EventScript_ItemGreenShard::
