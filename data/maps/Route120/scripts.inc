@@ -57,9 +57,19 @@ Route120_EventScript_SetBridgeKecleonMovement::
 	return
 
 Route120_OnTransition:
+    call Route120_EventScript_DoTimeBasedEvents
+    call_if_set FLAG_DAILY_APPLE_TREE, Route120_EventScript_RemoveAppleFromTree
 	call GabbyAndTy_EventScript_UpdateLocation
 	call Route120_EventScript_SetWeather
 	end
+
+Route120_EventScript_DoTimeBasedEvents::
+    dotimebasedevents
+    return
+
+Route120_EventScript_RemoveAppleFromTree::
+    setmetatile 32, 3, METATILE_General_TreeMidSection_Left, TRUE
+    return
 
 Route120_EventScript_SetWeather::
 	getplayerxy VAR_TEMP_0, VAR_TEMP_1
@@ -85,6 +95,33 @@ Route120_EventScript_TrySetRainyWeather::
 Route120_EventScript_SetRainyWeather::
 	setweather WEATHER_RAIN
 	return
+
+Route120_EventScript_GivePlayerRandomApple::
+    goto_if_set FLAG_DAILY_APPLE_TREE, Route120_EventScript_DoNothing
+	random 3
+	call_if_eq VAR_RESULT, 1, Route120_EventScript_GivePlayerSweetApple
+	call_if_eq VAR_RESULT, 2, Route120_EventScript_GivePlayerTartApple
+	call_if_eq VAR_RESULT, 0, Route120_EventScript_GivePlayerSyrupyApple
+	closemessage
+	setmetatile 32, 3, METATILE_General_TreeMidSection_Left, TRUE
+	special DrawWholeMapView
+	setflag FLAG_DAILY_APPLE_TREE
+	end
+
+Route120_EventScript_GivePlayerSweetApple::
+    giveitem ITEM_SWEET_APPLE
+    return
+
+Route120_EventScript_GivePlayerSyrupyApple::
+    giveitem ITEM_SYRUPY_APPLE
+    return
+
+Route120_EventScript_GivePlayerTartApple::
+    giveitem ITEM_TART_APPLE
+    return
+
+Route120_EventScript_DoNothing::
+    end
 
 Route120_EventScript_BerryBeauty::
 	lock

@@ -251,6 +251,7 @@
 #define METATILE_General_TallGrass_TreeLeft         0x1C6
 #define METATILE_General_TallGrass_TreeRight        0x1C7
 #define METATILE_General_TallGrass_TreeUp           0x025
+#define METATILE_General_TreeMidSection_Left        0x1D6
 #define METATILE_General_WaterLedge_Right           0x192
 #define METATILE_General_WaterLedge_TopRightCorner  0x181
 #define METATILE_General_YellowCaveIndent           0x1A8
