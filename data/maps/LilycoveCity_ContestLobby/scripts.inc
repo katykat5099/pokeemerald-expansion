@@ -535,6 +535,36 @@ LilycoveCity_ContestLobby_EventScript_CancelSellSweets::
     release
     end
 
+LilycoveCity_ContestLobby_EventScript_ClothLady::
+    lock
+    faceplayer
+    msgbox LilycoveCity_ContestLobby_Text_StyleStuffForSale, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, LilycoveCity_ContestLobby_EventScript_ClothLadySellStuff
+	goto_if_eq VAR_RESULT, NO, LilycoveCity_ContestLobby_EventScript_ClothSellCancel
+	goto LilycoveCity_ContestLobby_EventScript_ClothSellCancel
+    release
+    end
+
+LilycoveCity_ContestLobby_EventScript_ClothLadySellStuff::
+	waitmessage
+	pokemart LilycoveCity_ContestLobby_Mart_Pokemart2
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+LilycoveCity_ContestLobby_Mart_Pokemart2:
+	.2byte ITEM_REAPER_CLOTH
+	.2byte ITEM_SACHET
+	.2byte ITEM_NONE
+	release
+    end
+
+LilycoveCity_ContestLobby_EventScript_ClothSellCancel::
+    msgbox LilycoveCity_ContestLobby_Text_Goodbye, MSGBOX_DEFAULT
+    release
+    end
+
 LilycoveCity_ContestLobby_EventScript_ContestWinner1::
 	lockall
 	fadescreen FADE_TO_BLACK
@@ -1127,3 +1157,10 @@ LilycoveCity_ContestLobby_Text_SweetThingsForSale:
 
 LilycoveCity_ContestLobby_Text_NoProblem:
     .string "Oh, no problem. Have a good day!$"
+
+LilycoveCity_ContestLobby_Text_StyleStuffForSale:
+    .string "Need some stuff to make you and\n"
+    .string "your POKéMON stylish?$"
+
+LilycoveCity_ContestLobby_Text_Goodbye:
+    .string "Goodbye!$"
