@@ -674,7 +674,7 @@ const struct Item gItems[] =
     [ITEM_SWEET_HEART] =
     {
         .name = _("Sweet Heart"),
-        .price = 3000,
+        .price = 50,
         .holdEffectParam = 20,
         .description = sSweetHeartDesc,
         .pocket = POCKET_ITEMS,

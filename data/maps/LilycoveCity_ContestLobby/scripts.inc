@@ -498,6 +498,43 @@ LilycoveCity_ContestLobby_EventScript_NinjaBoy::
 	msgbox LilycoveCity_ContestLobby_Text_MadePokeblocksWithFamily, MSGBOX_NPC
 	end
 
+LilycoveCity_ContestLobby_EventScript_SweetsLady::
+    lock
+    faceplayer
+    msgbox LilycoveCity_ContestLobby_Text_SweetThingsForSale, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, LilycoveCity_ContestLobby_EventScript_SellSweets
+	goto_if_eq VAR_RESULT, NO, LilycoveCity_ContestLobby_EventScript_CancelSellSweets
+	goto LilycoveCity_ContestLobby_EventScript_CancelSellSweets
+    release
+    end
+
+LilycoveCity_ContestLobby_EventScript_SellSweets::
+	waitmessage
+	pokemart LilycoveCity_ContestLobby_Mart_Pokemart
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+LilycoveCity_ContestLobby_Mart_Pokemart:
+	.2byte ITEM_WHIPPED_DREAM
+	.2byte ITEM_STRAWBERRY_SWEET
+	.2byte ITEM_LOVE_SWEET
+	.2byte ITEM_BERRY_SWEET
+	.2byte ITEM_CLOVER_SWEET
+	.2byte ITEM_FLOWER_SWEET
+	.2byte ITEM_STAR_SWEET
+	.2byte ITEM_RIBBON_SWEET
+	.2byte ITEM_SWEET_HEART
+	.2byte ITEM_NONE
+	release
+    end
+
+LilycoveCity_ContestLobby_EventScript_CancelSellSweets::
+    msgbox LilycoveCity_ContestLobby_Text_NoProblem, MSGBOX_DEFAULT
+    release
+    end
+
 LilycoveCity_ContestLobby_EventScript_ContestWinner1::
 	lockall
 	fadescreen FADE_TO_BLACK
@@ -1084,3 +1121,9 @@ LilycoveCity_ContestLobby_Text_MadePokeblocksWithFamily:
 	.string "I bet you can make smoother, better\n"
 	.string "{POKEBLOCK}S if you have more people.$"
 
+LilycoveCity_ContestLobby_Text_SweetThingsForSale:
+    .string "Hi there. Do you like sweets? I have\n"
+    .string "a lot of sweet things up for sale!$"
+
+LilycoveCity_ContestLobby_Text_NoProblem:
+    .string "Oh, no problem. Have a good day!$"
