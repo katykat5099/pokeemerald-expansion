@@ -224,6 +224,47 @@ RustboroCity_EventScript_CuttersHouseSign::
 	msgbox RustboroCity_Text_CuttersHouse, MSGBOX_SIGN
 	end
 
+RustboroCity_EventScript_GalarianBoy::
+	lock
+	faceplayer
+	goto_if_set FLAG_GALAR_ITEM, RustboroCity_EventScript_GalarianBoyEvolveSlowpoke
+	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, RustboroCity_EventScript_GalarianBoyGiveSlowpokeItem
+	msgbox RustboroCity_Text_DoYouKnowOfGalar, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_EventScript_GalarianBoyGiveSlowpokeItem::
+    msgbox RustboroCity_Text_ICanSenseYourStrength, MSGBOX_DEFAULT
+	random 2
+	goto_if_eq VAR_RESULT, 1, RustboroCity_EventScript_GalarianBoyGiveSlowpokeItemSlowbro
+	goto RustboroCity_EventScript_GalarianBoyGiveSlowpokeItemSlowking
+	release
+	end
+
+RustboroCity_EventScript_GalarianBoyGiveSlowpokeItemSlowbro::
+	giveitem ITEM_GALARICA_CUFF
+	goto_if_eq VAR_RESULT, FALSE, RustboroCity_EventScript_GalarianBoyNoRoom
+    setflag FLAG_GALAR_ITEM
+    release
+    end
+
+RustboroCity_EventScript_GalarianBoyGiveSlowpokeItemSlowking::
+	giveitem ITEM_GALARICA_WREATH
+	goto_if_eq VAR_RESULT, FALSE, RustboroCity_EventScript_GalarianBoyNoRoom
+    setflag FLAG_GALAR_ITEM
+    release
+    end
+
+RustboroCity_EventScript_GalarianBoyEvolveSlowpoke::
+    msgbox RustboroCity_Text_GalarEvolveSlowpoke, MSGBOX_DEFAULT
+    release
+    end
+
+RustboroCity_EventScript_GalarianBoyNoRoom::
+	msgbox RustboroCity_Text_GalarNoRoom, MSGBOX_DEFAULT
+	release
+	end
+
 RustboroCity_EventScript_LittleBoy::
 	lock
 	faceplayer
@@ -1481,3 +1522,28 @@ RustboroCity_Text_AlolanManBagFull:
 
 RustboroCity_Text_AlolanManCantAfford:
     .string "Oh, you don't have enough money.$"
+
+RustboroCity_Text_DoYouKnowOfGalar:
+    .string "Oh, hello there.\n"
+    .string "You could have startled me, you know.\p"
+    .string "Hmm, do you know about the Galar\n"
+    .string "Region? It's a neat place.$"
+
+RustboroCity_Text_ICanSenseYourStrength:
+    .string "Hmm…\n"
+    .string "You there…\p"
+    .string "You seem really strong. Maybe this\n"
+    .string "could be of use for you.$"
+
+RustboroCity_Text_ICanSenseYourStrength2:
+    .string "I brought a lot from Galar, I am\n"
+    .string "giving them to who I think are\l"
+    .string "strong.$"
+
+RustboroCity_Text_GalarEvolveSlowpoke:
+    .string "You use these items to evolve\n"
+    .string "a slowpoke from Galar. Try it\l"
+    .string "if you get one!$"
+
+RustboroCity_Text_GalarNoRoom:
+    .string "Oof, sorry, you have no room.$"
