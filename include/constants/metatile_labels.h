@@ -2,9 +2,11 @@
 #define GUARD_METATILE_LABELS_H
 
 // gTileset_AntiquesShop
-#define METATILE_AntiquesShop_ArmorHanger_Left   0x242
-#define METATILE_AntiquesShop_ArmorHanger_Right  0x243
-#define METATILE_AntiquesShop_WallBottom         0x208
+#define METATILE_AntiquesShop_ArmorHanger_Left        0x242
+#define METATILE_AntiquesShop_ArmorHanger_Right       0x243
+#define METATILE_AntiquesShop_WallBottom              0x208
+#define METATILE_AntiquesShop_WallTable_Center        0x204
+#define METATILE_AntiquesShop_WallTable_PlantRCorner  0x23C
 
 // gTileset_BattleArena
 #define METATILE_BattleArena_Door  0x21B
