@@ -46,6 +46,27 @@ LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters:
 	release
 	end
 
+LilycoveCity_DepartmentStore_3F_EventScript_ClerkMiddle::
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart LilycoveCity_DepartmentStore_3F_Pokemart_TradeEvolutionItems
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+LilycoveCity_DepartmentStore_3F_Pokemart_TradeEvolutionItems:
+	.2byte ITEM_LINKING_CORD
+	.2byte ITEM_UPGRADE
+	.2byte ITEM_DUBIOUS_DISC
+	.2byte ITEM_ELECTIRIZER
+	.2byte ITEM_MAGMARIZER
+	.2byte ITEM_NONE
+	release
+	end
+
 LilycoveCity_DepartmentStore_3F_EventScript_TriathleteM::
 	msgbox LilycoveCity_DepartmentStore_3F_Text_ItemsBestForTougheningPokemon, MSGBOX_NPC
 	end
