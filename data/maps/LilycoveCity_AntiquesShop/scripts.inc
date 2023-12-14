@@ -428,6 +428,63 @@ LilycoveCity_AntiquesShop_EventScript_NoBagSpaceArmor::
     release
     end
 
+LilycoveCity_AntiquesShop_EventScript_PurchaseBlackAugurite::
+    goto_if_set FLAG_RECEIVED_BLACK_AUGURITE, LilycoveCity_AntiquesShop_EventScript_Nothing
+    lock
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_MoveToPlayerBlackAugurite
+    waitmovement 0
+    showmoneybox 0, 0
+    msgbox LilycoveCity_AntiquesShop_Text_PurchaseAugurite, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, LilycoveCity_AntiquesShop_EventScript_BuyBlackAugurite
+	goto_if_eq VAR_RESULT, NO, LilycoveCity_AntiquesShop_EventScript_DeclineArmorSale
+	goto LilycoveCity_AntiquesShop_EventScript_DeclineArmorSale
+	end
+
+LilycoveCity_AntiquesShop_EventScript_BuyBlackAugurite::
+    checkmoney 8000
+    goto_if_eq VAR_RESULT, 0, LilycoveCity_AntiquesShop_EventScript_NotEnoughMoneyAugurite
+    checkitemspace ITEM_BLACK_AUGURITE
+    call_if_eq VAR_RESULT, TRUE, LilycoveCity_AntiquesShop_EventScript_RemoveMoney4
+    giveitem ITEM_BLACK_AUGURITE
+    goto_if_eq VAR_RESULT, FALSE, LilycoveCity_AntiquesShop_EventScript_NoBagSpaceAugurite
+    setflag FLAG_RECEIVED_BLACK_AUGURITE
+    call LilycoveCity_AntiquesShop_EventScript_RemoveAugurite
+    msgbox LilycoveCity_AntiquesShop_Text_DontWantHimSeeing, MSGBOX_DEFAULT
+    hidemoneybox
+    closemessage
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterAugurite
+    waitmovement 0
+    release
+    end
+
+LilycoveCity_AntiquesShop_EventScript_RemoveAugurite::
+	setmetatile 11, 1, METATILE_AntiquesShop_WallTable_PlantRCorner, TRUE
+	special DrawWholeMapView
+	return
+
+LilycoveCity_AntiquesShop_EventScript_RemoveMoney4::
+    removemoney 8000
+    updatemoneybox
+    return
+
+LilycoveCity_AntiquesShop_EventScript_NotEnoughMoneyAugurite::
+    hidemoneybox
+    msgbox LilycoveCity_AntiquesShop_Text_NotEnoughMoney, MSGBOX_DEFAULT
+    closemessage
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterAugurite
+    waitmovement 0
+    release
+    end
+
+LilycoveCity_AntiquesShop_EventScript_NoBagSpaceAugurite::
+    hidemoneybox
+    msgbox LilycoveCity_AntiquesShop_Text_YourBagIsFull, MSGBOX_DEFAULT
+    closemessage
+    applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_ReturnToCenterAugurite
+    waitmovement 0
+    release
+    end
+
 LilycoveCity_AntiquesShop_EventScript_MoveToPlayerClose::
     applymovement LOCALID_SHOP_MAN, LilycoveCity_AntiquesShop_Movement_WalkToPlayerCloseCabinet
     return
@@ -625,6 +682,30 @@ LilycoveCity_AntiquesShop_Movement_MoveBackToCenterFromArmor4:
     walk_down
     step_end
 
+LilycoveCity_AntiquesShop_Movement_MoveToPlayerBlackAugurite:
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    walk_right
+    walk_right
+    walk_right
+    walk_right
+    step_end
+
+LilycoveCity_AntiquesShop_Movement_ReturnToCenterAugurite:
+    walk_down
+    walk_down
+    walk_down
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_down
+    walk_down
+    step_end
+
 LilycoveCity_AntiquesShop_Text_TakeALookAround:
     .string "Welcome to my Antiques shop!\n"
     .string "Please, take a look around.$"
@@ -732,3 +813,13 @@ LilycoveCity_AntiquesShop_Text_ISeeYourLookingAtMalArmor:
 LilycoveCity_AntiquesShop_Text_OhYesThankYou:
     .string "Oh, yes, yes! Thank you!\n"
     .string "Just a minute.$"
+
+LilycoveCity_AntiquesShop_Text_PurchaseAugurite:
+    .string "Oh, that's a special stone.\n"
+    .string "Not really much of an antique, but\l"
+    .string "if you want it, it's yours.\p"
+    .string "Just ¥8000.$"
+
+LilycoveCity_AntiquesShop_Text_DontWantHimSeeing:
+    .string "Quickly now, don't want him\n"
+    .string "seeing this.$"

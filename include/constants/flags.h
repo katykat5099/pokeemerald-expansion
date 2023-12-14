@@ -1294,7 +1294,7 @@
 #define FLAG_UNUSED_0x4DA                                           0x4DA // Unused Flag
 #define FLAG_UNUSED_0x4DB                                           0x4DB // Unused Flag
 #define FLAG_UNUSED_0x4DC                                           0x4DC // Unused Flag
-#define FLAG_UNUSED_0x4DD                                           0x4DD // Unused Flag
+#define FLAG_RECEIVED_BLACK_AUGURITE                                0x4DD
 #define FLAG_GALAR_ITEM                                             0x4DE
 #define FLAG_HIDE_PEAK_BLOCK                                        0x4DF // Not a normal hide flag
 #define FLAG_RECEIVED_MALICIOUS_ARMOR                               0x4E0
