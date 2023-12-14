@@ -1293,7 +1293,7 @@
 #define FLAG_UNUSED_0x4D9                                           0x4D9 // Unused Flag
 #define FLAG_UNUSED_0x4DA                                           0x4DA // Unused Flag
 #define FLAG_UNUSED_0x4DB                                           0x4DB // Unused Flag
-#define FLAG_UNUSED_0x4DC                                           0x4DC // Unused Flag
+#define FLAG_RECEIVED_PRISM_SCALE                                   0x4DC
 #define FLAG_RECEIVED_BLACK_AUGURITE                                0x4DD
 #define FLAG_GALAR_ITEM                                             0x4DE
 #define FLAG_HIDE_PEAK_BLOCK                                        0x4DF // Not a normal hide flag

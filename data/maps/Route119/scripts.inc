@@ -479,6 +479,38 @@ Route119_EventScript_ScottWonAtFortreeGymCall::
 	releaseall
 	end
 
+Route119_EventScript_FeebasExplainWoman::
+    lock
+    faceplayer
+    goto_if_set FLAG_RECEIVED_PRISM_SCALE, Route119_EventScript_GotPrismScale
+    msgbox Route119_Text_FeebasAppearsRarelyOnThisRoute, MSGBOX_DEFAULT
+    setvar VAR_PARTY_POKEMON_CHECK, 349
+    specialvar VAR_RESULT, CheckPartyPokemon
+    goto_if_eq VAR_RESULT, TRUE, Route119_EventScript_FeebasWomanGivePrismScale
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    release
+    end
+
+Route119_EventScript_FeebasWomanGivePrismScale::
+    msgbox Route119_Text_YouHaveAFeebas, MSGBOX_DEFAULT
+    giveitem ITEM_PRISM_SCALE
+    goto_if_eq VAR_RESULT, FALSE, Route119_EventScript_BagFull
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    setflag FLAG_RECEIVED_PRISM_SCALE
+    release
+    end
+
+Route119_EventScript_GotPrismScale::
+    msgbox Route119_Text_HopeFeebasIsBeautiful, MSGBOX_DEFAULT
+    release
+    end
+
+Route119_EventScript_BagFull::
+    msgbox Route119_Text_YourBagIsFull, MSGBOX_DEFAULT
+    setvar VAR_PARTY_POKEMON_CHECK, 0
+    release
+    end
+
 Route119_Text_MayIntro:
 	.string "MAY: {PLAYER}{KUN}!\n"
 	.string "Where were you? I was looking for you!\p"
@@ -612,3 +644,28 @@ Route119_Text_TrainerTipsDecoration:
 	.string "Pick your favorite items and create\n"
 	.string "your very own SECRET BASE exactly the\l"
 	.string "way you want.$"
+
+Route119_Text_FeebasAppearsRarelyOnThisRoute:
+    .string "Did you know that Feebas appears\n"
+    .string "on this route? It's an elusive\l"
+    .string "one.\p"
+    .string "My husband one night encountered\n"
+    .string "so many of them but failed to get\l"
+    .string "even a single one.\p"
+    .string "He still trying to find another to this\n"
+    .string "day. I feel quite bad for him.$"
+
+Route119_Text_YouHaveAFeebas:
+    .string "Oh my… You have a Feebas!\p"
+    .string "That's amazing. Feebas is the\n"
+    .string "ugliest POKéMON, but is said to\l"
+    .string "evolve into the most beautiful\p"
+    .string "just by using this item. Here,\n"
+    .string "give it a try for me.$"
+
+Route119_Text_HopeFeebasIsBeautiful:
+    .string "I hope your Feebas has become truly\n"
+    .string "magnificent.$"
+
+Route119_Text_YourBagIsFull:
+    .string "Your bag is full, sorry.$"

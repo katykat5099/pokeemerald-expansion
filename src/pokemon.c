@@ -6540,6 +6540,8 @@ bool8 CheckPartyPokemon(void)
     u16 *var = GetVarPointer(VAR_PARTY_POKEMON_CHECK);
     for (i = 0; i < PARTY_SIZE; i++)
     {
+/*FEEBAS*/    if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_FEEBAS) && (*var == 349))
+                { return TRUE; }
 /*DEOXYS*/    if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_DEOXYS) && (*var == 386))
                 { return TRUE; }
 /*ROTOM*/     if((GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES)) == SPECIES_ROTOM) && (*var == 479))
