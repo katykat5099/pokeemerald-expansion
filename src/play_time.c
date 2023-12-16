@@ -1,5 +1,7 @@
 #include "global.h"
 #include "play_time.h"
+#include "rtc.h"
+#include "main.h"
 
 enum
 {
@@ -7,6 +9,8 @@ enum
     RUNNING,
     MAXED_OUT
 };
+
+static struct Time antiCheatTime;
 
 static u8 sPlayTimeCounterState;
 
@@ -35,6 +39,8 @@ void PlayTimeCounter_Stop(void)
 
 void PlayTimeCounter_Update(void)
 {
+    struct Time timeDiff;
+
     if (sPlayTimeCounterState != RUNNING)
         return;
 
@@ -42,6 +48,13 @@ void PlayTimeCounter_Update(void)
 
     if (gSaveBlock2Ptr->playTimeVBlanks < 60)
         return;
+
+    // Reset the game if an in battle state is loaded
+    RtcCalcLocalTime();
+    CalcTimeDifference(&timeDiff, &antiCheatTime, &gLocalTime);
+    if (gMain.inBattle && (abs(timeDiff.seconds) > 6 || abs(timeDiff.minutes) > 1 || abs(timeDiff.hours) > 1 || abs(timeDiff.days) > 1))
+        DoSoftReset();
+    antiCheatTime = gLocalTime;
 
     gSaveBlock2Ptr->playTimeVBlanks = 0;
     gSaveBlock2Ptr->playTimeSeconds++;
