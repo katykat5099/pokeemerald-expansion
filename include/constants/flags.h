@@ -1292,7 +1292,7 @@
 #define FLAG_UNUSED_0x4D8                                           0x4D8 // Unused Flag
 #define FLAG_UNUSED_0x4D9                                           0x4D9 // Unused Flag
 #define FLAG_UNUSED_0x4DA                                           0x4DA // Unused Flag
-#define FLAG_UNUSED_0x4DB                                           0x4DB // Unused Flag
+#define FLAG_HELPED_ALOLAN_FAMILY                                   0x4DB
 #define FLAG_RECEIVED_PRISM_SCALE                                   0x4DC
 #define FLAG_RECEIVED_BLACK_AUGURITE                                0x4DD
 #define FLAG_GALAR_ITEM                                             0x4DE

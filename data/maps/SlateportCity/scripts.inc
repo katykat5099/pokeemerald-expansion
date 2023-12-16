@@ -953,6 +953,7 @@ SlateportCity_EventScript_BerryCrushRankingsSign::
 
 SlateportCity_EventScript_AlolanWoman::
     lock
+    goto_if_set FLAG_HELPED_ALOLAN_FAMILY, SlateportCity_EventScript_AlolanWomanHelped
     msgbox SlateportCity_Text_AlolanStrangers, MSGBOX_DEFAULT
     applymovement LOCALID_ALOLAN_WOMAN, Common_Movement_QuestionMark
     waitmovement 0
@@ -961,9 +962,18 @@ SlateportCity_EventScript_AlolanWoman::
     msgbox SlateportCity_Text_AlolanStrangers2, MSGBOX_DEFAULT
     applymovement LOCALID_ALOLAN_WOMAN, Common_Movement_FaceOriginalDirection
     waitmovement 0
+    closemessage
+    release
+    end
+
+SlateportCity_EventScript_AlolanWomanHelped::
+    faceplayer
+    msgbox SlateportCity_Text_ThanksForHelpingWithTheFamily, MSGBOX_DEFAULT
+    release
     end
 
 SlateportCity_EventScript_AlolanWomanOricorio::
+    call_if_unset FLAG_HELPED_ALOLAN_FAMILY, SlateportCity_EventScript_UnHideFamilyInVerdanturf
     goto_if_set FLAG_PINK_NECTAR, SlateportCity_EventScript_AlolanWomanSellNectar
     setvar VAR_PARTY_POKEMON_CHECK, 741
     specialvar VAR_RESULT, CheckPartyPokemon
@@ -981,6 +991,10 @@ SlateportCity_EventScript_AlolanWomanOricorio::
     setflag FLAG_HELPED_ALOLAN_WOMAN
     release
     end
+
+SlateportCity_EventScript_UnHideFamilyInVerdanturf::
+    clearflag FLAG_HIDE_ALOLAN_FAMILY
+    return
 
 SlateportCity_EventScript_AlolanWomanSellNectar::
     lock
@@ -1503,3 +1517,8 @@ SlateportCity_Text_AlolanWomanBagFull:
 
 SlateportCity_Text_AlolanWomanYouCantAfford:
     .string "Sorry! You cant afford this!$"
+
+SlateportCity_Text_ThanksForHelpingWithTheFamily:
+    .string "Thanks again for helping out by\n"
+    .string "being there. You taught us a good\l"
+    .string "lesson.$"

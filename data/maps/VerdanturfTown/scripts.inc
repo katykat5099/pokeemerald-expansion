@@ -6,25 +6,12 @@
 
 VerdanturfTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_OnTransition
-	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_OnTransition2
 	.byte 0
 
 VerdanturfTown_OnTransition:
 	setflag FLAG_VISITED_VERDANTURF_TOWN
 	setvar VAR_CONTEST_HALL_STATE, 0
 	end
-
-VerdanturfTown_OnTransition2:
-    goto_if_unset FLAG_PURPLE_NECTAR, VerdanturfTown_EventScript_HideAlolanFamily
-    goto_if_unset FLAG_YELLOW_NECTAR, VerdanturfTown_EventScript_HideAlolanFamily
-    goto_if_unset FLAG_PINK_NECTAR, VerdanturfTown_EventScript_HideAlolanFamily
-    goto_if_unset FLAG_RED_NECTAR, VerdanturfTown_EventScript_HideAlolanFamily
-    clearflag FLAG_HIDE_ALOLAN_FAMILY
-    end
-
-VerdanturfTown_EventScript_HideAlolanFamily::
-    setflag FLAG_HIDE_ALOLAN_FAMILY
-    end
 
 VerdanturfTown_EventScript_Twin::
 	lock
@@ -81,6 +68,7 @@ VerdanturfTown_EventScript_RusturfTunnelSign::
 	end
 
 VerdanturfTown_EventScript_AlolanFamily::
+    goto_if_set FLAG_HIDE_ALOLAN_FAMILY, VerdanturfTown_EventScript_Nothing
     lockall
     applymovement LOCALID_ALOLAN_MOM, Common_Movement_WalkInPlaceLeft
     waitmovement 0
@@ -102,14 +90,17 @@ VerdanturfTown_EventScript_AlolanFamily::
     applymovement LOCALID_ALOLAN_GIRL, Common_Movement_FacePlayer
     applymovement LOCALID_ALOLAN_BOY, Common_Movement_FacePlayer
     waitmovement 0
-    msgbox VerdanturfTown_Text_HeyItsYou, MSGBOX_DEFAULT
     playse SE_SELECT
     goto_if_eq VAR_ALOLAN_MAN_SAD, 1, VerdanturfTown_EventScript_AlolanFamilyDad
-    @ todo: FINISH THE ORICORIO FAMILY SCRIPT
+    goto_if_set FLAG_ORICORIO_KNOWLEDGE, VerdanturfTown_EventScript_AlolanFamilyGirl2
+    goto_if_set FLAG_LIKE_ORICORIO, VerdanturfTown_EventScript_AlolanFamilyBoy2
+    msgbox VerdanturfTown_Text_WhoAreYou, MSGBOX_DEFAULT
+    setflag FLAG_HIDE_ALOLAN_FAMILY
     release
     end
 
-VerdanturfTown_EventScript_AlolanFamilyDad::
+VerdanturfTown_EventScript_AlolanFamilyDad:: @ Plays this script if dad was talked to
+    msgbox VerdanturfTown_Text_HeyItsYou, MSGBOX_DEFAULT
     applymovement LOCALID_ALOLAN_DAD, Common_Movement_WalkInPlaceRight
     waitmovement 0
     msgbox VerdanturfTown_Text_YouKnowThem, MSGBOX_DEFAULT
@@ -121,11 +112,18 @@ VerdanturfTown_EventScript_AlolanFamilyDad::
     msgbox VerdanturfTown_Text_YeahTheyHelpedMe, MSGBOX_DEFAULT
     playse SE_SELECT
     goto_if_set FLAG_ORICORIO_KNOWLEDGE, VerdanturfTown_EventScript_AlolanFamilyGirl
-    @ todo: FINISH THE ORICORIO FAMILY SCRIPT
+    applymovement LOCALID_ALOLAN_GIRL, Common_Movement_WalkInPlaceRight
+    waitmovement 0
+    msgbox VerdanturfTown_Text_TheyProbablyDontKnow, MSGBOX_DEFAULT
+    playse SE_SELECT
+    goto_if_set FLAG_LIKE_ORICORIO, VerdanturfTown_EventScript_AlolanFamilyBoy3
+    applymovement LOCALID_ALOLAN_MOM, Common_Movement_FacePlayer
+    waitmovement 0
+    msgbox VerdanturfTown_Text_PleaseLeave, MSGBOX_DEFAULT
     release
     end
 
-VerdanturfTown_EventScript_AlolanFamilyGirl::
+VerdanturfTown_EventScript_AlolanFamilyGirl:: @ Plays this script if girl was talked to
     applymovement LOCALID_ALOLAN_GIRL, Common_Movement_WalkInPlaceRight
     waitmovement 0
     msgbox VerdanturfTown_Text_MeTooTheyKnowALot, MSGBOX_DEFAULT
@@ -135,7 +133,55 @@ VerdanturfTown_EventScript_AlolanFamilyGirl::
     waitmovement 0
     msgbox VerdanturfTown_Text_TheySeemHonest, MSGBOX_DEFAULT
     playse SE_SELECT
-    @ todo: FINISH THE ORICORIO FAMILY SCRIPT
+    applymovement LOCALID_ALOLAN_GIRL, Common_Movement_WalkInPlaceUp
+    waitmovement 0
+    msgbox VerdanturfTown_Text_DontBeABaby, MSGBOX_DEFAULT
+    playse SE_SELECT
+    applymovement LOCALID_ALOLAN_BOY, Common_Movement_WalkInPlaceRight
+    waitmovement 0
+    msgbox VerdanturfTown_Text_Dots, MSGBOX_DEFAULT
+    closemessage
+    applymovement LOCALID_ALOLAN_BOY, VerdanturfTown_Movement_AlolanBoyExit
+    waitmovement 0
+    removeobject LOCALID_ALOLAN_BOY
+    applymovement LOCALID_ALOLAN_MOM, Common_Movement_WalkInPlaceDown
+    waitmovement 0
+    msgbox VerdanturfTown_Text_NotVeryNice, MSGBOX_DEFAULT
+    setflag FLAG_HIDE_ALOLAN_FAMILY
+    release
+    end
+
+VerdanturfTown_EventScript_AlolanFamilyGirl2:: @ Plays this script if Dad wasnt talked to
+    msgbox VerdanturfTown_Text_HiTherePlayer, MSGBOX_DEFAULT
+    playse SE_PIN
+    applymovement LOCALID_ALOLAN_DAD, Common_Movement_ExclamationMark
+    waitmovement 0
+    applymovement LOCALID_ALOLAN_DAD, Common_Movement_WalkInPlaceRight
+    waitmovement 0
+    msgbox VerdanturfTown_Text_WhoIsThat, MSGBOX_DEFAULT
+    playse SE_SELECT
+    applymovement LOCALID_ALOLAN_GIRL, Common_Movement_WalkInPlaceLeft
+    waitmovement 0
+    msgbox VerdanturfTown_Text_TheyHaveOricorio, MSGBOX_DEFAULT
+    playse SE_SELECT
+    applymovement LOCALID_ALOLAN_GIRL, Common_Movement_FaceUp
+    waitmovement 0
+    goto_if_set FLAG_LIKE_ORICORIO, VerdanturfTown_EventScript_AlolanFamilyBoy4
+    applymovement LOCALID_ALOLAN_BOY, Common_Movement_WalkInPlaceRight
+    waitmovement 0
+    msgbox VerdanturfTown_Text_TheySeemHonest, MSGBOX_DEFAULT
+    playse SE_SELECT
+    applymovement LOCALID_ALOLAN_DAD, Common_Movement_WalkInPlaceRight
+    waitmovement 0
+    msgbox VerdanturfTown_Text_IDontTrustThis, MSGBOX_DEFAULT
+    playse SE_SELECT
+    closemessage
+    applymovement LOCALID_ALOLAN_DAD, VerdanturfTown_Movement_AlolanDadExit
+    waitmovement 0
+    removeobject LOCALID_ALOLAN_DAD
+    msgbox VerdanturfTown_Text_Sigh, MSGBOX_DEFAULT
+    closemessage
+    setflag FLAG_HIDE_ALOLAN_FAMILY
     release
     end
 
@@ -214,7 +260,73 @@ VerdanturfTown_EventScript_AlolanFamilyBoy::
     waitmovement 0
     removeobject LOCALID_ALOLAN_MOM
     setflag FLAG_HIDE_ALOLAN_FAMILY
+    setflag FLAG_HELPED_ALOLAN_FAMILY
     release
+    end
+
+VerdanturfTown_EventScript_AlolanFamilyBoy2::
+    msgbox VerdanturfTown_Text_WhoAreYou2, MSGBOX_DEFAULT
+    playse SE_PIN
+    applymovement LOCALID_ALOLAN_BOY, Common_Movement_ExclamationMark
+    waitmovement 0
+    applymovement LOCALID_ALOLAN_BOY, Common_Movement_WalkInPlaceDown
+    waitmovement 0
+    msgbox VerdanturfTown_Text_OhIKnowThem, MSGBOX_DEFAULT
+    playse SE_SELECT
+    applymovement LOCALID_ALOLAN_MOM, Common_Movement_WalkInPlaceUp
+    waitmovement 0
+    msgbox VerdanturfTown_Text_YouShouldntTalkToStrangers, MSGBOX_DEFAULT
+    playse SE_SELECT
+    applymovement LOCALID_ALOLAN_MOM, Common_Movement_FacePlayer
+    waitmovement 0
+    msgbox VerdanturfTown_Text_PleaseLeave, MSGBOX_DEFAULT
+    setflag FLAG_HIDE_ALOLAN_FAMILY
+    release
+    end
+
+VerdanturfTown_EventScript_AlolanFamilyBoy3::
+    applymovement LOCALID_ALOLAN_BOY, Common_Movement_WalkInPlaceRight
+    waitmovement 0
+    msgbox VerdanturfTown_Text_TheyLikeMyOricorio, MSGBOX_DEFAULT
+    playse SE_SELECT
+    applymovement LOCALID_ALOLAN_GIRL, Common_Movement_WalkInPlaceUp
+    waitmovement 0
+    msgbox VerdanturfTown_Text_DoesntMeanAnything, MSGBOX_DEFAULT
+    playse SE_SELECT
+    applymovement LOCALID_ALOLAN_BOY, Common_Movement_WalkInPlaceRight
+    waitmovement 0
+    msgbox VerdanturfTown_Text_Dots, MSGBOX_DEFAULT
+    closemessage
+    applymovement LOCALID_ALOLAN_BOY, VerdanturfTown_Movement_AlolanBoyExit
+    waitmovement 0
+    removeobject LOCALID_ALOLAN_BOY
+    applymovement LOCALID_ALOLAN_MOM, Common_Movement_WalkInPlaceDown
+    waitmovement 0
+    msgbox VerdanturfTown_Text_NotVeryNice, MSGBOX_DEFAULT
+    setflag FLAG_HIDE_ALOLAN_FAMILY
+    release
+    end
+
+VerdanturfTown_EventScript_AlolanFamilyBoy4::
+    applymovement LOCALID_ALOLAN_BOY, Common_Movement_WalkInPlaceRight
+    waitmovement 0
+    msgbox VerdanturfTown_Text_TheyLikeMyOricorio, MSGBOX_DEFAULT
+    playse SE_SELECT
+    applymovement LOCALID_ALOLAN_DAD, Common_Movement_WalkInPlaceRight
+    waitmovement 0
+    msgbox VerdanturfTown_Text_IDontTrustThis, MSGBOX_DEFAULT
+    playse SE_SELECT
+    closemessage
+    applymovement LOCALID_ALOLAN_DAD, VerdanturfTown_Movement_AlolanDadExit
+    waitmovement 0
+    removeobject LOCALID_ALOLAN_DAD
+    msgbox VerdanturfTown_Text_Sigh, MSGBOX_DEFAULT
+    closemessage
+    setflag FLAG_HIDE_ALOLAN_FAMILY
+    release
+    end
+
+VerdanturfTown_EventScript_Nothing::
     end
 
 VerdanturfTown_Movement_AlolanDadExit:
@@ -342,6 +454,9 @@ VerdanturfTown_Text_MeTooTheyKnowALot:
     .string "lot about Oricorio! It's so cool that\l"
     .string "someone from Hoenn knows so much!$"
 
+VerdanturfTown_Text_HiTherePlayer:
+    .string "Oh hi there!$"
+
 VerdanturfTown_Text_TheySeemHonest:
     .string "They seem pretty honest…$"
 
@@ -394,3 +509,56 @@ VerdanturfTown_Text_ThinkAboutThisCarefully:
 
 VerdanturfTown_Text_ThankYouSoMuch:
     .string "Thank you so much.$"
+
+VerdanturfTown_Text_WhoAreYou:
+    .string "Hey, who are you?\n"
+    .string "This is a private conversation.\p"
+    .string "Please leave.$"
+
+VerdanturfTown_Text_WhoAreYou2:
+    .string "Hey, who are you?\n"
+    .string "This is a private conversa-$"
+
+VerdanturfTown_Text_OhIKnowThem:
+    .string "Oh I know them! They like my\n"
+    .string "Oricorio too!$"
+
+VerdanturfTown_Text_YouShouldntTalkToStrangers:
+    .string "Hey, you shouldn't talk to\n"
+    .string "strangers.$"
+
+VerdanturfTown_Text_PleaseLeave:
+    .string "Please leave.$"
+
+VerdanturfTown_Text_WhoIsThat:
+    .string "Who's that?$"
+
+VerdanturfTown_Text_TheyHaveOricorio:
+    .string "They have an Oricorio\p"
+    .string "Also, they're pretty knowledgeable\n"
+    .string "about Oricorio too!$"
+
+VerdanturfTown_Text_TheyProbablyDontKnow:
+    .string "Yeah, but they probably don't even\n"
+    .string "know anything about Oricorio.$"
+
+VerdanturfTown_Text_DoesntMeanAnything:
+    .string "Doesn't mean anything if they\n"
+    .string "know nothing.$"
+
+VerdanturfTown_Text_Dots:
+    .string "………$"
+
+VerdanturfTown_Text_NotVeryNice:
+    .string "That wasn't very nice of you.$"
+
+VerdanturfTown_Text_DontBeABaby:
+    .string "Oh come on, don't be a baby.$"
+
+VerdanturfTown_Text_IDontTrustThis:
+    .string "I don't trust this. Why does\n"
+    .string "everyone know them except me?\p"
+    .string "You're all teaming against me.$"
+
+VerdanturfTown_Text_Sigh:
+    .string "Sigh…$"
