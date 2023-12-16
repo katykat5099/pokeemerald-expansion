@@ -1312,7 +1312,7 @@
 #define FLAG_RECEIVED_PRISON_BOTTLE                                 0x4EC
 #define FLAG_RECEIVED_MEMORIES_PHYSICAL                             0x4ED
 #define FLAG_RECEIVED_MEMORIES_SPECIAL                              0x4EE
-#define FLAG_RECEIVED_GRACIDEA                                      0x4EF // Unused Flag
+#define FLAG_RECEIVED_GRACIDEA                                      0x4EF
 
 #define FLAG_DEFEATED_RUSTBORO_GYM                                  0x4F0
 #define FLAG_DEFEATED_DEWFORD_GYM                                   0x4F1
