@@ -47,6 +47,7 @@
 #include "constants/battle_frontier.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "data/saveless_menu.h"
 
 // Menu actions
 enum
@@ -243,6 +244,7 @@ static const struct WindowTemplate sSaveInfoWindowTemplate = {
 static void BuildStartMenuActions(void);
 static void AddStartMenuAction(u8 action);
 static void BuildNormalStartMenu(void);
+static void BuildSavelessStartMenu(void);
 static void BuildDebugStartMenu(void);
 static void BuildSafariZoneStartMenu(void);
 static void BuildLinkModeStartMenu(void);
@@ -309,12 +311,16 @@ static void BuildStartMenuActions(void)
     {
         BuildMultiPartnerRoomStartMenu();
     }
+    else if (InSavableMap() == TRUE)
+    {
+        BuildNormalStartMenu();
+    }
     else
     {
         if (DEBUG_OVERWORLD_MENU == TRUE && DEBUG_OVERWORLD_IN_MENU == TRUE)
             BuildDebugStartMenu();
         else
-            BuildNormalStartMenu();
+            BuildSavelessStartMenu();
     }
 }
 
@@ -343,6 +349,29 @@ static void BuildNormalStartMenu(void)
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
+    AddStartMenuAction(MENU_ACTION_OPTION);
+    AddStartMenuAction(MENU_ACTION_EXIT);
+}
+
+static void BuildSavelessStartMenu(void)
+{
+    if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
+    {
+        AddStartMenuAction(MENU_ACTION_POKEDEX);
+    }
+    if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
+    {
+        AddStartMenuAction(MENU_ACTION_POKEMON);
+    }
+
+    AddStartMenuAction(MENU_ACTION_BAG);
+
+    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
+    {
+        AddStartMenuAction(MENU_ACTION_POKENAV);
+    }
+
+    AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_OPTION);
     AddStartMenuAction(MENU_ACTION_EXIT);
 }
