@@ -9446,7 +9446,6 @@ static bool32 CanEvolve(u32 species)
              && SanitizeSpeciesId(evolutions[i].targetSpecies) != SPECIES_NONE)
                 return TRUE;
         }
-        
     }
     return FALSE;
 }
@@ -10492,6 +10491,10 @@ u16 GetBattleFormChangeTargetSpecies(u32 battler, u16 method)
                     break;
                 case FORM_CHANGE_BATTLE_TURN_END:
                     if (formChanges[i].param1 == GetBattlerAbility(battler))
+                        targetSpecies = formChanges[i].targetSpecies;
+                    break;
+                case FORM_CHANGE_STATUS:
+                    if (gBattleMons[battler].status1 & formChanges[i].param1)
                         targetSpecies = formChanges[i].targetSpecies;
                     break;
                 }
