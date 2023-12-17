@@ -1289,8 +1289,8 @@
 #define FLAG_UNUSED_0x4D5                                           0x4D5 // Unused Flag
 #define FLAG_UNUSED_0x4D6                                           0x4D6 // Unused Flag
 #define FLAG_UNUSED_0x4D7                                           0x4D7 // Unused Flag
-#define FLAG_UNUSED_0x4D8                                           0x4D8 // Unused Flag
-#define FLAG_UNUSED_0x4D9                                           0x4D9 // Unused Flag
+#define FLAG_TRADE_KARRABLAST                                       0x4D8
+#define FLAG_TRADE_SHELMET                                          0x4D9
 #define FLAG_LEGIT_SAVE                                             0x4DA // Used for Challenge Run
 #define FLAG_HELPED_ALOLAN_FAMILY                                   0x4DB
 #define FLAG_RECEIVED_PRISM_SCALE                                   0x4DC

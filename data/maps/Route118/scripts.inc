@@ -244,6 +244,85 @@ Route118_EventScript_Deandre::
 	msgbox Route118_Text_DeandrePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route118_EventScript_TradeShelmet::
+	lock
+	faceplayer
+	goto_if_set FLAG_TRADE_SHELMET, Route118_EventScript_TradeCompletedShelmet
+	setvar VAR_0x8008, INGAME_TRADE_SHELMET
+	copyvar VAR_0x8004, VAR_0x8008
+	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
+	copyvar VAR_0x8009, VAR_RESULT
+	msgbox Route118_Text_TradePokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route118_EventScript_DeclineTrade
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_0x800A, VAR_0x8004
+	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, Route118_EventScript_DeclineTrade
+	copyvar VAR_0x8005, VAR_0x800A
+	specialvar VAR_RESULT, GetTradeSpecies
+	copyvar VAR_0x800B, VAR_RESULT
+	goto_if_ne VAR_RESULT, VAR_0x8009, Route118_EventScript_NotRequestedMon
+	copyvar VAR_0x8004, VAR_0x8008
+	copyvar VAR_0x8005, VAR_0x800A
+	special CreateInGameTradePokemon
+	special DoInGameTradeScene
+	waitstate
+	bufferspeciesname STR_VAR_1, VAR_0x8009
+	msgbox Route118_Text_ShelmetEvolved, MSGBOX_DEFAULT
+	setflag FLAG_TRADE_SHELMET
+	release
+	end
+
+Route118_EventScript_TradeKarrablast::
+	lock
+	faceplayer
+	goto_if_set FLAG_TRADE_KARRABLAST, Route118_EventScript_TradeCompletedKarrablast
+	setvar VAR_0x8008, INGAME_TRADE_KARRABLAST
+	copyvar VAR_0x8004, VAR_0x8008
+	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
+	copyvar VAR_0x8009, VAR_RESULT
+	msgbox Route118_Text_TradePokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route118_EventScript_DeclineTrade
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_0x800A, VAR_0x8004
+	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, Route118_EventScript_DeclineTrade
+	copyvar VAR_0x8005, VAR_0x800A
+	specialvar VAR_RESULT, GetTradeSpecies
+	copyvar VAR_0x800B, VAR_RESULT
+	goto_if_ne VAR_RESULT, VAR_0x8009, Route118_EventScript_NotRequestedMon
+	copyvar VAR_0x8004, VAR_0x8008
+	copyvar VAR_0x8005, VAR_0x800A
+	special CreateInGameTradePokemon
+	special DoInGameTradeScene
+	waitstate
+	bufferspeciesname STR_VAR_1, VAR_0x8009
+	msgbox Route118_Text_KarrablastEvolved, MSGBOX_DEFAULT
+	setflag FLAG_TRADE_KARRABLAST
+	release
+	end
+
+Route118_EventScript_DeclineTrade::
+	msgbox Route118_Text_DeclineTradePokemon, MSGBOX_DEFAULT
+	release
+	end
+
+Route118_EventScript_NotRequestedMon::
+	bufferspeciesname STR_VAR_1, VAR_0x8009
+	msgbox Route118_Text_WrongTradePokemon, MSGBOX_DEFAULT
+	release
+	end
+
+Route118_EventScript_TradeCompletedShelmet::
+	msgbox Route118_Text_ShelmetNoGood, MSGBOX_DEFAULT
+	release
+	end
+
+Route118_EventScript_TradeCompletedKarrablast::
+	msgbox Route118_Text_ShelmetIsWeak, MSGBOX_DEFAULT
+	release
+	end
+
 Route118_Text_StevenQuestions:
 	.string "STEVEN: Hi, {PLAYER}{KUN}!\p"
 	.string "It's me, STEVEN!\n"
@@ -299,3 +378,31 @@ Route118_Text_RouteSign119:
 	.string "ROUTE 118\n"
 	.string "{UP_ARROW} ROUTE 119$"
 
+Route118_Text_TradePokemon:
+    .string "Me and my friend are trading\n"
+    .string "POKéMON! Would you like to trade?\p"
+    .string "I need a {STR_VAR_1}, I'll give you\n"
+    .string "my {STR_VAR_2}?$"
+
+Route118_Text_DeclineTradePokemon:
+    .string "Aw man!$"
+
+Route118_Text_WrongTradePokemon:
+    .string "That's not the right POKéMON.$"
+
+Route118_Text_ShelmetNoGood:
+    .string "Why didn't I trade with my friend?\n"
+    .string "It's because he thinks my SHELMET\l"
+    .string "wasn't any good.$"
+
+Route118_Text_ShelmetIsWeak:
+    .string "Why didn't I trade with my friend?\n"
+    .string "It's because I can tell! His SHELMET\l"
+    .string "is so weak!$"
+
+Route118_Text_ShelmetEvolved:
+    .string "Woah! Did you see!\n"
+    .string "They totally evolved!$"
+
+Route118_Text_KarrablastEvolved:
+    .string "So cool! They evolved!$"
