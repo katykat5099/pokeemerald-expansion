@@ -831,20 +831,52 @@ static const struct SpriteFrameImage sPicTable_MauvilleOldMan2[] = {
     overworld_frame(gObjectEventPic_MauvilleOldMan2, 2, 4, 8),
 };
 
-static const struct SpriteFrameImage sPicTable_UnusedNatuDoll[] = {
-    obj_frame_tiles(gObjectEventPic_UnusedNatuDoll),
+static const struct SpriteFrameImage sPicTable_AlolanBoy[] = {
+    overworld_frame(gObjectEventPic_AlolanBoy, 2, 4, 0),
+    overworld_frame(gObjectEventPic_AlolanBoy, 2, 4, 1),
+    overworld_frame(gObjectEventPic_AlolanBoy, 2, 4, 2),
+    overworld_frame(gObjectEventPic_AlolanBoy, 2, 4, 3),
+    overworld_frame(gObjectEventPic_AlolanBoy, 2, 4, 4),
+    overworld_frame(gObjectEventPic_AlolanBoy, 2, 4, 5),
+    overworld_frame(gObjectEventPic_AlolanBoy, 2, 4, 6),
+    overworld_frame(gObjectEventPic_AlolanBoy, 2, 4, 7),
+    overworld_frame(gObjectEventPic_AlolanBoy, 2, 4, 8),
 };
 
-static const struct SpriteFrameImage sPicTable_UnusedMagnemiteDoll[] = {
-    obj_frame_tiles(gObjectEventPic_UnusedMagnemiteDoll),
+static const struct SpriteFrameImage sPicTable_AlolanGirl[] = {
+    overworld_frame(gObjectEventPic_AlolanGirl, 2, 4, 0),
+    overworld_frame(gObjectEventPic_AlolanGirl, 2, 4, 1),
+    overworld_frame(gObjectEventPic_AlolanGirl, 2, 4, 2),
+    overworld_frame(gObjectEventPic_AlolanGirl, 2, 4, 3),
+    overworld_frame(gObjectEventPic_AlolanGirl, 2, 4, 4),
+    overworld_frame(gObjectEventPic_AlolanGirl, 2, 4, 5),
+    overworld_frame(gObjectEventPic_AlolanGirl, 2, 4, 6),
+    overworld_frame(gObjectEventPic_AlolanGirl, 2, 4, 7),
+    overworld_frame(gObjectEventPic_AlolanGirl, 2, 4, 8),
 };
 
-static const struct SpriteFrameImage sPicTable_UnusedSquirtleDoll[] = {
-    obj_frame_tiles(gObjectEventPic_UnusedSquirtleDoll),
+static const struct SpriteFrameImage sPicTable_AlolanDad[] = {
+    overworld_frame(gObjectEventPic_AlolanDad, 2, 4, 0),
+    overworld_frame(gObjectEventPic_AlolanDad, 2, 4, 1),
+    overworld_frame(gObjectEventPic_AlolanDad, 2, 4, 2),
+    overworld_frame(gObjectEventPic_AlolanDad, 2, 4, 3),
+    overworld_frame(gObjectEventPic_AlolanDad, 2, 4, 4),
+    overworld_frame(gObjectEventPic_AlolanDad, 2, 4, 5),
+    overworld_frame(gObjectEventPic_AlolanDad, 2, 4, 6),
+    overworld_frame(gObjectEventPic_AlolanDad, 2, 4, 7),
+    overworld_frame(gObjectEventPic_AlolanDad, 2, 4, 8),
 };
 
-static const struct SpriteFrameImage sPicTable_UnusedWooperDoll[] = {
-    obj_frame_tiles(gObjectEventPic_UnusedWooperDoll),
+static const struct SpriteFrameImage sPicTable_AlolanMom[] = {
+    overworld_frame(gObjectEventPic_AlolanMom, 2, 4, 0),
+    overworld_frame(gObjectEventPic_AlolanMom, 2, 4, 1),
+    overworld_frame(gObjectEventPic_AlolanMom, 2, 4, 2),
+    overworld_frame(gObjectEventPic_AlolanMom, 2, 4, 3),
+    overworld_frame(gObjectEventPic_AlolanMom, 2, 4, 4),
+    overworld_frame(gObjectEventPic_AlolanMom, 2, 4, 5),
+    overworld_frame(gObjectEventPic_AlolanMom, 2, 4, 6),
+    overworld_frame(gObjectEventPic_AlolanMom, 2, 4, 7),
+    overworld_frame(gObjectEventPic_AlolanMom, 2, 4, 8),
 };
 
 static const struct SpriteFrameImage sPicTable_UnusedPikachuDoll[] = {
