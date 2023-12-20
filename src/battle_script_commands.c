@@ -1560,6 +1560,14 @@ static bool32 AccuracyCalcHelper(u16 move)
             RecordAbilityBattle(gBattlerTarget, ABILITY_NO_GUARD);
         return TRUE;
     }
+    // If the target is under the effects of Telekinesis, and the move isn't a OH-KO move, move hits.
+    else if (gStatuses3[gBattlerTarget] & STATUS3_TELEKINESIS
+             && !(gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE)
+             && gBattleMoves[move].effect != EFFECT_OHKO)
+    {
+        JumpIfMoveFailed(7, move);
+        return TRUE;
+    }
 
     if (gBattleStruct->zmove.active && !(gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE))
     {
@@ -2007,6 +2015,16 @@ static void Cmd_adjustdamage(void)
     if (DoesDisguiseBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove))
     {
         gBattleStruct->enduredDamage |= gBitTable[gBattlerTarget];
+        goto END;
+    }
+    if (GetBattlerAbility(gBattlerTarget) == ABILITY_ICE_FACE && IS_MOVE_PHYSICAL(gCurrentMove) && gBattleMons[gBattlerTarget].species == SPECIES_EISCUE)
+    {
+        // Damage deals typeless 0 HP.
+        gMoveResultFlags &= ~(MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE);
+        gBattleMoveDamage = 0;
+        RecordAbilityBattle(gBattlerTarget, ABILITY_ICE_FACE);
+        gBattleResources->flags->flags[gBattlerTarget] |= RESOURCE_FLAG_ICE_FACE;
+        // Form change will be done after attack animation in Cmd_resultmessage.
         goto END;
     }
     if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
@@ -2475,6 +2493,17 @@ static void Cmd_resultmessage(void)
 
     if (gBattleControllerExecFlags)
         return;
+
+    // Do Ice Face form change which was set up in Cmd_adjustdamage.
+    if (gBattleResources->flags->flags[gBattlerTarget] & RESOURCE_FLAG_ICE_FACE)
+    {
+        gBattleResources->flags->flags[gBattlerTarget] &= ~(RESOURCE_FLAG_ICE_FACE);
+        gBattleMons[gBattlerTarget].species = SPECIES_EISCUE_NOICE_FACE;
+        gBattleScripting.battler = gBattlerTarget; // For STRINGID_PKMNTRANSFORMED
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_IceFaceNullsDamage;
+        return;
+    }
 
     if (gMoveResultFlags & MOVE_RESULT_MISSED && (!(gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE) || gBattleCommunication[MISS_TYPE] > B_MSG_AVOIDED_ATK))
     {
@@ -8318,8 +8347,7 @@ static bool32 IsRototillerAffected(u32 battler)
     return TRUE;
 }
 
-
-static bool32 IsAbilityRodAffected(void)
+static bool32 IsElectricAbilityAffected(u32 ability)
 {
     u32 moveType;
 
@@ -8330,41 +8358,7 @@ static bool32 IsAbilityRodAffected(void)
     else
         moveType = gBattleMoves[gCurrentMove].type;
 
-    if (moveType == TYPE_ELECTRIC && GetBattlerAbility(gBattlerTarget) == ABILITY_LIGHTNING_ROD)
-        return TRUE;
-    else
-        return FALSE;
-}
-
-static bool32 IsAbilityMotorAffected(void)
-{
-    u32 moveType;
-
-    if (gBattleStruct->dynamicMoveType == 0)
-        moveType = gBattleMoves[gCurrentMove].type;
-    else if (!(gBattleStruct->dynamicMoveType & F_DYNAMIC_TYPE_IGNORE_PHYSICALITY))
-        moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK;
-    else
-        moveType = gBattleMoves[gCurrentMove].type;
-
-    if (moveType == TYPE_ELECTRIC && GetBattlerAbility(gBattlerTarget) == ABILITY_MOTOR_DRIVE)
-        return TRUE;
-    else
-        return FALSE;
-}
-
-static bool32 IsAbilityAbsorbAffected(void)
-{
-    u32 moveType;
-
-    if (gBattleStruct->dynamicMoveType == 0)
-        moveType = gBattleMoves[gCurrentMove].type;
-    else if (!(gBattleStruct->dynamicMoveType & F_DYNAMIC_TYPE_IGNORE_PHYSICALITY))
-        moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK;
-    else
-        moveType = gBattleMoves[gCurrentMove].type;
-
-    if (moveType == TYPE_ELECTRIC && GetBattlerAbility(gBattlerTarget) == ABILITY_VOLT_ABSORB)
+    if (moveType == TYPE_ELECTRIC && GetBattlerAbility(gBattlerTarget) == ability)
         return TRUE;
     else
         return FALSE;
@@ -9576,7 +9570,7 @@ static void Cmd_various(void)
     case VARIOUS_TRY_INSTRUCT:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        u16 move = gLastMoves[gBattlerTarget];
+        u16 move = gLastPrintedMoves[gBattlerTarget];
         if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || gBattleMoves[move].effect == EFFECT_RECHARGE
          || gBattleMoves[move].instructBanned || gBattleMoves[move].twoTurnMove || IsDynamaxed(gBattlerTarget))
         {
@@ -9586,7 +9580,7 @@ static void Cmd_various(void)
         {
             gSpecialStatuses[gBattlerTarget].instructedChosenTarget = *(gBattleStruct->moveTarget + gBattlerTarget) | 0x4;
             gBattlerAttacker = gBattlerTarget;
-            gCalledMove = gLastMoves[gBattlerAttacker];
+            gCalledMove = move;
             for (i = 0; i < MAX_MON_MOVES; i++)
             {
                 if (gBattleMons[gBattlerAttacker].moves[i] == gCalledMove)
@@ -16138,7 +16132,7 @@ void BS_JumpIfEmergencyExited(void)
 void BS_JumpIfRod(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
-    if (IsAbilityRodAffected())
+    if (IsElectricAbilityAffected(ABILITY_LIGHTNING_ROD))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
@@ -16147,7 +16141,7 @@ void BS_JumpIfRod(void)
 void BS_JumpIfAbsorb(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
-    if (IsAbilityAbsorbAffected())
+    if (IsElectricAbilityAffected(ABILITY_VOLT_ABSORB))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
@@ -16156,7 +16150,7 @@ void BS_JumpIfAbsorb(void)
 void BS_JumpIfMotor(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
-    if (IsAbilityMotorAffected())
+    if (IsElectricAbilityAffected(ABILITY_MOTOR_DRIVE))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
