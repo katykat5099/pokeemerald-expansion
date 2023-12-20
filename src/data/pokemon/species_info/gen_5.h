@@ -3000,8 +3000,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         PALETTES(BasculinWhiteStriped),
         ICON(BasculinWhiteStriped, 0),
         LEARNSETS(BasculinWhiteStriped),
-        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_BASCULEGION_MALE},
-                                {EVO_NONE, 0, SPECIES_BASCULEGION_FEMALE}),
+        .evolutions = EVOLUTION({EVO_LEVEL_MALE, 43, SPECIES_BASCULEGION_MALE},
+                                {EVO_LEVEL_FEMALE, 43, SPECIES_BASCULEGION_FEMALE}),
     },
 
 #define BASCULEGION_MISC_INFO                                                               \
@@ -7249,7 +7249,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         ICON(Bisharp, 0),
         .footprint = gMonFootprint_Bisharp,
         LEARNSETS(Bisharp),
-        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_KINGAMBIT}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 55, SPECIES_KINGAMBIT}),
     },
 
 #if P_GEN_9_CROSS_EVOS
