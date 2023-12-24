@@ -250,6 +250,24 @@ bool8 InSavableMap(void)
             && gSaveBlock1Ptr->location.mapNum == MAP_NUM(INSIDE_OF_TRUCK))
             ? TRUE : FALSE;
         }
+    else if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE119_WEATHER_INSTITUTE_1F) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE119_WEATHER_INSTITUTE_1F))
+        {
+        return (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE119_WEATHER_INSTITUTE_1F)
+            && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE119_WEATHER_INSTITUTE_1F))
+            ? TRUE : FALSE;
+        }
+    else if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE111_OLD_LADYS_REST_STOP) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE111_OLD_LADYS_REST_STOP))
+        {
+        return (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE111_OLD_LADYS_REST_STOP)
+            && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE111_OLD_LADYS_REST_STOP))
+            ? TRUE : FALSE;
+        }
+    else if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE123_BERRY_MASTERS_HOUSE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE123_BERRY_MASTERS_HOUSE))
+        {
+        return (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE123_BERRY_MASTERS_HOUSE)
+            && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE123_BERRY_MASTERS_HOUSE))
+            ? TRUE : FALSE;
+        }
     return FALSE;
 }
 

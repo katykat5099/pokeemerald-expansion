@@ -47,7 +47,7 @@
 #include "constants/battle_frontier.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
-#include "data/saveless_menu.h"
+#include "data/saveable_menu.h"
 
 // Menu actions
 enum
