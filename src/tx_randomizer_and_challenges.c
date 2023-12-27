@@ -235,7 +235,7 @@ void NuzlockeDeletePartyMon(u8 position)
         struct Pokemon *pokemon = &gPlayerParty[position];
         u8 val[1] = {TRUE};
         
-        SetMonData(pokemon, MON_DATA_NUZLOCKE_RIBBON, val);
+        SetMonData(pokemon, MON_DATA_NUZLOCKE_RIBBON, &val);
         CopyMonToPC(&gPlayerParty[position]);
     }
     PurgeMonOrBoxMon(TOTAL_BOXES_COUNT, position);
@@ -263,10 +263,10 @@ void NuzlockeDeleteFaintedPartyPokemon(void) // @Kurausukun
                     SetMonData(pokemon, MON_DATA_HELD_ITEM, &monItem);
                 }
                 NuzlockeDeletePartyMon(i);
-                CompactPartySlots();
             }
         }
     }
+    CompactPartySlots();
 }
 
 // Difficulty
