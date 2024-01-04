@@ -21,7 +21,7 @@ EWRAM_DATA static volatile bool8 sRngLoopUnlocked;
 
 // A variant of SFC32 that lets you change the stream.
 // stream can be any odd number.
-static inline u32 _SFC32_Next_Stream(struct Sfc32State *state, const u8 stream)
+static u32 _SFC32_Next_Stream(struct Sfc32State *state, const u8 stream)
 {
     const u32 result = state->a + state->b + state->ctr;
     state->ctr += stream;
@@ -107,6 +107,35 @@ void AdvanceRandom(void)
 
 #define LOOP_RANDOM ((u16)(_SFC32_Next(state) >> 16))
 
+//randomizer
+#define STREAM_RANDOMIZER 41
+
+static inline u16 LocalRandomSeededInternal(rng_value_t *const val)
+{
+    return _SFC32_Next_Stream(val, STREAM_RANDOMIZER) >> 16;
+}
+
+static rng_value_t CreateRandomSeededState(u32 seed, bool8 forbidChaos)
+{
+    u32 chaosValue, i;
+    rng_value_t result = {0};
+
+    if (gSaveBlock1Ptr->tx_Random_Chaos && !forbidChaos)
+        chaosValue = Random32();
+    else
+        chaosValue = 0;
+
+    result.ctr = STREAM_RANDOMIZER;
+    result.c = seed;
+    result.b = GetTrainerId(gSaveBlock2Ptr->playerTrainerId);
+    result.a = chaosValue;
+
+    for (i = 0; i < 8; i++)
+        LocalRandomSeededInternal(&result);
+
+    return result;
+}
+
 #else
 EWRAM_DATA static u32 sRandCount = 0;
 
@@ -137,6 +166,31 @@ u16 Random2(void)
 #define LOOP_RANDOM_END
 
 #define LOOP_RANDOM (Random())
+
+//randomizer
+static inline u16 LocalRandomSeededInternal(rng_value_t* val)
+{
+    *val = ISO_RANDOMIZE1(*val);
+    return *val >> 16;
+}
+
+static rng_value_t CreateRandomSeededState(u32 seed, bool8 forbidChaos)
+{
+    u32 chaosValue, i;
+    rng_value_t result = 0;
+
+    if (gSaveBlock1Ptr->tx_Random_Chaos && !forbidChaos)
+        chaosValue = Random();
+    else
+        chaosValue = 0;
+
+    result = seed + chaosValue;
+
+    for (i = 0; i < 4; i++)
+        LocalRandomSeededInternal(&result);
+
+    return result;
+}
 
 #endif
 
@@ -236,64 +290,61 @@ const void *RandomElementArrayDefault(enum RandomTag tag, const void *array, siz
 }
 
 //tx_randomizer_and_challenges
-u16 RandomSeeded(u16 value, u8 seeded)
-{
-    u16 otId, result;
 
-    if (gSaveBlock1Ptr->tx_Random_Chaos && !seeded)
-    {
-        result = Random();
-    }
-    else
-    {
-        otId = GetTrainerId(gSaveBlock2Ptr->playerTrainerId);
-        result = ISO_RANDOMIZE1(otId + value) >> 16;
-    }
-    return result;
+u16 RandomSeeded(u32 value, bool8 forbidChaos)
+{
+    rng_value_t state = CreateRandomSeededState(value, forbidChaos);
+    return LocalRandomSeededInternal(&state);
 }
-#define I_MAX 5
+
 u16 RandomSeededModulo(u32 value, u16 modulo)
 {
-    u32 otId;
-    u32 RAND_MAX;
-    u32 result = 0;
-    u8 i = 0;
+    u16 lower;
+    u32 scaled;
+    rng_value_t state;
 
-    if (gSaveBlock1Ptr->tx_Random_Chaos)
-        value = Random();
+    state = CreateRandomSeededState(value, FALSE);
+    scaled = (u32)LocalRandomSeededInternal(&state) * (u32)modulo;
+    lower = (u16)scaled;
 
-    otId = GetTrainerId(gSaveBlock2Ptr->playerTrainerId);
-    RAND_MAX = 0xFFFFFFFF - (0xFFFFFFFF % modulo);
-
-    do
+    if (lower < modulo)
     {
-        result = ISO_RANDOMIZE1(otId + value + result);
+        u16 adjusted_mod;
+        adjusted_mod = (UINT16_MAX + 1) % modulo;
+        while (lower < adjusted_mod)
+        {
+            scaled = (u32)LocalRandomSeededInternal(&state) * (u32)modulo;
+            lower = (u16)scaled;
+        }
     }
-    while ((result >= RAND_MAX) && (++i != I_MAX));
 
-    return (result % modulo);
+    return scaled >> 16;
 }
-void ShuffleListU8(u8 *list, u8 count, u8 seed)
+
+void ShuffleListSeeded8(u8 *list, u32 count, u32 seed)
 {
-    u16 i;
+    u32 i;
+    rng_value_t state;
+    state = CreateRandomSeededState(seed, TRUE);
 
     for (i = (count - 1); i > 0; i--)
     {
-        u16 j = RandomSeeded(seed, TRUE) % (i + 1);
-        u16 arr = list[j];
-        list[j] = list[i];
-        list[i] = arr;
+        u8 tmp;
+        u16 j = (LocalRandomSeededInternal(&state) * (i + 1)) >> 16;
+        SWAP(list[i], list[j], tmp);
     }
 }
-void ShuffleListU16(u16 *list, u16 count, u32 seed)
+
+void ShuffleListSeeded16(u16 *list, u32 count, u32 seed)
 {
-    u16 i;
+    u32 i;
+    rng_value_t state;
+    state = CreateRandomSeededState(seed, TRUE);
 
     for (i = (count - 1); i > 0; i--)
     {
-        u16 j = RandomSeeded(seed, TRUE) % (i + 1);
-        u16 arr = list[j];
-        list[j] = list[i];
-        list[i] = arr;
+        u16 tmp;
+        u16 j = (LocalRandomSeededInternal(&state) * (i + 1)) >> 16;
+        SWAP(list[i], list[j], tmp);
     }
 }
