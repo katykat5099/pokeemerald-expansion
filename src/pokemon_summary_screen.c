@@ -1661,29 +1661,29 @@ static void Task_HandleInput(u8 taskId)
             PlaySE(SE_SELECT);
             CloseSummaryScreen(taskId);
         }
+        // show IVs/EVs/stats on button presses
+        else if (gMain.newKeys & R_BUTTON)
+        {
+            if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+            {
+                BufferIvOrEvStats(0);
+            }
+        }
+        else if (gMain.newKeys & L_BUTTON)
+        {
+            if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+            {
+                BufferIvOrEvStats(1);
+            }
+        }
+        else if (gMain.newKeys & START_BUTTON)
+        {
+            if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+            {
+                BufferIvOrEvStats(2);
+            }
+        }
     #endif
-    // show IVs/EVs/stats on button presses
-    else if (gMain.newKeys & R_BUTTON)
-    {
-        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
-        {
-            BufferIvOrEvStats(0);
-        }
-    }
-    else if (gMain.newKeys & L_BUTTON)
-    {
-        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
-        {
-            BufferIvOrEvStats(1);
-        }
-    }
-    else if (gMain.newKeys & START_BUTTON)
-    {
-        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
-        {
-            BufferIvOrEvStats(2);
-        }
-    }
     }
 }
 
