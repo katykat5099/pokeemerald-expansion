@@ -820,6 +820,7 @@ const u16 gEasyChatWordsByLetter_J[] = {
     EC_WORD_JUDGE,
     EC_MOVE2(JUMP_KICK),
     EC_POKEMON_NATIONAL(JUMPLUFF),
+    EC_WORD_JUNICHI,
     EC_WORD_JUST,
     EC_POKEMON_NATIONAL(JYNX),
 };
@@ -992,6 +993,7 @@ const u16 gEasyChatWordsByLetter_M[] = {
     EC_WORD_MASTER,
     EC_WORD_MATCH,
     EC_WORD_MATCH_UP,
+    EC_WORD_MASUDA,
     EC_POKEMON(MAWILE),
     EC_WORD_MAYBE,
     EC_WORD_MC,

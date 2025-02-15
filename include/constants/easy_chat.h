@@ -377,6 +377,8 @@
 #define EC_WORD_HERS         ((EC_GROUP_PEOPLE << EC_MASK_BITS) | 72)
 #define EC_WORD_SHE_IS       ((EC_GROUP_PEOPLE << EC_MASK_BITS) | 73)
 #define EC_WORD_SOME         ((EC_GROUP_PEOPLE << EC_MASK_BITS) | 74)
+#define EC_WORD_JUNICHI      ((EC_GROUP_PEOPLE << EC_MASK_BITS) | 75)
+#define EC_WORD_MASUDA       ((EC_GROUP_PEOPLE << EC_MASK_BITS) | 76)
 
 // VOICES
 #define EC_WORD_EXCL                        ((EC_GROUP_VOICES << EC_MASK_BITS) | 0)
